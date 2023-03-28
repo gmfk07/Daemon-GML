@@ -1,0 +1,7 @@
+{
+  "FolderOrderSettings": [],
+  "ResourceOrderSettings": [
+    {"name":"Enums","order":1,"path":"scripts/Enums/Enums.yy",},
+    {"name":"oBattleDaemon","order":1,"path":"objects/oBattleDaemon/oBattleDaemon.yy",},
+  ],
+}
