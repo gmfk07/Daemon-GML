@@ -1,7 +1,11 @@
 {
-  "FolderOrderSettings": [],
+  "FolderOrderSettings": [
+    {"name":"Cards","order":2,"path":"folders/Sprites/Cards.yy",},
+  ],
   "ResourceOrderSettings": [
-    {"name":"Enums","order":1,"path":"scripts/Enums/Enums.yy",},
+    {"name":"Util","order":1,"path":"scripts/Util/Util.yy",},
+    {"name":"sClawArt","order":1,"path":"sprites/sClawArt/sClawArt.yy",},
+    {"name":"oMoveCard","order":1,"path":"objects/oMoveCard/oMoveCard.yy",},
     {"name":"oBattleDaemon","order":1,"path":"objects/oBattleDaemon/oBattleDaemon.yy",},
   ],
 }

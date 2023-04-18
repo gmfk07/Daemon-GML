@@ -1,7 +1,7 @@
 {
   "resourceType": "GMScript",
   "resourceVersion": "1.0",
-  "name": "Enums",
+  "name": "Util",
   "isCompatibility": false,
   "isDnD": false,
   "parent": {
