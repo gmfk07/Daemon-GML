@@ -108,5 +108,5 @@ initialize_battle_daemon(enemy_bottom_battle_daemon, enemy_bottom_daemon_data, f
 phase = battle_phases.selecting;
 selected_daemon = noone;
 selected_card = noone;
-
+selected_targets = [];
 move_card_list = ds_list_create();

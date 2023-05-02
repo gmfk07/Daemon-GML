@@ -12,4 +12,7 @@ if (selected_daemon != noone)
 		instance_destroy(ds_list_find_value(move_card_list, i));
 	}
 	ds_list_clear(move_card_list);
+	
+	selected_targets = [];
+	selected_card = noone;
 }

@@ -1,6 +1,7 @@
 {
   "FolderOrderSettings": [
     {"name":"Cards","order":2,"path":"folders/Sprites/Cards.yy",},
+    {"name":"Icons","order":3,"path":"folders/Sprites/Icons.yy",},
   ],
   "ResourceOrderSettings": [
     {"name":"Util","order":1,"path":"scripts/Util/Util.yy",},
