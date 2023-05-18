@@ -24,4 +24,4 @@ enum targets
 	all_enemies
 }
 
-#macro SELECTED_IMAGE_SCALE 1.25
+#macro SELECTED_IMAGE_SCALE 1.5

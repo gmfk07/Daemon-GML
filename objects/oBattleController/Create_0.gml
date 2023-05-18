@@ -1,4 +1,4 @@
-/// @description Init vars, create oBattleDaemon
+/// @description Init vars, create oBattleDaemon, trigger new turn
 global.battle_controller = self;
 
 move_claw_data =
@@ -29,7 +29,7 @@ player_top_daemon_data =
 	speed: 10,
 	classes: [classes.impulse],
 	moves: [move_claw_data, move_claw_data, move_claw_data],
-	hand_size: 4
+	hand_size: 3
 }
 
 player_center_daemon_data =
@@ -40,7 +40,7 @@ player_center_daemon_data =
 	speed: 10,
 	classes: [classes.impulse],
 	moves: [move_claw_data, move_claw_data, move_claw_data],
-	hand_size: 4
+	hand_size: 3
 }
 
 player_bottom_daemon_data =
@@ -50,8 +50,8 @@ player_bottom_daemon_data =
 	hp: 10,
 	speed: 10,
 	classes: [classes.impulse],
-	moves: [move_claw_data, move_claw_data],
-	hand_size: 4
+	moves: [move_claw_data, move_claw_data, move_claw_data],
+	hand_size: 3
 }
 
 enemy_top_daemon_data =
@@ -110,3 +110,5 @@ selected_daemon = noone;
 selected_card = noone;
 selected_targets = [];
 move_card_list = ds_list_create();
+
+start_new_turn();

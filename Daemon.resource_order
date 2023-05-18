@@ -1,12 +1,15 @@
 {
   "FolderOrderSettings": [
+    {"name":"UI","order":3,"path":"folders/Objects/Battle/UI.yy",},
     {"name":"Cards","order":2,"path":"folders/Sprites/Cards.yy",},
     {"name":"Icons","order":3,"path":"folders/Sprites/Icons.yy",},
+    {"name":"UI","order":4,"path":"folders/Sprites/UI.yy",},
   ],
   "ResourceOrderSettings": [
     {"name":"Util","order":1,"path":"scripts/Util/Util.yy",},
     {"name":"sClawArt","order":1,"path":"sprites/sClawArt/sClawArt.yy",},
-    {"name":"oMoveCard","order":1,"path":"objects/oMoveCard/oMoveCard.yy",},
+    {"name":"oMoveCard","order":2,"path":"objects/oMoveCard/oMoveCard.yy",},
+    {"name":"BattleControllerScripts","order":2,"path":"scripts/BattleControllerScripts/BattleControllerScripts.yy",},
     {"name":"oBattleDaemon","order":1,"path":"objects/oBattleDaemon/oBattleDaemon.yy",},
   ],
 }
