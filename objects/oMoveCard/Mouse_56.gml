@@ -8,7 +8,6 @@ if (selected)
 	
 	layer = layer_get_id("Cards");
 	
-	selected_card = noone;
 	with (global.battle_controller)
 	{
 		event_user(1);

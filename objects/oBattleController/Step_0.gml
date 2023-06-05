@@ -1,7 +1,7 @@
 /// @description If card being held, check for targets + target rotate
 if (selected_card != noone)
 {
-	var move_data = selected_daemon.moves[selected_move_index];
+	var move_data = selected_card.move;
 	var possible_targets = [];
 	var max_target_select_distance = 200;
 	

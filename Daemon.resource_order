@@ -6,7 +6,10 @@
     {"name":"UI","order":4,"path":"folders/Sprites/UI.yy",},
   ],
   "ResourceOrderSettings": [
+    {"name":"sPoints","order":1,"path":"sprites/sPoints/sPoints.yy",},
+    {"name":"sBiteArt","order":3,"path":"sprites/sBiteArt/sBiteArt.yy",},
     {"name":"Util","order":1,"path":"scripts/Util/Util.yy",},
+    {"name":"sPointCost","order":2,"path":"sprites/sPointCost/sPointCost.yy",},
     {"name":"sClawArt","order":1,"path":"sprites/sClawArt/sClawArt.yy",},
     {"name":"oMoveCard","order":2,"path":"objects/oMoveCard/oMoveCard.yy",},
     {"name":"BattleControllerScripts","order":2,"path":"scripts/BattleControllerScripts/BattleControllerScripts.yy",},

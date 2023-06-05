@@ -28,7 +28,7 @@ player_top_daemon_data =
 	hp: 10,
 	speed: 10,
 	classes: [classes.impulse],
-	moves: [move_claw_data, move_claw_data, move_claw_data],
+	moves: [move_claw_data, move_claw_data, move_bite_data],
 	hand_size: 3
 }
 
@@ -39,7 +39,7 @@ player_center_daemon_data =
 	hp: 10,
 	speed: 10,
 	classes: [classes.impulse],
-	moves: [move_claw_data, move_claw_data, move_claw_data],
+	moves: [move_claw_data, move_bite_data, move_bite_data],
 	hand_size: 3
 }
 
@@ -110,5 +110,7 @@ selected_daemon = noone;
 selected_card = noone;
 selected_targets = [];
 move_card_list = ds_list_create();
+points = starting_points;
+max_points = starting_points;
 
 start_new_turn();

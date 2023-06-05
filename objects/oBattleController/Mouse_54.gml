@@ -1,2 +1,3 @@
 /// @description Clear selected daemon
-clear_selected_daemon();
+selected_card = noone;
+clear_selected_daemon(true);
