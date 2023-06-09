@@ -1,6 +1,6 @@
 /// @description Draw target icons
 // You can write your code in this editor
-draw_sprite(sPoints, 0, 32, room_height - 160);
+draw_sprite(sPoints, points > 0 ? 0 : 1, 32, room_height - 160);
 draw_set_color(c_white);
 draw_set_halign(fa_center);
 draw_set_font(fnt_point_cost);

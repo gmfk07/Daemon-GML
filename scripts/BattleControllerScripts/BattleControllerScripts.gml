@@ -6,6 +6,11 @@ function clear_selected_daemon(clear_move)
 		
 		if (clear_move)
 		{
+			if (selected_daemon.selected_move != noone)
+			{
+				points += selected_daemon.selected_move.cost;
+			}
+			
 			selected_daemon.selected_move = noone;
 			selected_daemon.selected_targets = [];
 		}

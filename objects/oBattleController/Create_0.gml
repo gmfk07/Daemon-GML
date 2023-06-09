@@ -14,7 +14,7 @@ move_claw_data =
 move_bite_data =
 {
 	name: "Bite",
-	art: sClawArt,
+	art: sBiteArt,
 	class: classes.impulse,
 	cost: 2,
 	damage: 4,

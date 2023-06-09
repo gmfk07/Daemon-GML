@@ -7,7 +7,26 @@ if (selected_card != noone)
 	
 	if (move_data.targets == targets.single_enemy)
 	{
-		possible_targets = [enemy_top_battle_daemon, enemy_center_battle_daemon, enemy_bottom_battle_daemon];
+		var possible_targets;
+		switch (selected_daemon)
+		{
+			case player_top_battle_daemon:
+				possible_targets = [enemy_top_battle_daemon, enemy_center_battle_daemon];
+			break;
+				
+			case player_center_battle_daemon:
+				possible_targets = [enemy_top_battle_daemon, enemy_center_battle_daemon, enemy_bottom_battle_daemon];
+			break;
+				
+			case player_bottom_battle_daemon:
+				possible_targets = [enemy_center_battle_daemon, enemy_bottom_battle_daemon];
+			break;
+			
+			default:
+				show_message("uh oh!");
+			break;
+		}
+		
 		var closest_target_dist = max_target_select_distance;
 		var closest_target = noone;
 		for (var i=0; i < array_length(possible_targets); i++)
