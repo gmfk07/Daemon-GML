@@ -11,7 +11,7 @@ if (phase == battle_phases.selecting)
 
 	for (var i = 0; i < moves_len; i++)
 	{
-		var created = instance_create_layer((room_width/(moves_len + 1))*(i + 1), room_height - sprite_get_height(sCardShell), "Cards", oMoveCard);
+		var created = instance_create_layer((room_width/(moves_len + 1))*(i + 1), room_height - sprite_get_height(sCardShell)/2 - 32, "Cards", oMoveCard);
 		created.move = ds_list_find_value(selected_daemon.hand_list, i);
 		ds_list_add(move_card_list, created);
 	}
