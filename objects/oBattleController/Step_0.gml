@@ -1,4 +1,10 @@
 /// @description If card being held, check for targets + target rotate
+if (phase == battle_phases.prep)
+{
+	
+}
+
+// If card being held, check for targets + target rotate
 if (selected_card != noone)
 {
 	var move_data = selected_card.move;

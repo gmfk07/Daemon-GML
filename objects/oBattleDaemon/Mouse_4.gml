@@ -1,5 +1,5 @@
 /// @description Trigger selecting daemon
-if (!selected && player_owned)
+if (!selected && player_owned && global.battle_controller.phase == battle_phases.selecting)
 {
 	selected = true;
 	image_xscale *= SELECTED_IMAGE_SCALE;
