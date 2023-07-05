@@ -8,7 +8,8 @@ move_claw_data =
 	class: classes.impulse,
 	cost: 1,
 	damage: 2,
-	targets: targets.single_enemy
+	targets: targets.single_enemy,
+	phase: battle_phases.prep
 }
 
 move_bite_data =
@@ -18,7 +19,8 @@ move_bite_data =
 	class: classes.impulse,
 	cost: 2,
 	damage: 4,
-	targets: targets.single_enemy
+	targets: targets.single_enemy,
+	phase: battle_phases.action
 }
 
 player_top_daemon_data =
@@ -26,9 +28,9 @@ player_top_daemon_data =
 	sprite: sComcat,
 	name: "Comcat",
 	hp: 10,
-	speed: 10,
+	initiative: 10,
 	classes: [classes.impulse],
-	moves: [move_claw_data, move_claw_data, move_bite_data],
+	moves: [move_claw_data, move_claw_data, move_claw_data, move_claw_data, move_claw_data, move_bite_data],
 	hand_size: 3
 }
 
@@ -37,9 +39,9 @@ player_center_daemon_data =
 	sprite: sComcat,
 	name: "Comcat II",
 	hp: 10,
-	speed: 10,
+	initiative: 10,
 	classes: [classes.impulse],
-	moves: [move_claw_data, move_bite_data, move_bite_data],
+	moves: [move_claw_data, move_bite_data, move_bite_data, move_bite_data, move_bite_data],
 	hand_size: 3
 }
 
@@ -48,9 +50,9 @@ player_bottom_daemon_data =
 	sprite: sComcat,
 	name: "Comcat III",
 	hp: 10,
-	speed: 10,
+	initiative: 10,
 	classes: [classes.impulse],
-	moves: [move_claw_data, move_claw_data, move_claw_data],
+	moves: [move_claw_data, move_claw_data, move_claw_data, move_claw_data, move_claw_data, move_claw_data],
 	hand_size: 3
 }
 
@@ -59,7 +61,7 @@ enemy_top_daemon_data =
 	sprite: sComcat,
 	name: "Comcat",
 	hp: 10,
-	speed: 10,
+	initiative: 10,
 	classes: [classes.impulse],
 	moves: [move_claw_data, move_claw_data, move_claw_data],
 	hand_size: 4
@@ -70,7 +72,7 @@ enemy_center_daemon_data =
 	sprite: sComcat,
 	name: "Comcat II",
 	hp: 10,
-	speed: 10,
+	initiative: 10,
 	classes: [classes.impulse],
 	moves: [move_claw_data, move_claw_data, move_claw_data],
 	hand_size: 4
@@ -81,7 +83,7 @@ enemy_bottom_daemon_data =
 	sprite: sComcat,
 	name: "Comcat III",
 	hp: 10,
-	speed: 10,
+	initiative: 10,
 	classes: [classes.impulse],
 	moves: [move_claw_data, move_claw_data, move_claw_data],
 	hand_size: 4
@@ -113,4 +115,5 @@ move_card_list = ds_list_create();
 points = starting_points;
 max_points = starting_points;
 
+randomize();
 start_new_turn();

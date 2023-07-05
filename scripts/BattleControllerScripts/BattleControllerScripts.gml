@@ -34,4 +34,18 @@ function start_new_turn()
 	with (player_top_battle_daemon) { event_user(0); }
 	with (player_center_battle_daemon) { event_user(0); }
 	with (player_bottom_battle_daemon) { event_user(0); }
+	
+	phase = battle_phases.selecting;
+	points = max_points;
+	var battle_daemon_array = get_all_battle_daemon();
+	
+	for (var i=0; i < array_length(battle_daemon_array); i++)
+	{
+		battle_daemon_array[i].attacked = false;
+	}
+}
+
+function get_all_battle_daemon()
+{
+	return [enemy_top_battle_daemon, enemy_center_battle_daemon, enemy_bottom_battle_daemon, player_top_battle_daemon, player_center_battle_daemon, player_bottom_battle_daemon];
 }
