@@ -8,5 +8,6 @@ draw_text(32*3, room_height - 32*4.5, points);
 
 for (var i=0; i < array_length(selected_targets); i++)
 {
-	draw_sprite_ext(sTarget, 0, selected_targets[i].x, selected_targets[i].y, 1 + 0.25*sin(current_time/500), 1 + 0.25*sin(current_time/500), target_theta, c_white, 1);
+	var target_battle_daemon = ds_map_find_value(position_daemon_map, selected_targets[i]);
+	draw_sprite_ext(sTarget, 0, target_battle_daemon.x, target_battle_daemon.y, 1 + 0.25*sin(current_time/500), 1 + 0.25*sin(current_time/500), target_theta, c_white, 1);
 }

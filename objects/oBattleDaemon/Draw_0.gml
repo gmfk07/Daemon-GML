@@ -1,7 +1,8 @@
 /// @description Draw self and target lines
 for (var i=0; i < array_length(selected_targets); i++)
 {
-	draw_line(x, y, selected_targets[i].x, selected_targets[i].y);
+	var targeted_battle_daemon = ds_map_find_value(global.battle_controller.position_daemon_map, selected_targets[i]);
+	draw_line(x, y, targeted_battle_daemon.x, targeted_battle_daemon.y);
 }
 
 draw_self();

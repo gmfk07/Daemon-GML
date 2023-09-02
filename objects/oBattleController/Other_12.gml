@@ -1,8 +1,6 @@
 /// @description Handle lock in button pressed
 if (phase == battle_phases.selecting)
-{
-	phase = battle_phases.prep;
-	
+{	
 	if (selected_daemon != noone)
 	{
 		with (selected_daemon)
@@ -17,4 +15,8 @@ if (phase == battle_phases.selecting)
 
 		clear_selected_daemon(false);
 	}
+	
+	take_enemy_turn();
+	
+	phase = battle_phases.prep;
 }

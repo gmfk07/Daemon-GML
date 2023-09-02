@@ -12,7 +12,11 @@ function initialize_battle_daemon(obj, data, player_owned=false)
 		ds_list_add(obj.deck_list, data.moves[i]);
 	}
 	obj.hand_size = data.hand_size;
+	obj.physical_attack = data.physical_attack;
+	obj.energy_attack = data.energy_attack;
+	
 	obj.player_owned = player_owned;
+	
 	
 	//Enemies face the other way
 	if (!player_owned)
@@ -91,9 +95,30 @@ function battle_daemon_act(battle_daemon)
 	{
 		for (var i=0; i < array_length(battle_daemon.selected_targets); i++)
 		{
+			//Damage
 			if (move.damage > 0)
 			{
-				battle_daemon_take_damage(battle_daemon.selected_targets[i], move.damage);
+				var damage = move.damage;
+				
+				if (move.attack_type == attack_types.physical)
+				{
+					damage += battle_daemon.physical_attack;
+				}
+				else if (move.attack_type == attack_types.energy)
+				{
+					damage += battle_daemon.energy_attack;
+				}
+				
+				battle_daemon_take_damage(battle_daemon.selected_targets[i], damage);
+			}
+			
+			//Effects
+			for (var j=0; j < array_length(move.effects); j++)
+			{
+				if (move.effects[j] == effects.swap)
+				{
+					swap_daemons(battle_daemon.position, battle_daemon.selected_targets[i]);
+				}
 			}
 		}
 	}
@@ -103,7 +128,27 @@ function battle_daemon_act(battle_daemon)
 	battle_daemon.selected_targets = [];
 }
 
-function battle_daemon_take_damage(battle_daemon, damage)
+function battle_daemon_take_damage(position, damage)
 {
+	var battle_daemon = ds_map_find_value(global.battle_controller.position_daemon_map, position);
 	battle_daemon.hp = median(battle_daemon.hp - damage, 0, battle_daemon.max_hp);
+}
+
+function swap_daemons(position1, position2)
+{
+	var battle_daemon1 = ds_map_find_value(global.battle_controller.position_daemon_map, position1);
+	var battle_daemon2 = ds_map_find_value(global.battle_controller.position_daemon_map, position2);
+	var x1 = battle_daemon1.x;
+	var y1 = battle_daemon1.y;
+	
+	battle_daemon1.x = battle_daemon2.x;
+	battle_daemon1.y = battle_daemon2.y;
+	battle_daemon2.x = x1;
+	battle_daemon2.y = y1;
+	
+	ds_map_set(global.battle_controller.position_daemon_map, position1, battle_daemon2);
+	ds_map_set(global.battle_controller.position_daemon_map, position2, battle_daemon1);
+	
+	battle_daemon1.position = position2;
+	battle_daemon2.position = position1;
 }

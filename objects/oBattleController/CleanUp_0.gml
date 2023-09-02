@@ -1,1 +1,2 @@
 ds_list_destroy(move_card_list);
+ds_map_destroy(position_daemon_map);

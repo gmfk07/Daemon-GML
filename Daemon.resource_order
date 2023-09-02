@@ -2,13 +2,17 @@
   "FolderOrderSettings": [
     {"name":"UI","order":3,"path":"folders/Objects/Battle/UI.yy",},
     {"name":"Cards","order":2,"path":"folders/Sprites/Cards.yy",},
+    {"name":"Card Art","order":6,"path":"folders/Sprites/Cards/Card Art.yy",},
+    {"name":"Card Shells","order":4,"path":"folders/Sprites/Cards/Card Shells.yy",},
     {"name":"Icons","order":3,"path":"folders/Sprites/Icons.yy",},
     {"name":"UI","order":4,"path":"folders/Sprites/UI.yy",},
   ],
   "ResourceOrderSettings": [
+    {"name":"sCardShellMove","order":1,"path":"sprites/sCardShellMove/sCardShellMove.yy",},
     {"name":"sPoints","order":1,"path":"sprites/sPoints/sPoints.yy",},
-    {"name":"sBiteArt","order":3,"path":"sprites/sBiteArt/sBiteArt.yy",},
     {"name":"Util","order":1,"path":"scripts/Util/Util.yy",},
+    {"name":"sMoveArt","order":2,"path":"sprites/sMoveArt/sMoveArt.yy",},
+    {"name":"sCaracara","order":5,"path":"sprites/sCaracara/sCaracara.yy",},
     {"name":"sPointCost","order":2,"path":"sprites/sPointCost/sPointCost.yy",},
     {"name":"sClawArt","order":1,"path":"sprites/sClawArt/sClawArt.yy",},
     {"name":"oMoveCard","order":2,"path":"objects/oMoveCard/oMoveCard.yy",},
