@@ -14,10 +14,19 @@ if (phase == battle_phases.selecting)
 	{
 		var created = instance_create_layer((room_width/(card_count + 1))*(i + 1), room_height - sprite_get_height(sCardShell)/2 - 32, "Cards", oMoveCard);
 		created.move = ds_list_find_value(selected_daemon.hand_list, i);
+		
+		//Check for same class
+		if (created.move.class == classes.classless || created.move.class == selected_daemon.classes[0] || (array_length(selected_daemon.classes) == 2 && created.move.class == selected_daemon.classes[1]))
+		{
+			created.same_class = true;
+		}
+		
 		ds_list_add(move_card_list, created);
 	}
+	
 	//Add move card
 	var created = instance_create_layer((room_width/(card_count + 1))*(i + 1), room_height - sprite_get_height(sCardShell)/2 - 32, "Cards", oMoveCard);
 	created.move = move_move_data;
+	created.same_class = true;
 	ds_list_add(move_card_list, created);
 }

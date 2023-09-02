@@ -1,7 +1,7 @@
 /// @description Handle card released
 if (!array_equals(selected_targets, []))
 {
-	points -= selected_card.move.cost;
+	points -= selected_card.move.cost + (selected_card.same_class ? 0 : 1);
 }
 
 with (selected_daemon)

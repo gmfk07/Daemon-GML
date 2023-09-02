@@ -48,4 +48,64 @@ enum effects
 	swap //swaps user and target positions, expected to be used w/ 1 target
 }
 
+function get_class_strengths(class)
+{
+	switch (class)
+	{
+		case classes.advent:
+			return [classes.impulse];
+		break;
+			
+		case classes.bulwark:
+			return [classes.advent, classes.element];
+		break;
+		
+		case classes.element:
+			return [classes.impulse, classes.penumbra];
+		break;
+		
+		case classes.impulse:
+			return [classes.bulwark, classes.null];
+		break;
+		
+		case classes.null:
+			return [classes.element];
+		break;
+		
+		case classes.penumbra:
+			return [classes.bulwark];
+		break;
+	}
+}
+
+function get_class_weaknesses()
+{
+	switch (class)
+	{
+		case classes.advent:
+			return [classes.bulwark];
+		break;
+			
+		case classes.bulwark:
+			return [classes.penumbra, classes.impulse];
+		break;
+		
+		case classes.element:
+			return [classes.null, classes.bulwark];
+		break;
+		
+		case classes.impulse:
+			return [classes.element, classes.advent];
+		break;
+		
+		case classes.null:
+			return [classes.impulse];
+		break;
+		
+		case classes.penumbra:
+			return [classes.element];
+		break;
+	}
+}
+
 #macro SELECTED_IMAGE_SCALE 1.5

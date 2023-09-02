@@ -47,7 +47,7 @@ player_top_daemon_data =
 	name: "Caracara",
 	hp: 7,
 	initiative: 15,
-	classes: [classes.impulse],
+	classes: [classes.null],
 	moves: [move_claw_data, move_claw_data, move_claw_data, move_claw_data, move_claw_data, move_bite_data],
 	hand_size: 3,
 	physical_attack: 2,

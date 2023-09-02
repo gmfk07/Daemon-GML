@@ -16,7 +16,7 @@ draw_set_halign(fa_left);
 draw_text(0, 0, move.name);
 
 draw_set_halign(fa_center);
-draw_text(16, sprite_height/2 + 16, move.cost);
+draw_text(16, sprite_height/2 + 16, move.cost + (same_class ? 0 : 1));
 
 
 surface_reset_target();
