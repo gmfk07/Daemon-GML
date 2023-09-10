@@ -11,7 +11,8 @@ move_move_data =
 	targets: targets.single_ally_self_exclusive,
 	phase: battle_phases.move,
 	attack_type: attack_types.none,
-	effects: [effects.swap]
+	effects: [effects.swap],
+	projectile_sprite: sProjectile
 }
 
 
@@ -25,7 +26,8 @@ move_claw_data =
 	targets: targets.single_enemy,
 	phase: battle_phases.prep,
 	attack_type: attack_types.physical,
-	effects: []
+	effects: [],
+	projectile_sprite: sProjectile
 }
 
 move_bite_data =
@@ -38,7 +40,8 @@ move_bite_data =
 	targets: targets.single_enemy,
 	phase: battle_phases.action,
 	attack_type: attack_types.physical,
-	effects: []
+	effects: [],
+	projectiles_sprites: sProjectile
 }
 
 player_top_daemon_data =

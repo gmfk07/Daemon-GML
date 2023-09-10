@@ -1,32 +1,32 @@
 /// @description Handle updating cards and battle phases
 if (phase == battle_phases.prep || phase == battle_phases.action || phase == battle_phases.move)
 {
-	var potential_actors = get_all_battle_daemon();
-	var next_actor = try_get_next_acting_battle_daemon(potential_actors, phase);
-	
-	if (next_actor != noone)
+	if (!in_animation)
 	{
-		battle_daemon_act(next_actor);
-		next_actor = try_get_next_acting_battle_daemon(potential_actors, phase);
-	} else {
-		switch (phase)
+		var potential_actors = get_all_battle_daemon();
+		var next_actor = try_get_next_acting_battle_daemon(potential_actors, phase);
+	
+		if (next_actor != noone)
 		{
-			case battle_phases.prep:
+			battle_daemon_act(next_actor);
+		} else {
+			switch (phase)
 			{
-				phase = battle_phases.action;
-				next_actor = try_get_next_acting_battle_daemon(potential_actors, phase);
-				break;
-			}
-			case battle_phases.action:
-			{
-				phase = battle_phases.move;
-				next_actor = try_get_next_acting_battle_daemon(potential_actors, phase);
-				break;
-			}
-			case battle_phases.move:
-			{
-				start_new_turn();
-				break;
+				case battle_phases.prep:
+				{
+					phase = battle_phases.action;
+					break;
+				}
+				case battle_phases.action:
+				{
+					phase = battle_phases.move;
+					break;
+				}
+				case battle_phases.move:
+				{
+					start_new_turn();
+					break;
+				}
 			}
 		}
 	}

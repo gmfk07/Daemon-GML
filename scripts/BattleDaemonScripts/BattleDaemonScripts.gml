@@ -128,6 +128,10 @@ function battle_daemon_act(battle_daemon)
 	battle_daemon.selected_targets = [];
 }
 
+function battle_daemon_animate_move(move)
+{
+}
+
 function battle_daemon_take_damage(position, damage)
 {
 	var battle_daemon = ds_map_find_value(global.battle_controller.position_daemon_map, position);

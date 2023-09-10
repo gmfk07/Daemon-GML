@@ -32,6 +32,8 @@
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"UI","folderPath":"folders/Sprites/UI.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Tile Sets","folderPath":"folders/Tile Sets.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Timelines","folderPath":"folders/Timelines.yy",},
+    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Battle Animations","folderPath":"folders/Sprites/Battle Animations.yy",},
+    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"group1","folderPath":"folders/Objects/Battle/group1.yy",},
   ],
   "IncludedFiles": [],
   "isEcma": false,
@@ -42,6 +44,7 @@
   "resources": [
     {"id":{"name":"sCardShellMove","path":"sprites/sCardShellMove/sCardShellMove.yy",},},
     {"id":{"name":"sPoints","path":"sprites/sPoints/sPoints.yy",},},
+    {"id":{"name":"sProjectile","path":"sprites/sProjectile/sProjectile.yy",},},
     {"id":{"name":"sBiteArt","path":"sprites/sBiteArt/sBiteArt.yy",},},
     {"id":{"name":"Util","path":"scripts/Util/Util.yy",},},
     {"id":{"name":"oBattleController","path":"objects/oBattleController/oBattleController.yy",},},

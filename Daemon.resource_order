@@ -6,6 +6,8 @@
     {"name":"Card Shells","order":4,"path":"folders/Sprites/Cards/Card Shells.yy",},
     {"name":"Icons","order":3,"path":"folders/Sprites/Icons.yy",},
     {"name":"UI","order":4,"path":"folders/Sprites/UI.yy",},
+    {"name":"Battle Animations","order":6,"path":"folders/Sprites/Battle Animations.yy",},
+    {"name":"group1","order":4,"path":"folders/Objects/Battle/group1.yy",},
   ],
   "ResourceOrderSettings": [
     {"name":"sCardShellMove","order":1,"path":"sprites/sCardShellMove/sCardShellMove.yy",},
