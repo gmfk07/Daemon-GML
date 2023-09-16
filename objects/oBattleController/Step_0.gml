@@ -1,15 +1,20 @@
 /// @description Handle updating cards and battle phases
 if (phase == battle_phases.prep || phase == battle_phases.action || phase == battle_phases.move)
 {
-	if (!in_animation)
+	if (num_ongoing_animations == 0)
 	{
 		var potential_actors = get_all_battle_daemon();
 		var next_actor = try_get_next_acting_battle_daemon(potential_actors, phase);
 	
 		if (next_actor != noone)
 		{
-			battle_daemon_act(next_actor);
-		} else {
+			if (instance_number(oMoveCard) == 0 || !instance_find(oMoveCard, 0).is_moused_over)
+			{
+				battle_daemon_animate_move(next_actor);
+			}
+		}
+		else
+		{
 			switch (phase)
 			{
 				case battle_phases.prep:

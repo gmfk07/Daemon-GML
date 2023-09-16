@@ -12,7 +12,12 @@ move_move_data =
 	phase: battle_phases.move,
 	attack_type: attack_types.none,
 	effects: [effects.swap],
-	projectile_sprite: sProjectile
+	projectile_sprite: noone,
+	projectile_speed: 0,
+	user_to_target_move: true,
+	user_to_target_speed: 6,
+	target_to_user_move: true,
+	target_to_user_speed: 6
 }
 
 
@@ -27,7 +32,12 @@ move_claw_data =
 	phase: battle_phases.prep,
 	attack_type: attack_types.physical,
 	effects: [],
-	projectile_sprite: sProjectile
+	projectile_sprite: sProjectile,
+	projectile_speed: 10,
+	user_to_target_move: false,
+	user_to_target_speed: 0,
+	target_to_user_move: false,
+	target_to_user_speed: 0
 }
 
 move_bite_data =
@@ -41,7 +51,12 @@ move_bite_data =
 	phase: battle_phases.action,
 	attack_type: attack_types.physical,
 	effects: [],
-	projectiles_sprites: sProjectile
+	projectile_sprite: sProjectile,
+	projectile_speed: 8,
+	user_to_target_move: false,
+	user_to_target_speed: 0,
+	target_to_user_move: false,
+	target_to_user_speed: 0
 }
 
 player_top_daemon_data =

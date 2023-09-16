@@ -1,4 +1,7 @@
 /// @description Draw self and target lines
+draw_set_alpha(1);
+draw_set_color(c_white);
+
 for (var i=0; i < array_length(selected_targets); i++)
 {
 	var targeted_battle_daemon = ds_map_find_value(global.battle_controller.position_daemon_map, selected_targets[i]);

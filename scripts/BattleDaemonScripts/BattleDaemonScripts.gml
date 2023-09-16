@@ -110,6 +110,9 @@ function battle_daemon_act(battle_daemon)
 				}
 				
 				battle_daemon_take_damage(battle_daemon.selected_targets[i], damage);
+				
+				var created = instance_create_depth(x, y, -10, oDamageDisplay);
+				created.damage = damage;
 			}
 			
 			//Effects
@@ -128,8 +131,47 @@ function battle_daemon_act(battle_daemon)
 	battle_daemon.selected_targets = [];
 }
 
-function battle_daemon_animate_move(move)
+function battle_daemon_animate_move(battle_daemon)
 {
+	var move = battle_daemon.selected_move;
+	
+	var card = instance_create_depth(room_width/2, room_height - 128, 0, oMoveCard);
+	card.move = move;
+	
+	if (move.projectile_sprite != noone)
+	{
+		for (var i=0; i<array_length(battle_daemon.selected_targets); i++)
+		{
+			global.battle_controller.num_ongoing_animations++;
+			var projectile = instance_create_depth(battle_daemon.x, battle_daemon.y, 0, oProjectile);
+			projectile.origin_daemon = battle_daemon;
+			projectile.target_daemon = ds_map_find_value(global.battle_controller.position_daemon_map, battle_daemon.selected_targets[i]);
+			projectile.projectile_speed = move.projectile_speed;
+			projectile.move = move
+			projectile.sprite_index = move.projectile_sprite;
+		}
+	}
+	if (move.user_to_target_move)
+	{
+		global.battle_controller.num_ongoing_animations++;
+		var target_daemon = ds_map_find_value(global.battle_controller.position_daemon_map, battle_daemon.selected_targets[0]);
+		battle_daemon.animating = true;
+		battle_daemon.animation_target_x = target_daemon.x;
+		battle_daemon.animation_target_y = target_daemon.y;
+		battle_daemon.animation_move_speed = move.user_to_target_speed;
+		battle_daemon.animation_trigger_act_on_end = true;
+	}
+	if (move.target_to_user_move)
+	{
+		global.battle_controller.num_ongoing_animations++;
+		var target_daemon = ds_map_find_value(global.battle_controller.position_daemon_map, battle_daemon.selected_targets[0]);
+		target_daemon.animating = true;
+		target_daemon.animation_target_x = battle_daemon.x;
+		target_daemon.animation_target_y = battle_daemon.y;
+		target_daemon.animation_move_speed = move.target_to_user_speed;
+		//target daemon move can NOT ever trigger its own act on end, TODO for animations 2.0
+		target_daemon.animation_trigger_act_on_end = false;
+	}
 }
 
 function battle_daemon_take_damage(position, damage)
@@ -142,13 +184,13 @@ function swap_daemons(position1, position2)
 {
 	var battle_daemon1 = ds_map_find_value(global.battle_controller.position_daemon_map, position1);
 	var battle_daemon2 = ds_map_find_value(global.battle_controller.position_daemon_map, position2);
-	var x1 = battle_daemon1.x;
+	/*var x1 = battle_daemon1.x;
 	var y1 = battle_daemon1.y;
 	
 	battle_daemon1.x = battle_daemon2.x;
 	battle_daemon1.y = battle_daemon2.y;
 	battle_daemon2.x = x1;
-	battle_daemon2.y = y1;
+	battle_daemon2.y = y1;*/
 	
 	ds_map_set(global.battle_controller.position_daemon_map, position1, battle_daemon2);
 	ds_map_set(global.battle_controller.position_daemon_map, position2, battle_daemon1);

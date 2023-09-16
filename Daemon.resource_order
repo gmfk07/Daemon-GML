@@ -1,24 +1,26 @@
 {
   "FolderOrderSettings": [
+    {"name":"Battle Animations","order":4,"path":"folders/Objects/Battle/Battle Animations.yy",},
     {"name":"UI","order":3,"path":"folders/Objects/Battle/UI.yy",},
+    {"name":"Battle Animations","order":6,"path":"folders/Sprites/Battle Animations.yy",},
     {"name":"Cards","order":2,"path":"folders/Sprites/Cards.yy",},
     {"name":"Card Art","order":6,"path":"folders/Sprites/Cards/Card Art.yy",},
     {"name":"Card Shells","order":4,"path":"folders/Sprites/Cards/Card Shells.yy",},
     {"name":"Icons","order":3,"path":"folders/Sprites/Icons.yy",},
     {"name":"UI","order":4,"path":"folders/Sprites/UI.yy",},
-    {"name":"Battle Animations","order":6,"path":"folders/Sprites/Battle Animations.yy",},
-    {"name":"group1","order":4,"path":"folders/Objects/Battle/group1.yy",},
   ],
   "ResourceOrderSettings": [
     {"name":"sCardShellMove","order":1,"path":"sprites/sCardShellMove/sCardShellMove.yy",},
     {"name":"sPoints","order":1,"path":"sprites/sPoints/sPoints.yy",},
     {"name":"Util","order":1,"path":"scripts/Util/Util.yy",},
     {"name":"sMoveArt","order":2,"path":"sprites/sMoveArt/sMoveArt.yy",},
+    {"name":"oDamageDisplay","order":1,"path":"objects/oDamageDisplay/oDamageDisplay.yy",},
     {"name":"sCaracara","order":5,"path":"sprites/sCaracara/sCaracara.yy",},
     {"name":"sPointCost","order":2,"path":"sprites/sPointCost/sPointCost.yy",},
     {"name":"sClawArt","order":1,"path":"sprites/sClawArt/sClawArt.yy",},
     {"name":"oMoveCard","order":2,"path":"objects/oMoveCard/oMoveCard.yy",},
     {"name":"BattleControllerScripts","order":2,"path":"scripts/BattleControllerScripts/BattleControllerScripts.yy",},
+    {"name":"fnt_damage","order":1,"path":"fonts/fnt_damage/fnt_damage.yy",},
     {"name":"oBattleDaemon","order":1,"path":"objects/oBattleDaemon/oBattleDaemon.yy",},
   ],
 }
