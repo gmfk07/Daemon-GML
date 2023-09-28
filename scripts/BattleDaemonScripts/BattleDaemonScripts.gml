@@ -96,6 +96,7 @@ function battle_daemon_act(battle_daemon)
 		for (var i=0; i < array_length(battle_daemon.selected_targets); i++)
 		{
 			var target_daemon = battle_daemon.selected_targets[i];
+			var target_battle_daemon = ds_map_find_value(global.battle_controller.position_daemon_map, target_daemon);
 			for (var j=0; j < array_length(move.effects); j++)
 			{
 				switch (move.effects[j][0])
@@ -104,13 +105,13 @@ function battle_daemon_act(battle_daemon)
 					case effects.physical_damage:
 						var damage = move.effects[j][1];
 						damage += battle_daemon.physical_attack;
-						for (var k=0; k < array_length(target_daemon.classes); k++)
+						for (var k=0; k < array_length(target_battle_daemon.classes); k++)
 						{
-							if (array_contains(get_class_weaknesses(target_daemon.classes[k]), move.class))
+							if (array_contains(get_class_weaknesses(target_battle_daemon.classes[k]), move.class))
 							{
 								damage *= ATTACK_OUTCLASS_DAMAGE_MULTIPLIER;
 							}
-							if (array_contains(get_class_strengths(target_daemon.classes[k]), move.class))
+							if (array_contains(get_class_strengths(target_battle_daemon.classes[k]), move.class))
 							{
 								damage *= DEFENDER_OUTCLASS_DAMAGE_MULTIPLIER;
 							}
@@ -125,13 +126,13 @@ function battle_daemon_act(battle_daemon)
 					case effects.energy_damage:
 						var damage = move.effects[j][1];
 						damage += battle_daemon.energy_attack;
-						for (var k=0; k < array_length(target_daemon.classes); k++)
+						for (var k=0; k < array_length(target_battle_daemon.classes); k++)
 						{
-							if (array_contains(get_class_weaknesses(target_daemon.classes[k]), move.class))
+							if (array_contains(get_class_weaknesses(target_battle_daemon.classes[k]), move.class))
 							{
 								damage *= ATTACK_OUTCLASS_DAMAGE_MULTIPLIER;
 							}
-							if (array_contains(get_class_strengths(target_daemon.classes[k]), move.class))
+							if (array_contains(get_class_strengths(target_battle_daemon.classes[k]), move.class))
 							{
 								damage *= DEFENDER_OUTCLASS_DAMAGE_MULTIPLIER;
 							}
