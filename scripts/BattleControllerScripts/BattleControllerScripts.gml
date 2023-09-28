@@ -197,3 +197,53 @@ function take_enemy_turn()
 		selected_battle_daemon.selected_targets = [target_position_order[0]];
 	}
 }
+
+//Returns an array of length equal to target_daemon_array with the damage that each daemon will take
+function calculate_total_move_damage(move, using_daemon, target_daemon_position_array)
+{
+	var result = [];
+	
+	for (var i=0; i<array_length(target_daemon_position_array); i++)
+	{
+		var target_daemon = ds_map_find_value(position_daemon_map, target_daemon_position_array[i]);
+		var damage = 0;
+		
+		for (var j=0; j<array_length(move.effects); j++)
+		{
+			if (move.effects[j][0] == effects.physical_damage)
+			{
+				damage += move.effects[j][1] + using_daemon.physical_attack;
+				for (var k=0; k < array_length(target_daemon.classes); k++)
+				{
+					if (array_contains(get_class_weaknesses(target_daemon.classes[k]), move.class))
+					{
+						damage *= ATTACK_OUTCLASS_DAMAGE_MULTIPLIER;
+					}
+					if (array_contains(get_class_strengths(target_daemon.classes[k]), move.class))
+					{
+						damage *= DEFENDER_OUTCLASS_DAMAGE_MULTIPLIER;
+					}
+				}
+			}
+			else if (move.effects[j][0] == effects.energy_damage)
+			{
+				damage += move.effects[j][1] + using_daemon.energy_attack;
+				for (var k=0; k < array_length(target_daemon.classes); k++)
+				{
+					if (array_contains(get_class_weaknesses(target_daemon.classes[k]), move.class))
+					{
+						damage *= ATTACK_OUTCLASS_DAMAGE_MULTIPLIER;
+					}
+					if (array_contains(get_class_strengths(target_daemon.classes[k]), move.class))
+					{
+						damage *= DEFENDER_OUTCLASS_DAMAGE_MULTIPLIER;
+					}
+				}
+			}
+		}
+		
+		array_push(result, damage);
+	}
+	
+	return result;
+}

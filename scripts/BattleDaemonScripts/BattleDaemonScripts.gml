@@ -95,32 +95,58 @@ function battle_daemon_act(battle_daemon)
 	{
 		for (var i=0; i < array_length(battle_daemon.selected_targets); i++)
 		{
-			//Damage
-			if (move.damage > 0)
-			{
-				var damage = move.damage;
-				
-				if (move.attack_type == attack_types.physical)
-				{
-					damage += battle_daemon.physical_attack;
-				}
-				else if (move.attack_type == attack_types.energy)
-				{
-					damage += battle_daemon.energy_attack;
-				}
-				
-				battle_daemon_take_damage(battle_daemon.selected_targets[i], damage);
-				
-				var created = instance_create_depth(x, y, -10, oDamageDisplay);
-				created.damage = damage;
-			}
-			
-			//Effects
+			var target_daemon = battle_daemon.selected_targets[i];
 			for (var j=0; j < array_length(move.effects); j++)
 			{
-				if (move.effects[j] == effects.swap)
+				switch (move.effects[j][0])
 				{
-					swap_daemons(battle_daemon.position, battle_daemon.selected_targets[i]);
+					//Damage
+					case effects.physical_damage:
+						var damage = move.effects[j][1];
+						damage += battle_daemon.physical_attack;
+						for (var k=0; k < array_length(target_daemon.classes); k++)
+						{
+							if (array_contains(get_class_weaknesses(target_daemon.classes[k]), move.class))
+							{
+								damage *= ATTACK_OUTCLASS_DAMAGE_MULTIPLIER;
+							}
+							if (array_contains(get_class_strengths(target_daemon.classes[k]), move.class))
+							{
+								damage *= DEFENDER_OUTCLASS_DAMAGE_MULTIPLIER;
+							}
+						}
+				
+						battle_daemon_take_damage(target_daemon, damage, attack_types.physical);
+				
+						var created = instance_create_depth(x, y, -10, oDamageDisplay);
+						created.damage = damage;
+					break;
+					
+					case effects.energy_damage:
+						var damage = move.effects[j][1];
+						damage += battle_daemon.energy_attack;
+						for (var k=0; k < array_length(target_daemon.classes); k++)
+						{
+							if (array_contains(get_class_weaknesses(target_daemon.classes[k]), move.class))
+							{
+								damage *= ATTACK_OUTCLASS_DAMAGE_MULTIPLIER;
+							}
+							if (array_contains(get_class_strengths(target_daemon.classes[k]), move.class))
+							{
+								damage *= DEFENDER_OUTCLASS_DAMAGE_MULTIPLIER;
+							}
+						}
+				
+						battle_daemon_take_damage(target_daemon, damage, attack_types.energy);
+				
+						var created = instance_create_depth(x, y, -10, oDamageDisplay);
+						created.damage = damage;
+					break;
+			
+					//Swap
+					case effects.swap:
+						swap_daemons(battle_daemon.position, target_daemon);
+					break;
 				}
 			}
 		}
@@ -135,7 +161,7 @@ function battle_daemon_animate_move(battle_daemon)
 {
 	var move = battle_daemon.selected_move;
 	
-	var card = instance_create_depth(room_width/2, room_height - 128, 0, oMoveCard);
+	var card = instance_create_depth(room_width/2, room_height - 192, 0, oMoveCard);
 	card.move = move;
 	
 	if (move.projectile_sprite != noone)
@@ -174,7 +200,7 @@ function battle_daemon_animate_move(battle_daemon)
 	}
 }
 
-function battle_daemon_take_damage(position, damage)
+function battle_daemon_take_damage(position, damage, attack_type)
 {
 	var battle_daemon = ds_map_find_value(global.battle_controller.position_daemon_map, position);
 	battle_daemon.hp = median(battle_daemon.hp - damage, 0, battle_daemon.max_hp);

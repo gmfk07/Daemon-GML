@@ -45,7 +45,10 @@ enum attack_types
 
 enum effects
 {
-	swap //swaps user and target positions, expected to be used w/ 1 target
+	swap, //swaps user and target positions, expected to be used w/ 1 target, 0 params
+	physical_damage, //deals physical damage, 1 param: damage
+	energy_damage, //deals energy damage, 1 param: damage
+	heal //heals, 1 param: healing
 }
 
 function get_class_strengths(class)
@@ -78,7 +81,7 @@ function get_class_strengths(class)
 	}
 }
 
-function get_class_weaknesses()
+function get_class_weaknesses(class)
 {
 	switch (class)
 	{
@@ -109,3 +112,5 @@ function get_class_weaknesses()
 }
 
 #macro SELECTED_IMAGE_SCALE 1.5
+#macro ATTACK_OUTCLASS_DAMAGE_MULTIPLIER 1.5
+#macro DEFENDER_OUTCLASS_DAMAGE_MULTIPLIER 0.75

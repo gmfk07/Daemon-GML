@@ -78,5 +78,6 @@ else if (phase == battle_phases.selecting)
 			selected_targets = [closest_target.position];
 		}
 	}
+
 	target_theta = (target_theta - 1) mod 360;
 }
