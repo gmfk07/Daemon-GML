@@ -27,6 +27,7 @@
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Sounds","folderPath":"folders/Sounds.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Sprites","folderPath":"folders/Sprites.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Battle Animations","folderPath":"folders/Sprites/Battle Animations.yy",},
+    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Battle Sprites","folderPath":"folders/Sprites/Battle Sprites.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Cards","folderPath":"folders/Sprites/Cards.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Card Art","folderPath":"folders/Sprites/Cards/Card Art.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Card Shells","folderPath":"folders/Sprites/Cards/Card Shells.yy",},
@@ -40,7 +41,7 @@
   "isEcma": false,
   "LibraryEmitters": [],
   "MetaData": {
-    "IDEVersion": "2023.8.0.98",
+    "IDEVersion": "2023.8.1.102",
   },
   "resources": [
     {"id":{"name":"sCardShellMove","path":"sprites/sCardShellMove/sCardShellMove.yy",},},

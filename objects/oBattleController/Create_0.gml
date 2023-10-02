@@ -108,11 +108,11 @@ enemy_top_daemon_data =
 
 enemy_center_daemon_data =
 {
-	sprite: sComcat,
-	name: "Comcat II",
+	sprite: sKnightman,
+	name: "Knightman",
 	hp: 10,
 	initiative: 10,
-	classes: [classes.impulse],
+	classes: [classes.bulwark],
 	moves: [move_claw_data, move_claw_data, move_claw_data],
 	hand_size: 2,
 	physical_attack: 2,
@@ -168,6 +168,7 @@ selected_daemon = noone;
 selected_card = noone;
 selected_targets = [];
 move_card_list = ds_list_create();
+move_animation_card = noone;
 points = starting_points;
 max_points = starting_points;
 

@@ -10,6 +10,14 @@ if (phase == battle_phases.prep || phase == battle_phases.action || phase == bat
 		{
 			if (instance_number(oMoveCard) == 0 || !instance_find(oMoveCard, 0).is_moused_over)
 			{
+				if (move_animation_card != noone)
+				{
+					with (move_animation_card)
+					{
+						instance_destroy();
+					}
+					move_animation_card = noone;
+				}
 				battle_daemon_animate_move(next_actor);
 			}
 		}

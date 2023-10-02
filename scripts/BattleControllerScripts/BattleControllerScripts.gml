@@ -31,6 +31,15 @@ function clear_selected_daemon(clear_move)
 
 function start_new_turn()
 {
+	if (move_animation_card != noone)
+	{
+		with (move_animation_card)
+		{
+			instance_destroy();
+		}
+		move_animation_card = noone;
+	}
+	
 	with (ds_map_find_value(position_daemon_map, positions.player_top)) { event_user(0); }
 	with (ds_map_find_value(position_daemon_map, positions.player_center)) { event_user(0); }
 	with (ds_map_find_value(position_daemon_map, positions.player_bottom)) { event_user(0); }
@@ -241,7 +250,7 @@ function calculate_total_move_damage(move, using_daemon, target_daemon_position_
 				}
 			}
 		}
-		
+		damage = floor(damage);
 		array_push(result, damage);
 	}
 	

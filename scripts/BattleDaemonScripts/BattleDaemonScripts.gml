@@ -116,7 +116,7 @@ function battle_daemon_act(battle_daemon)
 								damage *= DEFENDER_OUTCLASS_DAMAGE_MULTIPLIER;
 							}
 						}
-				
+						damage = floor(damage);
 						battle_daemon_take_damage(target_daemon, damage, attack_types.physical);
 				
 						var created = instance_create_depth(x, y, -10, oDamageDisplay);
@@ -137,7 +137,7 @@ function battle_daemon_act(battle_daemon)
 								damage *= DEFENDER_OUTCLASS_DAMAGE_MULTIPLIER;
 							}
 						}
-				
+						damage = floor(damage);
 						battle_daemon_take_damage(target_daemon, damage, attack_types.energy);
 				
 						var created = instance_create_depth(x, y, -10, oDamageDisplay);
@@ -162,8 +162,8 @@ function battle_daemon_animate_move(battle_daemon)
 {
 	var move = battle_daemon.selected_move;
 	
-	var card = instance_create_depth(room_width/2, room_height - 192, 0, oMoveCard);
-	card.move = move;
+	move_animation_card = instance_create_depth(room_width/2, room_height - 192, 0, oMoveCard);
+	move_animation_card.move = move;
 	
 	if (move.projectile_sprite != noone)
 	{
