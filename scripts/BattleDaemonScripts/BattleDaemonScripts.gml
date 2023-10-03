@@ -225,3 +225,20 @@ function swap_daemons(position1, position2)
 	battle_daemon1.position = position2;
 	battle_daemon2.position = position1;
 }
+
+function get_class_modifier(attack_class, defending_daemon_classes)
+{
+	var result = 1.0;
+	for (var i=0; i<array_length(defending_daemon_classes); i++)
+	{
+		if (array_contains(get_class_weaknesses(defending_daemon_classes[i]), attack_class))
+		{
+			result *= ATTACK_OUTCLASS_DAMAGE_MULTIPLIER;
+		}
+		if (array_contains(get_class_strengths(defending_daemon_classes[i]), attack_class))
+		{
+			result *= DEFENDER_OUTCLASS_DAMAGE_MULTIPLIER;
+		}
+	}
+	return result;
+}

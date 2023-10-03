@@ -12,7 +12,24 @@ for (var i=0; i < array_length(selected_targets); i++)
 {
 	var damage_array = calculate_total_move_damage(selected_card.move, selected_daemon, selected_targets);
 	var target_battle_daemon = ds_map_find_value(position_daemon_map, selected_targets[i]);
+	
+	var modifier = get_class_modifier(selected_card.move.class, target_battle_daemon.classes);
+	var text_color;
+	if (modifier > 1)
+	{
+		text_color = c_red;
+	}
+	else if (modifier < 1)
+	{
+		text_color = c_blue;
+	}
+	else
+	{
+		text_color = c_white;
+	}
+	
 	draw_sprite_ext(sTarget, 0, target_battle_daemon.x, target_battle_daemon.y, 1 + 0.25*sin(current_time/500), 1 + 0.25*sin(current_time/500), target_theta, c_white, 1);
 	draw_set_font(fnt_damage);
+	draw_set_color(text_color);
 	draw_text(target_battle_daemon.x, target_battle_daemon.y - 16, "-" + string(damage_array[i]));
 }

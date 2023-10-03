@@ -55,3 +55,11 @@ function get_description_string(given_effects)
 	
 	return result;
 }
+
+function get_card_shell_sprite_from_class(class)
+{
+	switch (class)
+	{
+		
+	}
+}
