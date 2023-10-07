@@ -1,4 +1,4 @@
-/// @description Draw target icons
+/// @description Draw UI
 // You can write your code in this editor
 draw_set_alpha(1);
 draw_sprite(sPoints, points > 0 ? 0 : 1, 32, room_height - 160);
@@ -7,6 +7,8 @@ draw_set_halign(fa_center);
 draw_set_font(fnt_point_cost);
 
 draw_text(32*3, room_height - 32*4.5, points);
+
+draw_sprite(sPhaseTracker, phase, room_width/2, room_height - 64);
 
 for (var i=0; i < array_length(selected_targets); i++)
 {

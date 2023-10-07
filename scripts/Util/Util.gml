@@ -1,9 +1,9 @@
 enum battle_phases
 {
-	selecting,
-	prep,
-	action,
-	move
+	selecting = 0,
+	prep = 1,
+	action = 2,
+	move = 3
 }
 
 enum positions
