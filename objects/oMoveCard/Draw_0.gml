@@ -7,7 +7,7 @@ surface_set_target(surf);
 draw_clear_alpha(c_white, 1);
 draw_set_alpha(1);
 draw_set_color(c_white);
-draw_sprite(sprite_index, image_index, sprite_width/2, sprite_height/2);
+draw_sprite(get_card_shell_sprite_from_class(move.class), image_index, sprite_width/2, sprite_height/2);
 draw_sprite(move.art, 0, 14, 17);
 draw_sprite(sPointCost, 0, 0, sprite_height/2 - 32);
 draw_sprite(get_target_sprite(move.targets), 0, sprite_width - 32, sprite_height - 32);

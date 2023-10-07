@@ -60,6 +60,32 @@ function get_card_shell_sprite_from_class(class)
 {
 	switch (class)
 	{
+		case classes.classless:
+			return sCardShellClassless;
+		break;
 		
+		case classes.advent:
+			return sCardShellAdvent;
+		break;
+		
+		case classes.bulwark:
+			return sCardShellBulwark;
+		break;
+		
+		case classes.element:
+			return sCardShellElement;
+		break;
+		
+		case classes.impulse:
+			return sCardShellImpulse;
+		break;
+		
+		case classes.null:
+			return sCardShellNull;
+		break;
+		
+		case classes.penumbra:
+			return sCardShellPenumbra;
+		break;
 	}
 }
