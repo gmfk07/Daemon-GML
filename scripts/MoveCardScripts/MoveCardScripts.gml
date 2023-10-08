@@ -89,3 +89,21 @@ function get_card_shell_sprite_from_class(class)
 		break;
 	}
 }
+
+function get_phase_sprite_from_battle_phase(battle_phase)
+{
+	switch (battle_phase)
+	{
+		case battle_phases.prep:
+			return sPrep;
+		break;
+		
+		case battle_phases.action:
+			return sAction;
+		break;
+		
+		case battle_phases.move:
+			return sMove;
+		break;
+	}
+}

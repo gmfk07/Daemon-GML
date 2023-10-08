@@ -11,6 +11,7 @@ draw_sprite(get_card_shell_sprite_from_class(move.class), image_index, sprite_wi
 draw_sprite(move.art, 0, 14, 17);
 draw_sprite(sPointCost, 0, 0, sprite_height/2 - 32);
 draw_sprite(get_target_sprite(move.targets), 0, sprite_width - 32, sprite_height - 32);
+draw_sprite(get_phase_sprite_from_battle_phase(move.phase), 0, 0, sprite_height - 32);
 
 draw_set_font(-1);
 
