@@ -25,8 +25,8 @@
   "nineSlice": null,
   "origin": 4,
   "parent": {
-    "name": "Icons",
-    "path": "folders/Sprites/Icons.yy",
+    "name": "Battle Icons",
+    "path": "folders/Sprites/Battle Icons.yy",
   },
   "preMultiplyAlpha": false,
   "sequence": {
