@@ -49,8 +49,8 @@
   },
   "origin": 0,
   "parent": {
-    "name": "UI",
-    "path": "folders/Sprites/UI.yy",
+    "name": "Battle UI",
+    "path": "folders/Sprites/Battle UI.yy",
   },
   "preMultiplyAlpha": false,
   "sequence": {

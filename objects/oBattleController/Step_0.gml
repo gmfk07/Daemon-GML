@@ -89,3 +89,8 @@ else if (phase == battle_phases.selecting)
 
 	target_theta = (target_theta - 1) mod 360;
 }
+
+if (keyboard_check_pressed(ord("B")))
+{
+	room_goto(rOverworld);
+}

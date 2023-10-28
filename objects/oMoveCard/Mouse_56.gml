@@ -3,8 +3,8 @@ if (selected)
 {
 	selected = false;
 
-	x = original_x;
-	y = original_y;
+	x = source_x;
+	y = source_y;
 	
 	layer = layer_get_id("Cards");
 	

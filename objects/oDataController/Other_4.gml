@@ -1,10 +1,5 @@
-/// @description Insert description here
-// You can write your code in this editor
-
-
-
-
-
-
-
-
+/// @description Load room
+if (room_get_name(room) == "rOverworld")
+{
+	load_room();
+}

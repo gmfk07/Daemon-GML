@@ -43,5 +43,10 @@ if (keyboard_check_pressed(ord("B")))
 	room_goto(rBattle);
 }
 
+if (keyboard_check_pressed(vk_tab))
+{
+	room_goto(rParty);
+}
+
 closest_interactable = instance_nearest(x, y, oDialogueNPC);
 near_dialogue = point_distance(x, y, closest_interactable.x+16, closest_interactable.y+16) <= min_interact_distance;

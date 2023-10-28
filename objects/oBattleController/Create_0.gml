@@ -1,12 +1,12 @@
 /// @description Init vars, create oBattleDaemon, trigger new turn
 global.battle_controller = self;
 
-player_top_daemon_data = global.data_controller.player_top_daemon_data;
-player_center_daemon_data = global.data_controller.player_center_daemon_data;
-player_bottom_daemon_data = global.data_controller.player_bottom_daemon_data;
-enemy_top_daemon_data = global.data_controller.enemy_top_daemon_data;
-enemy_center_daemon_data = global.data_controller.enemy_center_daemon_data;
-enemy_bottom_daemon_data = global.data_controller.enemy_bottom_daemon_data;
+player_top_daemon_data = get_daemon_data_from_position(positions.player_top);
+player_center_daemon_data = get_daemon_data_from_position(positions.player_center);
+player_bottom_daemon_data = get_daemon_data_from_position(positions.player_bottom);
+enemy_top_daemon_data = get_daemon_data_from_position(positions.enemy_top);
+enemy_center_daemon_data = get_daemon_data_from_position(positions.enemy_center);
+enemy_bottom_daemon_data = get_daemon_data_from_position(positions.enemy_bottom);
 
 //Move is a special move and must be known by oBattleController
 move_move_data = global.data_controller.move_move_data;

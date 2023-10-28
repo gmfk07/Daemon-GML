@@ -1,5 +1,6 @@
 /// @description Init vars
 global.data_controller = self;
+daemon_data_map = ds_map_create();
 
 move_move_data =
 {
@@ -130,6 +131,19 @@ enemy_bottom_daemon_data =
 	hand_size: 2,
 	physical_attack: 2,
 	energy_attack: 0
+}
+
+ds_map_add(daemon_data_map, positions.player_top, player_top_daemon_data);
+ds_map_add(daemon_data_map, positions.player_center, player_center_daemon_data);
+ds_map_add(daemon_data_map, positions.player_bottom, player_bottom_daemon_data);
+ds_map_add(daemon_data_map, positions.enemy_top, player_top_daemon_data);
+ds_map_add(daemon_data_map, positions.enemy_center, player_center_daemon_data);
+ds_map_add(daemon_data_map, positions.enemy_bottom, player_bottom_daemon_data);
+
+
+global.room_data =
+{
+	room_overworld : 0
 }
 
 room_goto(rOverworld);
