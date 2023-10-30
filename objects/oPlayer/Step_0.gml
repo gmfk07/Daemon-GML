@@ -1,6 +1,6 @@
 /// @description Movement and near_dialogue check
 
-if (!global.dialogue_controller.in_dialogue)
+if (!global.cutscene_controller.in_cutscene)
 {
 	//Movement
 	var moving_up = (keyboard_check(ord("W")) || keyboard_check(vk_up));

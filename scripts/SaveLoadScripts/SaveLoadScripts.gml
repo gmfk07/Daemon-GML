@@ -1,9 +1,22 @@
 function save_room()
 {
+	var battle_npc_num = instance_number(oBattleNPC);
+	
 	var room_struct =
 	{
 		player_x : oPlayer.x,
-		player_y : oPlayer.y
+		player_y : oPlayer.y,
+		battle_npc_data: array_create(battle_npc_num),
+	}
+	
+	//Fill battle_npc_data
+	for (var i=0; i < battle_npc_num; i++)
+	{
+		var inst = instance_find(oBattleNPC, i);
+		
+		room_struct.battle_npc_data[i] = {
+			
+		}
 	}
 	
 	if (room_get_name(room) == "rOverworld")

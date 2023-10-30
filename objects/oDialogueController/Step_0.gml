@@ -11,15 +11,14 @@ if (keyboard_check_pressed(ord("E")))
 		{
 			dialogue_index = 0;
 			in_dialogue = false;
+			goto_next_scene();
 		}
 	}
 	else
 	{
 		if (oPlayer.near_dialogue)
 		{
-			dialogue = oPlayer.closest_interactable.dialogue;
-			dialogue_index = 0;
-			in_dialogue = true;
+			start_cutscene([[cutscene_dialogue, oPlayer.closest_interactable.dialogue]]);
 		}
 	}
 }
