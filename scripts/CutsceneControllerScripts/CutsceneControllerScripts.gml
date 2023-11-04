@@ -69,3 +69,9 @@ function cutscene_dialogue(dialogue)
 	}
     //We rely on dialogue controller to call goto_next_scene()
 }
+
+function cutscene_battle()
+{
+    room_goto(rBattle);
+    goto_next_scene();
+}
