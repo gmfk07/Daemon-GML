@@ -46,6 +46,9 @@ function execute_scene(data)
         case 3:
             script_execute(data[0], data[1], data[2]);
             break;
+		case 4:
+            script_execute(data[0], data[1], data[2], data[3]);
+            break;
     }
 }
 
@@ -70,8 +73,11 @@ function cutscene_dialogue(dialogue)
     //We rely on dialogue controller to call goto_next_scene()
 }
 
-function cutscene_battle()
+function cutscene_battle(top_daemon, center_daemon, bottom_daemon)
 {
+	set_daemon_data_from_position(positions.enemy_top, top_daemon);
+    set_daemon_data_from_position(positions.enemy_center, center_daemon);
+    set_daemon_data_from_position(positions.enemy_bottom, bottom_daemon);
     room_goto(rBattle);
     goto_next_scene();
 }
