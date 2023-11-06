@@ -70,6 +70,22 @@ function get_all_battle_daemon()
 	return [enemy_top_battle_daemon, enemy_center_battle_daemon, enemy_bottom_battle_daemon, player_top_battle_daemon, player_center_battle_daemon, player_bottom_battle_daemon];
 }
 
+//Return all living target positions that a given position with a given set of targets could feasibly hit.
+function get_possible_living_target_positions(user_position, targets)
+{
+	var possible_targets = get_possible_target_positions(user_position, targets);
+	var to_return = []
+	for (var i=0; i < array_length(possible_targets); i++)
+	{
+		if (position_daemon_map[? possible_targets[i]].hp > 0)
+		{
+			array_push(to_return, possible_targets[i]);
+		}
+	}
+	return to_return;
+}
+
+//Return all the target positions that a given position with a given set of targets could feasibly hit. Does not take hp into account.
 function get_possible_target_positions(user_position, targets)
 {
 	switch (targets)
@@ -187,7 +203,11 @@ function take_enemy_turn()
 		
 		for (var j=0; j < ds_list_size(selected_battle_daemon.hand_list); j++)
 		{
-			var cost = ds_list_find_value(selected_battle_daemon.hand_list, j).cost;
+			if (array_length(get_possible_living_target_positions(user_position_order[i], selected_battle_daemon.hand_list[| j].targets)) == 0)
+			{
+				continue;
+			}
+			var cost = selected_battle_daemon.hand_list[| j].cost;
 			if (enemy_points - cost >= 0)
 			{
 				selected_move_index = j;
@@ -202,7 +222,7 @@ function take_enemy_turn()
 		}
 		
 		selected_battle_daemon.selected_move = ds_list_find_value(selected_battle_daemon.hand_list, selected_move_index);
-		var target_position_order = array_shuffle(get_possible_target_positions(user_position_order[i], ds_list_find_value(selected_battle_daemon.hand_list, selected_move_index).targets));
+		var target_position_order = array_shuffle(get_possible_living_target_positions(user_position_order[i], selected_battle_daemon.hand_list[| j].targets));
 		selected_battle_daemon.selected_targets = [target_position_order[0]];
 	}
 }

@@ -61,7 +61,14 @@ else if (phase == battle_phases.selecting)
 		var enemy_center_battle_daemon = ds_map_find_value(position_daemon_map, positions.enemy_center);
 		var enemy_bottom_battle_daemon = ds_map_find_value(position_daemon_map, positions.enemy_bottom);
 	
-		possible_targets = get_possible_target_positions(selected_daemon.position, selected_card.move.targets);
+		if (move_data.can_target_dead)
+		{
+			possible_targets = get_possible_target_positions(selected_daemon.position, selected_card.move.targets);
+		}
+		else
+		{
+			possible_targets = get_possible_living_target_positions(selected_daemon.position, selected_card.move.targets);
+		}
 		
 		var closest_target_dist = max_target_select_distance;
 		var closest_target = noone;

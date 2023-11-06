@@ -2,10 +2,13 @@
 draw_set_alpha(1);
 draw_set_color(c_white);
 
-for (var i=0; i < array_length(selected_targets); i++)
+if (hp > 0)
 {
-	var targeted_battle_daemon = ds_map_find_value(global.battle_controller.position_daemon_map, selected_targets[i]);
-	draw_line(x, y, targeted_battle_daemon.x, targeted_battle_daemon.y);
+for (var i=0; i < array_length(selected_targets); i++)
+	{
+		var targeted_battle_daemon = ds_map_find_value(global.battle_controller.position_daemon_map, selected_targets[i]);
+		draw_line(x, y, targeted_battle_daemon.x, targeted_battle_daemon.y);
+	}
 }
 
 draw_self();

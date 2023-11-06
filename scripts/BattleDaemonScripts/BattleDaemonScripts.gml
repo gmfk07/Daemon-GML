@@ -46,7 +46,7 @@ function draw_card()
 }
 
 //Given an array of battle daemons and a battle_phase, returns the oBattleDaemon with the highest speed
-//that has not yet attacked that is planning to attack on the given phase or noone if none exist
+//that has not yet attacked that is planning to attack on the given phase that is alive or noone if none exist
 function try_get_next_acting_battle_daemon(battle_daemon_array, phase)
 {
 	possible_actors = [];
@@ -62,7 +62,8 @@ function try_get_next_acting_battle_daemon(battle_daemon_array, phase)
 		{
 			var is_in_phase = battle_daemon_array[i].selected_move.phase == phase;
 			var has_not_attacked = !battle_daemon_array[i].attacked;
-			if (is_in_phase && has_not_attacked)
+			var is_alive = battle_daemon_array[i].hp > 0;
+			if (is_in_phase && has_not_attacked && is_alive)
 			{
 				var initiative = battle_daemon_array[i].initiative;
 				if (initiative > highest_initiative)
@@ -97,57 +98,60 @@ function battle_daemon_act(battle_daemon)
 		{
 			var target_daemon = battle_daemon.selected_targets[i];
 			var target_battle_daemon = ds_map_find_value(global.battle_controller.position_daemon_map, target_daemon);
-			for (var j=0; j < array_length(move.effects); j++)
+			if (target_battle_daemon.hp > 0 || move.can_target_dead)
 			{
-				switch (move.effects[j][0])
+				for (var j=0; j < array_length(move.effects); j++)
 				{
-					//Damage
-					case effects.physical_damage:
-						var damage = move.effects[j][1];
-						damage += battle_daemon.physical_attack;
-						for (var k=0; k < array_length(target_battle_daemon.classes); k++)
-						{
-							if (array_contains(get_class_weaknesses(target_battle_daemon.classes[k]), move.class))
+					switch (move.effects[j][0])
+					{
+						//Damage
+						case effects.physical_damage:
+							var damage = move.effects[j][1];
+							damage += battle_daemon.physical_attack;
+							for (var k=0; k < array_length(target_battle_daemon.classes); k++)
 							{
-								damage *= ATTACK_OUTCLASS_DAMAGE_MULTIPLIER;
+								if (array_contains(get_class_weaknesses(target_battle_daemon.classes[k]), move.class))
+								{
+									damage *= ATTACK_OUTCLASS_DAMAGE_MULTIPLIER;
+								}
+								if (array_contains(get_class_strengths(target_battle_daemon.classes[k]), move.class))
+								{
+									damage *= DEFENDER_OUTCLASS_DAMAGE_MULTIPLIER;
+								}
 							}
-							if (array_contains(get_class_strengths(target_battle_daemon.classes[k]), move.class))
-							{
-								damage *= DEFENDER_OUTCLASS_DAMAGE_MULTIPLIER;
-							}
-						}
-						damage = floor(damage);
-						battle_daemon_take_damage(target_daemon, damage, attack_types.physical);
+							damage = floor(damage);
+							battle_daemon_take_damage(target_daemon, damage, attack_types.physical);
 				
-						var created = instance_create_depth(x, y, -10, oDamageDisplay);
-						created.damage = damage;
-					break;
+							var created = instance_create_depth(x, y, -10, oDamageDisplay);
+							created.damage = damage;
+						break;
 					
-					case effects.energy_damage:
-						var damage = move.effects[j][1];
-						damage += battle_daemon.energy_attack;
-						for (var k=0; k < array_length(target_battle_daemon.classes); k++)
-						{
-							if (array_contains(get_class_weaknesses(target_battle_daemon.classes[k]), move.class))
+						case effects.energy_damage:
+							var damage = move.effects[j][1];
+							damage += battle_daemon.energy_attack;
+							for (var k=0; k < array_length(target_battle_daemon.classes); k++)
 							{
-								damage *= ATTACK_OUTCLASS_DAMAGE_MULTIPLIER;
+								if (array_contains(get_class_weaknesses(target_battle_daemon.classes[k]), move.class))
+								{
+									damage *= ATTACK_OUTCLASS_DAMAGE_MULTIPLIER;
+								}
+								if (array_contains(get_class_strengths(target_battle_daemon.classes[k]), move.class))
+								{
+									damage *= DEFENDER_OUTCLASS_DAMAGE_MULTIPLIER;
+								}
 							}
-							if (array_contains(get_class_strengths(target_battle_daemon.classes[k]), move.class))
-							{
-								damage *= DEFENDER_OUTCLASS_DAMAGE_MULTIPLIER;
-							}
-						}
-						damage = floor(damage);
-						battle_daemon_take_damage(target_daemon, damage, attack_types.energy);
+							damage = floor(damage);
+							battle_daemon_take_damage(target_daemon, damage, attack_types.energy);
 				
-						var created = instance_create_depth(x, y, -10, oDamageDisplay);
-						created.damage = damage;
-					break;
+							var created = instance_create_depth(x, y, -10, oDamageDisplay);
+							created.damage = damage;
+						break;
 			
-					//Swap
-					case effects.swap:
-						swap_daemons(battle_daemon.position, target_daemon);
-					break;
+						//Swap
+						case effects.swap:
+							swap_daemons(battle_daemon.position, target_daemon);
+						break;
+					}
 				}
 			}
 		}
@@ -211,13 +215,6 @@ function swap_daemons(position1, position2)
 {
 	var battle_daemon1 = ds_map_find_value(global.battle_controller.position_daemon_map, position1);
 	var battle_daemon2 = ds_map_find_value(global.battle_controller.position_daemon_map, position2);
-	/*var x1 = battle_daemon1.x;
-	var y1 = battle_daemon1.y;
-	
-	battle_daemon1.x = battle_daemon2.x;
-	battle_daemon1.y = battle_daemon2.y;
-	battle_daemon2.x = x1;
-	battle_daemon2.y = y1;*/
 	
 	ds_map_set(global.battle_controller.position_daemon_map, position1, battle_daemon2);
 	ds_map_set(global.battle_controller.position_daemon_map, position2, battle_daemon1);

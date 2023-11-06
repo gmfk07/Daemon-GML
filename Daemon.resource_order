@@ -51,7 +51,7 @@
     {"name":"sWall","order":2,"path":"sprites/sWall/sWall.yy",},
     {"name":"oDataController","order":2,"path":"objects/oDataController/oDataController.yy",},
     {"name":"sCaracara","order":3,"path":"sprites/sCaracara/sCaracara.yy",},
-    {"name":"TileSet1","order":3,"path":"tilesets/TileSet1/TileSet1.yy",},
+    {"name":"TileSet1","order":1,"path":"tilesets/TileSet1/TileSet1.yy",},
     {"name":"DialogueControllerScripts","order":7,"path":"scripts/DialogueControllerScripts/DialogueControllerScripts.yy",},
     {"name":"sPointCost","order":2,"path":"sprites/sPointCost/sPointCost.yy",},
     {"name":"sClawArt","order":1,"path":"sprites/sClawArt/sClawArt.yy",},

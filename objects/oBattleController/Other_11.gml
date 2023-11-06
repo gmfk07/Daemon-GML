@@ -16,7 +16,7 @@ with (selected_daemon)
 	}
 	else
 	{
-		image_blend = c_dkgray;
+		image_blend = c_ltgray;
 		selected_move = other.selected_card.move;
 	}
 }
