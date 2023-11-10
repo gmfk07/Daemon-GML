@@ -41,11 +41,11 @@ function load_room()
 			start_cutscene(global.data_controller.defeat_cutscene);
 		}
 	}
-	if (global.data_controller.overworld_flag == overworld_flags.defeat)
+	if (global.data_controller.overworld_flag == overworld_flags.victory)
 	{
-		if (global.data_controller.defeat_cutscene != [])
+		if (global.data_controller.victory_cutscene != [])
 		{
-			start_cutscene(global.data_controller.defeat_cutscene);
+			start_cutscene(global.data_controller.victory_cutscene);
 		}
 	}
 	
