@@ -122,7 +122,8 @@ function battle_daemon_act(battle_daemon)
 							damage = floor(damage);
 							battle_daemon_take_damage(target_daemon, damage, attack_types.physical);
 				
-							var created = instance_create_depth(x, y, -10, oDamageDisplay);
+							global.battle_animation_controller.num_ongoing_animations++;
+							var created = instance_create_depth(target_battle_daemon.x, target_battle_daemon.y, -10, oDamageDisplay);
 							created.damage = damage;
 						break;
 					
@@ -143,7 +144,8 @@ function battle_daemon_act(battle_daemon)
 							damage = floor(damage);
 							battle_daemon_take_damage(target_daemon, damage, attack_types.energy);
 				
-							var created = instance_create_depth(x, y, -10, oDamageDisplay);
+							global.battle_animation_controller.num_ongoing_animations++;
+							var created = instance_create_depth(target_battle_daemon.x, target_battle_daemon.y, -10, oDamageDisplay);
 							created.damage = damage;
 						break;
 			
@@ -164,7 +166,9 @@ function battle_daemon_act(battle_daemon)
 
 function battle_daemon_animate_move(battle_daemon)
 {
-	var move = battle_daemon.selected_move;
+	animate_move(battle_daemon.selected_move, battle_daemon, battle_daemon.selected_targets);
+	
+	/*var move = battle_daemon.selected_move;
 	
 	move_animation_card = instance_create_depth(room_width/2, room_height - 192, 0, oMoveCard);
 	move_animation_card.move = move;
@@ -202,7 +206,7 @@ function battle_daemon_animate_move(battle_daemon)
 		target_daemon.animation_move_speed = move.target_to_user_speed;
 		//target daemon move can NOT ever trigger its own act on end, TODO for animations 2.0
 		target_daemon.animation_trigger_act_on_end = false;
-	}
+	}*/
 }
 
 function battle_daemon_take_damage(position, damage, attack_type)

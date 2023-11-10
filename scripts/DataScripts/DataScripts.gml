@@ -16,3 +16,13 @@ function swap_daemon_data_from_positions(position1, position2)
     ds_map_set(global.data_controller.daemon_data_map, position1, temp_position2_data);
     ds_map_set(global.data_controller.daemon_data_map, position2, temp_position1_data);
 }
+
+function set_victory_cutscene(cutscene)
+{
+	global.data_controller.victory_cutscene = cutscene;
+}
+
+function clear_victory_cutscene()
+{
+	global.data_controller.victory_cutscene = [];
+}

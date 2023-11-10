@@ -6,6 +6,13 @@ enum battle_phases
 	move = 3
 }
 
+enum overworld_flags
+{
+	none,
+	defeat,
+	victory
+}
+
 enum positions
 {
 	enemy_top,

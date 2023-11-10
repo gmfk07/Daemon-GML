@@ -3,6 +3,6 @@ move_towards_point(target_daemon.x, target_daemon.y, projectile_speed);
 
 if (point_distance(x, y, target_daemon.x, target_daemon.y) < projectile_speed)
 {
-	battle_daemon_act(origin_daemon);
+	global.battle_animation_controller.num_ongoing_animations--;
 	instance_destroy(self);
 }

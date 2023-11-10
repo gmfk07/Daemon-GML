@@ -1,22 +1,7 @@
 /// @description Default dialogue and team
 dialogue = ["default dialogue"];
 
-move_claw_data =
-{
-	name: "Claw",
-	art: sClawArt,
-	class: classes.impulse,
-	cost: 1,
-	targets: targets.single_enemy,
-	phase: battle_phases.prep,
-	effects: [[effects.physical_damage, 2]],
-	projectile_sprite: sProjectile,
-	projectile_speed: 10,
-	user_to_target_move: false,
-	user_to_target_speed: 0,
-	target_to_user_move: false,
-	target_to_user_speed: 0
-}
+move_claw_data = global.data_controller.move_claw_data;
 
 top_daemon = {
 	sprite: sComcat,

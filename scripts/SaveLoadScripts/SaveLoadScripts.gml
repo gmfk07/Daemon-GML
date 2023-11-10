@@ -34,11 +34,31 @@ function load_room()
 		room_struct = global.room_data.room_overworld;
 	}
 	
+	if (global.data_controller.overworld_flag == overworld_flags.defeat)
+	{
+		if (global.data_controller.defeat_cutscene != [])
+		{
+			start_cutscene(global.data_controller.defeat_cutscene);
+		}
+	}
+	if (global.data_controller.overworld_flag == overworld_flags.defeat)
+	{
+		if (global.data_controller.defeat_cutscene != [])
+		{
+			start_cutscene(global.data_controller.defeat_cutscene);
+		}
+	}
+	
 	if (!is_struct(room_struct))
 	{
 		exit;
 	}
 	
-	oPlayer.x = room_struct.player_x;
-	oPlayer.y = room_struct.player_y;
+	if (global.data_controller.overworld_flag != overworld_flags.defeat)
+	{
+		oPlayer.x = room_struct.player_x;
+		oPlayer.y = room_struct.player_y;
+	}
+	
+	global.data_controller.overworld_flag = overworld_flags.none;
 }

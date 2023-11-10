@@ -7,15 +7,9 @@ if (animating)
 		y = animation_target_y;
 			
 		animating = false;
-		global.battle_controller.num_ongoing_animations--;
+		global.battle_animation_controller.num_ongoing_animations--;
 		
 		speed = 0;
-		
-		if (animation_trigger_act_on_end)
-		{
-			battle_daemon_act(self);
-			animation_trigger_act_on_end = false;
-		}
 	}
 	else
 	{

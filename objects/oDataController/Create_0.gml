@@ -13,12 +13,7 @@ move_move_data =
 	phase: battle_phases.move,
 	attack_type: attack_types.none,
 	effects: [[effects.swap]],
-	projectile_sprite: noone,
-	projectile_speed: 0,
-	user_to_target_move: true,
-	user_to_target_speed: 6,
-	target_to_user_move: true,
-	target_to_user_speed: 6
+	animation: [[animation_swap, 6], [animation_act]]
 }
 
 
@@ -32,12 +27,7 @@ move_claw_data =
 	can_target_dead: false,
 	phase: battle_phases.prep,
 	effects: [[effects.physical_damage, 2]],
-	projectile_sprite: sProjectile,
-	projectile_speed: 10,
-	user_to_target_move: false,
-	user_to_target_speed: 0,
-	target_to_user_move: false,
-	target_to_user_speed: 0
+	animation: [[animation_spawn_projectile, sProjectile, 8], [animation_act]]
 }
 
 move_bite_data =
@@ -50,12 +40,7 @@ move_bite_data =
 	can_target_dead: false,
 	phase: battle_phases.action,
 	effects: [[effects.physical_damage, 5]],
-	projectile_sprite: sProjectile,
-	projectile_speed: 8,
-	user_to_target_move: false,
-	user_to_target_speed: 0,
-	target_to_user_move: false,
-	target_to_user_speed: 0
+	animation: [[animation_spawn_projectile, sProjectile, 8], [animation_act]]
 }
 
 player_top_daemon_data =
@@ -150,3 +135,7 @@ global.room_data =
 }
 
 room_goto(rOverworld);
+
+victory_cutscene = [];
+defeat_cutscene = [[cutscene_dialogue, ["You were defeated..."]]];
+overworld_flag = overworld_flags.none;
