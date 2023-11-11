@@ -1,21 +1,27 @@
 function save_room()
 {
-	var battle_npc_num = instance_number(oBattleNPC);
+	var _battle_npc_num = instance_number(oBattleNPC);
 	
 	var room_struct =
 	{
 		player_x : oPlayer.x,
 		player_y : oPlayer.y,
-		battle_npc_data: array_create(battle_npc_num),
+		battle_npc_num : _battle_npc_num,
+		battle_npc_data: array_create(_battle_npc_num),
 	}
 	
 	//Fill battle_npc_data
-	for (var i=0; i < battle_npc_num; i++)
+	for (var i=0; i < _battle_npc_num; i++)
 	{
 		var inst = instance_find(oBattleNPC, i);
 		
 		room_struct.battle_npc_data[i] = {
-			
+			x : inst.x,
+			y : inst.y,
+			defeated: inst.defeated,
+			battle_cutscene: inst.battle_cutscene,
+			defeated_cutscene: inst.defeated_cutscene,
+			triggered_combat: inst.triggered_combat
 		}
 	}
 	
@@ -34,24 +40,39 @@ function load_room()
 		room_struct = global.room_data.room_overworld;
 	}
 	
-	if (global.data_controller.overworld_flag == overworld_flags.defeat)
-	{
-		if (global.data_controller.defeat_cutscene != [])
-		{
-			start_cutscene(global.data_controller.defeat_cutscene);
-		}
-	}
-	if (global.data_controller.overworld_flag == overworld_flags.victory)
-	{
-		if (global.data_controller.victory_cutscene != [])
-		{
-			start_cutscene(global.data_controller.victory_cutscene);
-		}
-	}
-	
 	if (!is_struct(room_struct))
 	{
 		exit;
+	}
+	
+	if (instance_exists(oBattleNPC))
+	{
+		instance_destroy(oBattleNPC);
+	}
+	for (var i=0; i < room_struct.battle_npc_num; i++)
+	{
+		var data = room_struct.battle_npc_data[i];
+		with (instance_create_layer(data.x, data.y, "Instances", oBattleNPC))
+		{
+			defeated = data.defeated;
+			battle_cutscene = data.battle_cutscene;
+			defeated_cutscene = data.defeated_cutscene;
+			triggered_combat = data.triggered_combat;
+			if (triggered_combat && global.data_controller.overworld_flag == overworld_flags.victory)
+			{
+				defeated = true;
+				start_cutscene(data.defeated_cutscene);
+				triggered_combat = false;
+			}
+			else if (triggered_combat && global.data_controller.overworld_flag == overworld_flags.defeat)
+			{
+				if (global.data_controller.defeat_cutscene != [])
+				{
+					start_cutscene(global.data_controller.defeat_cutscene);
+				}
+				triggered_combat = false;
+			}
+		}
 	}
 	
 	if (global.data_controller.overworld_flag != overworld_flags.defeat)

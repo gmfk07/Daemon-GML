@@ -1,6 +1,4 @@
-/// @description Default dialogue and team
-dialogue = ["default dialogue"];
-
+/// @description Default cutscene and team
 move_claw_data = global.data_controller.move_claw_data;
 
 top_daemon = {
@@ -36,3 +34,7 @@ bottom_daemon = {
 	physical_attack: 2,
 	energy_attack: 0
 }
+
+battle_cutscene = [[cutscene_dialogue, ["Hey!", "Let's battle!"]], [cutscene_wait, 1], [cutscene_dialogue, ["Let's go!"]], [cutscene_battle, top_daemon, center_daemon, bottom_daemon]];
+defeated_cutscene = [[cutscene_dialogue, ["You beat me.", "Straight up."]]]
+dialogue = ["You beat me.", "Straight up."]
