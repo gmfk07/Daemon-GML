@@ -59,9 +59,14 @@ function animation_act()
 
 function animation_swap(swap_speed)
 {
-	global.battle_animation_controller.num_ongoing_animations += 2;
-	
 	var target_daemon = ds_map_find_value(global.battle_controller.position_daemon_map, target_daemon_array[0]);
+
+	//If we're swapping with ourselves, just count that as one animation
+	global.battle_animation_controller.num_ongoing_animations ++;	
+	if (target_daemon != user_daemon)
+	{
+		global.battle_animation_controller.num_ongoing_animations++;
+	}
 	
 	user_daemon.animating = true;
 	user_daemon.animation_target_x = target_daemon.x;
