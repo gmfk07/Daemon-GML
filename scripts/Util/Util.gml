@@ -58,6 +58,11 @@ enum effects
 	heal //heals, 1 param: healing
 }
 
+enum status_effects
+{
+	vulnerable
+}
+
 function get_class_strengths(class)
 {
 	switch (class)

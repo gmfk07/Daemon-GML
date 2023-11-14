@@ -43,6 +43,19 @@ move_bite_data =
 	animation: [[animation_spawn_projectile, sProjectile, 8], [animation_act]]
 }
 
+move_clash_data =
+{
+	name: "Clash",
+	art: sBiteArt,
+	class: classes.bulwark,
+	cost: 2,
+	targets: targets.single_enemy,
+	can_target_dead: false,
+	phase: battle_phases.action,
+	effects: [[effects.physical_damage, 5]],
+	animation: [[animation_spawn_projectile, sProjectile, 8], [animation_act]]
+}
+
 player_top_daemon_data =
 {
 	sprite: sCaracara,
