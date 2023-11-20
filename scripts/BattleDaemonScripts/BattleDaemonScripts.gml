@@ -120,7 +120,7 @@ function battle_daemon_act(battle_daemon)
 								}
 							}
 							damage = floor(damage);
-							battle_daemon_take_damage(target_daemon, damage, attack_types.physical);
+							battle_daemon_take_damage_at_position(target_daemon, damage, attack_types.physical);
 				
 							global.battle_animation_controller.num_ongoing_animations++;
 							var created = instance_create_depth(target_battle_daemon.x, target_battle_daemon.y, -10, oDamageDisplay);
@@ -142,7 +142,7 @@ function battle_daemon_act(battle_daemon)
 								}
 							}
 							damage = floor(damage);
-							battle_daemon_take_damage(target_daemon, damage, attack_types.energy);
+							battle_daemon_take_damage_at_position(target_daemon, damage, attack_types.energy);
 				
 							global.battle_animation_controller.num_ongoing_animations++;
 							var created = instance_create_depth(target_battle_daemon.x, target_battle_daemon.y, -10, oDamageDisplay);
@@ -152,6 +152,11 @@ function battle_daemon_act(battle_daemon)
 						//Swap
 						case effects.swap:
 							swap_daemons(battle_daemon.position, target_daemon);
+						break;
+						
+						//Status effects
+						case effects.status_effect:
+							battle_daemon_add_status_effect(target_battle_daemon, move.effects[j][1], move.effects[j][2]);
 						break;
 					}
 				}
@@ -167,52 +172,65 @@ function battle_daemon_act(battle_daemon)
 function battle_daemon_animate_move(battle_daemon)
 {
 	animate_move(battle_daemon.selected_move, battle_daemon, battle_daemon.selected_targets);
-	
-	/*var move = battle_daemon.selected_move;
-	
-	move_animation_card = instance_create_depth(room_width/2, room_height - 192, 0, oMoveCard);
-	move_animation_card.move = move;
-	
-	if (move.projectile_sprite != noone)
-	{
-		for (var i=0; i<array_length(battle_daemon.selected_targets); i++)
-		{
-			global.battle_controller.num_ongoing_animations++;
-			var projectile = instance_create_depth(battle_daemon.x, battle_daemon.y, 0, oProjectile);
-			projectile.origin_daemon = battle_daemon;
-			projectile.target_daemon = ds_map_find_value(global.battle_controller.position_daemon_map, battle_daemon.selected_targets[i]);
-			projectile.projectile_speed = move.projectile_speed;
-			projectile.move = move
-			projectile.sprite_index = move.projectile_sprite;
-		}
-	}
-	if (move.user_to_target_move)
-	{
-		global.battle_controller.num_ongoing_animations++;
-		var target_daemon = ds_map_find_value(global.battle_controller.position_daemon_map, battle_daemon.selected_targets[0]);
-		battle_daemon.animating = true;
-		battle_daemon.animation_target_x = target_daemon.x;
-		battle_daemon.animation_target_y = target_daemon.y;
-		battle_daemon.animation_move_speed = move.user_to_target_speed;
-		battle_daemon.animation_trigger_act_on_end = true;
-	}
-	if (move.target_to_user_move)
-	{
-		global.battle_controller.num_ongoing_animations++;
-		var target_daemon = ds_map_find_value(global.battle_controller.position_daemon_map, battle_daemon.selected_targets[0]);
-		target_daemon.animating = true;
-		target_daemon.animation_target_x = battle_daemon.x;
-		target_daemon.animation_target_y = battle_daemon.y;
-		target_daemon.animation_move_speed = move.target_to_user_speed;
-		//target daemon move can NOT ever trigger its own act on end, TODO for animations 2.0
-		target_daemon.animation_trigger_act_on_end = false;
-	}*/
 }
 
-function battle_daemon_take_damage(position, damage, attack_type)
+function battle_daemon_take_damage_at_position(position, damage, attack_type)
 {
 	var battle_daemon = ds_map_find_value(global.battle_controller.position_daemon_map, position);
 	battle_daemon.hp = median(battle_daemon.hp - damage, 0, battle_daemon.max_hp);
+	//Todo: add code for defense here
+}
+
+function battle_daemon_add_status_effect(battle_daemon, _status_effect, _duration)
+{
+	with (battle_daemon)
+	{
+		var status_effect_already_exists = false;
+		for (i=0; i < ds_list_size(status_effect_list); i++)
+		{
+			//If the status effect already exists, set its duration to the new value if greater
+			if (status_effect_list[| i].status_effect == _status_effect)
+			{
+				status_effect_already_exists = true;
+				if (status_effect_list[| i].duration < _duration)
+				{
+					status_effect_list[| i].duration = _duration;
+				}
+			}
+		}
+		
+		//If status effect doesn't already exist, add it
+		if (!status_effect_already_exists)
+		{
+			ds_list_add(status_effect_list, {status_effect: _status_effect, duration: _duration});
+		}
+	}
+}
+
+//Ticks all of a daemon's status effects down by 1.
+function battle_daemon_tick_status(battle_daemon)
+{
+	var status_effect_count = ds_list_size(status_effect_list);
+	for (var i=0; i < status_effect_count; i++)
+	{
+		status_effect_list[| i].duration --;
+	}
+	
+	do 
+	{
+		var deleted_status = false;
+		
+		for (var i=0; i < status_effect_count; i++)
+		{
+			if (status_effect_list[| i].duration == 0)
+			{
+				ds_list_delete(status_effect_list, i);
+				deleted_status = true;
+				break;
+			}
+		}
+	}
+	until (deleted_status == false)
 }
 
 function swap_daemons(position1, position2)

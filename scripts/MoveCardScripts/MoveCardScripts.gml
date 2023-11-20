@@ -50,6 +50,9 @@ function get_description_string(given_effects)
 			case effects.swap:
 				result += "Swap";
 			break;
+			case effects.status_effect:
+				result += "Inflict " + get_status_effect_name(effect[1]) + " " + string(effect[2]);
+			break;
 		}
 	}
 	

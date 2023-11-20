@@ -55,7 +55,8 @@ enum effects
 	swap, //swaps user and target positions, expected to be used w/ 1 target, 0 params
 	physical_damage, //deals physical damage, 1 param: damage
 	energy_damage, //deals energy damage, 1 param: damage
-	heal //heals, 1 param: healing
+	heal, //heals, 1 param: healing
+	status_effect //applies status effect, 2 param: status effect, turn duration
 }
 
 enum status_effects
@@ -119,6 +120,26 @@ function get_class_weaknesses(class)
 		
 		case classes.penumbra:
 			return [classes.element];
+		break;
+	}
+}
+
+function get_status_effect_icon(status_effect)
+{
+	switch (status_effect)
+	{
+		case status_effects.vulnerable:
+			return sIconVulnerable;
+		break;
+	}
+}
+
+function get_status_effect_name(status_effect)
+{
+	switch (status_effect)
+	{
+		case status_effects.vulnerable:
+			return "Vulnerable";
 		break;
 	}
 }

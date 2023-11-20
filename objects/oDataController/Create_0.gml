@@ -43,6 +43,19 @@ move_bite_data =
 	animation: [[animation_spawn_projectile, sProjectile, 8], [animation_act]]
 }
 
+move_shatter_data =
+{
+	name: "Shatter",
+	art: sBiteArt,
+	class: classes.impulse,
+	cost: 2,
+	targets: targets.single_enemy,
+	can_target_dead: false,
+	phase: battle_phases.action,
+	effects: [[effects.physical_damage, 2], [effects.status_effect, status_effects.vulnerable, 3]],
+	animation: [[animation_spawn_projectile, sProjectile, 8], [animation_act]]
+}
+
 move_clash_data =
 {
 	name: "Clash",
@@ -76,7 +89,7 @@ player_center_daemon_data =
 	hp: 10,
 	initiative: 10,
 	classes: [classes.impulse],
-	moves: [move_claw_data, move_bite_data, move_bite_data, move_bite_data, move_bite_data],
+	moves: [move_claw_data, move_bite_data, move_shatter_data, move_bite_data, move_bite_data],
 	hand_size: 5,
 	physical_attack: 2,
 	energy_attack: 0
