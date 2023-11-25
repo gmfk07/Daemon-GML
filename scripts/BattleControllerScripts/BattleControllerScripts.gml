@@ -262,7 +262,7 @@ function take_enemy_turn()
 	}
 }
 
-function calculate_effect_damage(effect, using_daemon, target_daemon)
+function calculate_effect_damage(effect, class, using_daemon, target_daemon)
 {
 	var damage = 0;
 	
@@ -271,14 +271,23 @@ function calculate_effect_damage(effect, using_daemon, target_daemon)
 		damage += effect[1] + using_daemon.physical_attack;
 		for (var k=0; k < array_length(target_daemon.classes); k++)
 		{
-			if (array_contains(get_class_weaknesses(target_daemon.classes[k]), move.class))
+			var multiplier = 1;
+			if (array_contains(get_class_weaknesses(target_daemon.classes[k]), class))
 			{
-				damage *= ATTACK_OUTCLASS_DAMAGE_MULTIPLIER;
+				multiplier += ATTACK_OUTCLASS_DAMAGE_MULTIPLIER - 1;
 			}
-			if (array_contains(get_class_strengths(target_daemon.classes[k]), move.class))
+			if (array_contains(get_class_strengths(target_daemon.classes[k]), class))
 			{
-				damage *= DEFENDER_OUTCLASS_DAMAGE_MULTIPLIER;
+				multiplier += DEFENDER_OUTCLASS_DAMAGE_MULTIPLIER - 1;
 			}
+			for (var i=0; i < ds_list_size(target_daemon.status_effect_list); i++)
+			{
+				if (target_daemon.status_effect_list[| i].status_effect == status_effects.vulnerable)
+				{
+					multiplier += VULNERABLE_DAMAGE_MULTIPLIER - 1;
+				}
+			}
+			damage *= multiplier;
 		}
 	}
 	else if (effect[0] == effects.energy_damage)
@@ -286,18 +295,27 @@ function calculate_effect_damage(effect, using_daemon, target_daemon)
 		damage += effect[1] + using_daemon.energy_attack;
 		for (var k=0; k < array_length(target_daemon.classes); k++)
 		{
-			if (array_contains(get_class_weaknesses(target_daemon.classes[k]), move.class))
+			var multiplier = 1;
+			if (array_contains(get_class_weaknesses(target_daemon.classes[k]), class))
 			{
-				damage *= ATTACK_OUTCLASS_DAMAGE_MULTIPLIER;
+				multiplier += ATTACK_OUTCLASS_DAMAGE_MULTIPLIER - 1;
 			}
-			if (array_contains(get_class_strengths(target_daemon.classes[k]), move.class))
+			if (array_contains(get_class_strengths(target_daemon.classes[k]), class))
 			{
-				damage *= DEFENDER_OUTCLASS_DAMAGE_MULTIPLIER;
+				multiplier += DEFENDER_OUTCLASS_DAMAGE_MULTIPLIER - 1;
 			}
+			for (var i=0; i < ds_list_size(target_daemon.status_effect_list); i++)
+			{
+				if (target_daemon.status_effect_list[| i].status_effect == status_effects.vulnerable)
+				{
+					multiplier += VULNERABLE_DAMAGE_MULTIPLIER - 1;
+				}
+			}
+			damage *= multiplier;
 		}
 	}
 	
-	return damage;
+	return floor(damage);
 }
 
 //Returns an array of length equal to target_daemon_array with the damage that each daemon will take
@@ -312,38 +330,9 @@ function calculate_total_move_damage(move, using_daemon, target_daemon_position_
 		
 		for (var j=0; j<array_length(move.effects); j++)
 		{
-			if (move.effects[j][0] == effects.physical_damage)
-			{
-				damage += move.effects[j][1] + using_daemon.physical_attack;
-				for (var k=0; k < array_length(target_daemon.classes); k++)
-				{
-					if (array_contains(get_class_weaknesses(target_daemon.classes[k]), move.class))
-					{
-						damage *= ATTACK_OUTCLASS_DAMAGE_MULTIPLIER;
-					}
-					if (array_contains(get_class_strengths(target_daemon.classes[k]), move.class))
-					{
-						damage *= DEFENDER_OUTCLASS_DAMAGE_MULTIPLIER;
-					}
-				}
-			}
-			else if (move.effects[j][0] == effects.energy_damage)
-			{
-				damage += move.effects[j][1] + using_daemon.energy_attack;
-				for (var k=0; k < array_length(target_daemon.classes); k++)
-				{
-					if (array_contains(get_class_weaknesses(target_daemon.classes[k]), move.class))
-					{
-						damage *= ATTACK_OUTCLASS_DAMAGE_MULTIPLIER;
-					}
-					if (array_contains(get_class_strengths(target_daemon.classes[k]), move.class))
-					{
-						damage *= DEFENDER_OUTCLASS_DAMAGE_MULTIPLIER;
-					}
-				}
-			}
+			damage += calculate_effect_damage(move.effects[j], move.class, using_daemon, target_daemon);
 		}
-		damage = floor(damage);
+
 		array_push(result, damage);
 	}
 	

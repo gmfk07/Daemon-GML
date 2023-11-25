@@ -106,20 +106,7 @@ function battle_daemon_act(battle_daemon)
 					{
 						//Damage
 						case effects.physical_damage:
-							var damage = move.effects[j][1];
-							damage += battle_daemon.physical_attack;
-							for (var k=0; k < array_length(target_battle_daemon.classes); k++)
-							{
-								if (array_contains(get_class_weaknesses(target_battle_daemon.classes[k]), move.class))
-								{
-									damage *= ATTACK_OUTCLASS_DAMAGE_MULTIPLIER;
-								}
-								if (array_contains(get_class_strengths(target_battle_daemon.classes[k]), move.class))
-								{
-									damage *= DEFENDER_OUTCLASS_DAMAGE_MULTIPLIER;
-								}
-							}
-							damage = floor(damage);
+							var damage = calculate_effect_damage(move.effects[j], move.class, battle_daemon, target_battle_daemon);
 							battle_daemon_take_damage_at_position(target_daemon, damage, attack_types.physical);
 				
 							global.battle_animation_controller.num_ongoing_animations++;
@@ -128,20 +115,7 @@ function battle_daemon_act(battle_daemon)
 						break;
 					
 						case effects.energy_damage:
-							var damage = move.effects[j][1];
-							damage += battle_daemon.energy_attack;
-							for (var k=0; k < array_length(target_battle_daemon.classes); k++)
-							{
-								if (array_contains(get_class_weaknesses(target_battle_daemon.classes[k]), move.class))
-								{
-									damage *= ATTACK_OUTCLASS_DAMAGE_MULTIPLIER;
-								}
-								if (array_contains(get_class_strengths(target_battle_daemon.classes[k]), move.class))
-								{
-									damage *= DEFENDER_OUTCLASS_DAMAGE_MULTIPLIER;
-								}
-							}
-							damage = floor(damage);
+							var damage = calculate_effect_damage(move.effects[j], move.class, battle_daemon, target_battle_daemon);
 							battle_daemon_take_damage_at_position(target_daemon, damage, attack_types.energy);
 				
 							global.battle_animation_controller.num_ongoing_animations++;
