@@ -210,8 +210,7 @@ function battle_daemon_add_status_effect(battle_daemon, _status_effect, _duratio
 //Ticks all of a daemon's status effects down by 1.
 function battle_daemon_tick_status(battle_daemon)
 {
-	var status_effect_count = ds_list_size(status_effect_list);
-	for (var i=0; i < status_effect_count; i++)
+	for (var i=0; i < ds_list_size(status_effect_list); i++)
 	{
 		status_effect_list[| i].duration --;
 	}
@@ -220,7 +219,7 @@ function battle_daemon_tick_status(battle_daemon)
 	{
 		var deleted_status = false;
 		
-		for (var i=0; i < status_effect_count; i++)
+		for (var i=0; i < ds_list_size(status_effect_list); i++)
 		{
 			if (status_effect_list[| i].duration == 0)
 			{

@@ -262,6 +262,44 @@ function take_enemy_turn()
 	}
 }
 
+function calculate_effect_damage(effect, using_daemon, target_daemon)
+{
+	var damage = 0;
+	
+	if (effect[0] == effects.physical_damage)
+	{
+		damage += effect[1] + using_daemon.physical_attack;
+		for (var k=0; k < array_length(target_daemon.classes); k++)
+		{
+			if (array_contains(get_class_weaknesses(target_daemon.classes[k]), move.class))
+			{
+				damage *= ATTACK_OUTCLASS_DAMAGE_MULTIPLIER;
+			}
+			if (array_contains(get_class_strengths(target_daemon.classes[k]), move.class))
+			{
+				damage *= DEFENDER_OUTCLASS_DAMAGE_MULTIPLIER;
+			}
+		}
+	}
+	else if (effect[0] == effects.energy_damage)
+	{
+		damage += effect[1] + using_daemon.energy_attack;
+		for (var k=0; k < array_length(target_daemon.classes); k++)
+		{
+			if (array_contains(get_class_weaknesses(target_daemon.classes[k]), move.class))
+			{
+				damage *= ATTACK_OUTCLASS_DAMAGE_MULTIPLIER;
+			}
+			if (array_contains(get_class_strengths(target_daemon.classes[k]), move.class))
+			{
+				damage *= DEFENDER_OUTCLASS_DAMAGE_MULTIPLIER;
+			}
+		}
+	}
+	
+	return damage;
+}
+
 //Returns an array of length equal to target_daemon_array with the damage that each daemon will take
 function calculate_total_move_damage(move, using_daemon, target_daemon_position_array)
 {
