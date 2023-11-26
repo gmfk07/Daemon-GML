@@ -1,6 +1,7 @@
 /// @description Init vars
 global.data_controller = self;
 daemon_data_map = ds_map_create();
+daemon_reserve_list = ds_list_create();
 
 move_move_data =
 {
@@ -128,7 +129,7 @@ enemy_center_daemon_data =
 	hp: 10,
 	initiative: 10,
 	classes: [classes.bulwark],
-	moves: [move_claw_data, move_claw_data, move_claw_data],
+	moves: [move_clash_data, move_clash_data, move_clash_data],
 	hand_size: 2,
 	physical_attack: 2,
 	energy_attack: 0
@@ -154,6 +155,32 @@ ds_map_add(daemon_data_map, positions.enemy_top, player_top_daemon_data);
 ds_map_add(daemon_data_map, positions.enemy_center, player_center_daemon_data);
 ds_map_add(daemon_data_map, positions.enemy_bottom, player_bottom_daemon_data);
 
+reserve_daemon_data1 =
+{
+	sprite: sKnightman,
+	name: "Knightman",
+	hp: 10,
+	initiative: 10,
+	classes: [classes.bulwark],
+	moves: [move_clash_data, move_clash_data, move_clash_data],
+	hand_size: 2,
+	physical_attack: 2,
+	energy_attack: 0
+}
+reserve_daemon_data2 =
+{
+	sprite: sCaracara,
+	name: "Caracara",
+	hp: 7,
+	initiative: 15,
+	classes: [classes.null],
+	moves: [move_claw_data, move_claw_data, move_claw_data, move_claw_data, move_claw_data, move_bite_data],
+	hand_size: 3,
+	physical_attack: 2,
+	energy_attack: 0
+}
+ds_list_add(daemon_reserve_list, reserve_daemon_data1);
+ds_list_add(daemon_reserve_list, reserve_daemon_data2);
 
 global.room_data =
 {

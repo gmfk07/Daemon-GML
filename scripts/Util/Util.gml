@@ -20,7 +20,8 @@ enum positions
 	enemy_bottom,
 	player_top,
 	player_center,
-	player_bottom
+	player_bottom,
+	reserve
 }
 
 enum classes
