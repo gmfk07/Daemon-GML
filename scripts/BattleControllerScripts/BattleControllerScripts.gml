@@ -86,6 +86,35 @@ function is_victory()
 	return !(top_alive || center_alive || bottom_alive);
 }
 
+//Returns the position of the only alive enemy daemon, or noone if that condition are not met
+function get_catchable_daemon_position()
+{
+	var top_daemon = position_daemon_map[? positions.enemy_top];
+	var center_daemon = position_daemon_map[? positions.enemy_center];
+	var bottom_daemon = position_daemon_map[? positions.enemy_bottom];
+	
+	var top_alive = top_daemon.hp > 0;
+	var center_alive = center_daemon.hp > 0;
+	var bottom_alive = bottom_daemon.hp > 0;
+	
+	if (top_alive && !center_alive && !bottom_alive)
+	{
+		return positions.enemy_top;
+	}
+	else if (!top_alive && center_alive && !bottom_alive)
+	{
+		return positions.enemy_center;
+	}
+	else if (!top_alive && !center_alive && bottom_alive)
+	{
+		return positions.enemy_bottom;
+	}
+	else
+	{
+		return noone;
+	}
+}
+
 function get_all_battle_daemon()
 {
 	var enemy_top_battle_daemon = ds_map_find_value(position_daemon_map, positions.enemy_top);

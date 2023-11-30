@@ -192,3 +192,4 @@ room_goto(rOverworld);
 victory_cutscene = [];
 defeat_cutscene = [[cutscene_dialogue, ["You were defeated..."]]];
 overworld_flag = overworld_flags.none;
+battle_type = battle_types.challenge;

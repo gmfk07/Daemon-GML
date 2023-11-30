@@ -1,6 +1,6 @@
 function save_room()
 {
-	var _battle_npc_num = instance_number(oBattleNPC);
+	var _battle_npc_num = instance_number(oBattleChallengeNPC);
 	
 	var room_struct =
 	{
@@ -13,7 +13,7 @@ function save_room()
 	//Fill battle_npc_data
 	for (var i=0; i < _battle_npc_num; i++)
 	{
-		var inst = instance_find(oBattleNPC, i);
+		var inst = instance_find(oBattleChallengeNPC, i);
 		
 		room_struct.battle_npc_data[i] = {
 			x : inst.x,
@@ -45,14 +45,14 @@ function load_room()
 		exit;
 	}
 	
-	if (instance_exists(oBattleNPC))
+	if (instance_exists(oBattleChallengeNPC))
 	{
-		instance_destroy(oBattleNPC);
+		instance_destroy(oBattleChallengeNPC);
 	}
 	for (var i=0; i < room_struct.battle_npc_num; i++)
 	{
 		var data = room_struct.battle_npc_data[i];
-		with (instance_create_layer(data.x, data.y, "Instances", oBattleNPC))
+		with (instance_create_layer(data.x, data.y, "Instances", oBattleChallengeNPC))
 		{
 			defeated = data.defeated;
 			battle_cutscene = data.battle_cutscene;

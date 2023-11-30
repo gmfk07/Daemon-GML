@@ -48,8 +48,10 @@ selected_card = noone;
 selected_targets = [];
 move_card_list = ds_list_create();
 move_animation_card = noone;
+catch_button = noone;
 points = starting_points;
 max_points = starting_points;
+battle_type = global.data_controller.battle_type;
 
 randomize();
 start_new_turn();

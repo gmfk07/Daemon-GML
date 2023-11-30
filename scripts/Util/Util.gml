@@ -13,6 +13,12 @@ enum overworld_flags
 	victory
 }
 
+enum battle_types
+{
+	challenge,
+	wild
+}
+
 enum positions
 {
 	enemy_top,

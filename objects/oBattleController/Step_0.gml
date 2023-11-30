@@ -81,7 +81,26 @@ else if (phase == battle_phases.selecting)
 			selected_targets = [closest_target.position];
 		}
 	}
+	
+	//If wild battle, check for displaying catch button
+	if (battle_type == battle_types.wild)
+	{
+		if (selected_daemon == noone && catch_button == noone && get_catchable_daemon_position() != noone)
+		{
+			catch_button = instance_create_layer(room_width/2, room_height - 128, "UI", oCatch);
+		}
+		
+		if (selected_daemon != noone && catch_button != noone)
+		{
+			with (catch_button)
+			{
+				instance_destroy();
+			}
+			catch_button = noone;
+		}
+	}
 
+	//Rotate the target icons
 	target_theta = (target_theta - 1) mod 360;
 }
 
