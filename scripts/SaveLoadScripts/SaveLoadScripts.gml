@@ -1,26 +1,42 @@
 function save_room()
 {
-	var _battle_npc_num = instance_number(oBattleChallengeNPC);
+	var _battle_challenge_npc_num = instance_number(oBattleChallengeNPC);
+	var _battle_wild_npc_num = instance_number(oBattleWildNPC);
 	
 	var room_struct =
 	{
 		player_x : oPlayer.x,
 		player_y : oPlayer.y,
-		battle_npc_num : _battle_npc_num,
-		battle_npc_data: array_create(_battle_npc_num),
+		battle_challenge_npc_num : _battle_challenge_npc_num,
+		battle_challenge_npc_data: array_create(_battle_challenge_npc_num),
+		battle_wild_npc_num: _battle_wild_npc_num,
+		battle_wild_npc_data: array_create(_battle_wild_npc_num)
 	}
 	
-	//Fill battle_npc_data
-	for (var i=0; i < _battle_npc_num; i++)
+	//Fill battle_challenge_npc_data
+	for (var i=0; i < _battle_challenge_npc_num; i++)
 	{
 		var inst = instance_find(oBattleChallengeNPC, i);
 		
-		room_struct.battle_npc_data[i] = {
+		room_struct.battle_challenge_npc_data[i] = {
 			x : inst.x,
 			y : inst.y,
 			defeated: inst.defeated,
 			battle_cutscene: inst.battle_cutscene,
 			defeated_cutscene: inst.defeated_cutscene,
+			triggered_combat: inst.triggered_combat
+		}
+	}
+	
+	//Fill battle_wild_npc_data
+	for (var i=0; i < _battle_challenge_npc_num; i++)
+	{
+		var inst = instance_find(oBattleChallengeNPC, i);
+		
+		room_struct.battle_wild_npc_data[i] = {
+			x : inst.x,
+			y : inst.y,
+			battle_cutscene: inst.battle_cutscene,
 			triggered_combat: inst.triggered_combat
 		}
 	}
@@ -49,9 +65,16 @@ function load_room()
 	{
 		instance_destroy(oBattleChallengeNPC);
 	}
-	for (var i=0; i < room_struct.battle_npc_num; i++)
+	
+	if (instance_exists(oBattleWildNPC))
 	{
-		var data = room_struct.battle_npc_data[i];
+		instance_destroy(oBattleWildNPC);
+	}
+	
+	//Battle Challenge NPCs
+	for (var i=0; i < room_struct.battle_challenge_npc_num; i++)
+	{
+		var data = room_struct.battle_challenge_npc_data[i];
 		with (instance_create_layer(data.x, data.y, "Instances", oBattleChallengeNPC))
 		{
 			defeated = data.defeated;
@@ -63,6 +86,29 @@ function load_room()
 				defeated = true;
 				start_cutscene(data.defeated_cutscene);
 				triggered_combat = false;
+			}
+			else if (triggered_combat && global.data_controller.overworld_flag == overworld_flags.defeat)
+			{
+				if (global.data_controller.defeat_cutscene != [])
+				{
+					start_cutscene(global.data_controller.defeat_cutscene);
+				}
+				triggered_combat = false;
+			}
+		}
+	}
+	
+	//Battle Wild NPCs
+	for (var i=0; i < room_struct.battle_wild_npc_num; i++)
+	{
+		var data = room_struct.battle_wild_npc_data[i];
+		with (instance_create_layer(data.x, data.y, "Instances", oBattleChallengeNPC))
+		{
+			battle_cutscene = data.battle_cutscene;
+			triggered_combat = data.triggered_combat;
+			if (triggered_combat && global.data_controller.overworld_flag == overworld_flags.victory)
+			{
+				instance_destroy();
 			}
 			else if (triggered_combat && global.data_controller.overworld_flag == overworld_flags.defeat)
 			{
