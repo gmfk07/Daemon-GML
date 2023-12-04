@@ -17,14 +17,14 @@ center_daemon.position = positions.player_center;
 bottom_daemon = instance_create_layer(room_width/3, 3*room_height/5, "Interactables", oPartyDaemon);
 bottom_daemon.position = positions.player_bottom;
 
-top_daemon.sprite_index = get_daemon_data_from_position(positions.player_top).sprite;
-center_daemon.sprite_index = get_daemon_data_from_position(positions.player_center).sprite;
-bottom_daemon.sprite_index = get_daemon_data_from_position(positions.player_bottom).sprite;
+top_daemon.data = get_daemon_data_from_position(positions.player_top);
+center_daemon.data = get_daemon_data_from_position(positions.player_center);
+bottom_daemon.data = get_daemon_data_from_position(positions.player_bottom);
 
 for (var i=0; i < ds_list_size(global.data_controller.daemon_reserve_list); i++)
 {
 	var reserve_daemon = instance_create_layer(64 + i*160, room_height - 64, "Interactables", oPartyDaemon);
-	reserve_daemon.sprite_index = global.data_controller.daemon_reserve_list[| i].sprite;
+	reserve_daemon.data = global.data_controller.daemon_reserve_list[| i];
 	reserve_daemon.position = positions.reserve;
 	reserve_daemon.reserve_index = i;
 }

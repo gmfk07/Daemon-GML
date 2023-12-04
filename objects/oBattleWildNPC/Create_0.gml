@@ -8,6 +8,7 @@ top_daemon = {
 	initiative: 10,
 	classes: [classes.impulse],
 	moves: [move_claw_data, move_claw_data, move_claw_data],
+	unused_moves: [move_claw_data],
 	hand_size: 2,
 	physical_attack: 2,
 	energy_attack: 0
@@ -19,6 +20,7 @@ center_daemon = {
 	initiative: 10,
 	classes: [classes.impulse],
 	moves: [move_claw_data, move_claw_data, move_claw_data],
+	unused_moves: [move_claw_data],
 	hand_size: 2,
 	physical_attack: 2,
 	energy_attack: 0
@@ -30,6 +32,7 @@ bottom_daemon = {
 	initiative: 10,
 	classes: [classes.impulse],
 	moves: [move_claw_data, move_claw_data, move_claw_data],
+	unused_moves: [move_claw_data],
 	hand_size: 2,
 	physical_attack: 2,
 	energy_attack: 0

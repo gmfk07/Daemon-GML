@@ -2,7 +2,7 @@ function animate_move(move, user_daemon, target_daemon_array)
 {
     with (global.battle_animation_controller)
     {
-        move_animation_card = instance_create_depth(room_width/2, room_height - 192, 0, oMoveCard);
+        move_animation_card = instance_create_depth(room_width/2, room_height - 192, 0, oBattleMoveCard);
 	    move_animation_card.move = move;
 	    if (move_animation_card.move.class == classes.classless || move_animation_card.move.class == user_daemon.classes[0] || (array_length(user_daemon.classes) == 2 && move_animation_card.move.class == user_daemon.classes[1]))
 	    {

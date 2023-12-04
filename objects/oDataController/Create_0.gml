@@ -78,6 +78,7 @@ player_top_daemon_data =
 	initiative: 15,
 	classes: [classes.null],
 	moves: [move_claw_data, move_claw_data, move_claw_data, move_claw_data, move_claw_data, move_bite_data],
+	unused_moves: [move_claw_data],
 	hand_size: 3,
 	physical_attack: 2,
 	energy_attack: 0
@@ -91,6 +92,7 @@ player_center_daemon_data =
 	initiative: 10,
 	classes: [classes.impulse],
 	moves: [move_claw_data, move_bite_data, move_shatter_data, move_bite_data, move_bite_data],
+	unused_moves: [move_claw_data],
 	hand_size: 5,
 	physical_attack: 2,
 	energy_attack: 0
@@ -104,6 +106,7 @@ player_bottom_daemon_data =
 	initiative: 10,
 	classes: [classes.impulse],
 	moves: [move_claw_data, move_claw_data, move_claw_data, move_claw_data, move_claw_data, move_claw_data],
+	unused_moves: [move_claw_data],
 	hand_size: 3,
 	physical_attack: 2,
 	energy_attack: 0
@@ -163,6 +166,7 @@ reserve_daemon_data1 =
 	initiative: 10,
 	classes: [classes.bulwark],
 	moves: [move_clash_data, move_clash_data, move_clash_data],
+	unused_moves: [move_claw_data],
 	hand_size: 2,
 	physical_attack: 2,
 	energy_attack: 0
@@ -175,6 +179,7 @@ reserve_daemon_data2 =
 	initiative: 15,
 	classes: [classes.null],
 	moves: [move_claw_data, move_claw_data, move_claw_data, move_claw_data, move_claw_data, move_bite_data],
+	unused_moves: [move_claw_data],
 	hand_size: 3,
 	physical_attack: 2,
 	energy_attack: 0
@@ -193,3 +198,4 @@ victory_cutscene = [];
 defeat_cutscene = [[cutscene_dialogue, ["You were defeated..."]]];
 overworld_flag = overworld_flags.none;
 battle_type = battle_types.challenge;
+deckbuilding_daemon = noone;

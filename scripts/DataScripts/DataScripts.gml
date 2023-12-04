@@ -44,3 +44,23 @@ function clear_victory_cutscene()
 {
 	global.data_controller.victory_cutscene = [];
 }
+
+function start_deckbuilding(daemon_data)
+{
+	global.data_controller.deckbuilding_daemon = daemon_data;
+	room_goto(rDeckbuilding);
+}
+
+function deckbuilding_transfer_unused_move_to_moves(index)
+{
+	var move = global.data_controller.deckbuilding_daemon.unused_moves[index]
+	array_delete(global.data_controller.deckbuilding_daemon.unused_moves, index, 1);
+	array_push(global.data_controller.deckbuilding_daemon.moves, move);
+}
+
+function deckbuilding_transfer_move_to_unused_moves(index)
+{
+	var move = global.data_controller.deckbuilding_daemon.moves[index]
+	array_delete(global.data_controller.deckbuilding_daemon.moves, index, 1);
+	array_push(global.data_controller.deckbuilding_daemon.unused_moves, move);
+}
