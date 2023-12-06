@@ -10,7 +10,9 @@ top_daemon = {
 	moves: [move_claw_data, move_claw_data, move_claw_data],
 	hand_size: 2,
 	physical_attack: 2,
-	energy_attack: 0
+	energy_attack: 0,
+	physical_defense: 2,
+	energy_defense: 0
 }
 center_daemon = {
 	sprite: sComcat,
@@ -21,7 +23,9 @@ center_daemon = {
 	moves: [move_claw_data, move_claw_data, move_claw_data],
 	hand_size: 2,
 	physical_attack: 2,
-	energy_attack: 0
+	energy_attack: 0,
+	physical_defense: 2,
+	energy_defense: 0
 }
 bottom_daemon = {
 	sprite: sComcat,
@@ -32,7 +36,9 @@ bottom_daemon = {
 	moves: [move_claw_data, move_claw_data, move_claw_data],
 	hand_size: 2,
 	physical_attack: 2,
-	energy_attack: 0
+	energy_attack: 0,
+	physical_defense: 2,
+	energy_defense: 0
 }
 
 battle_cutscene = [[cutscene_dialogue, ["Hey!", "Let's battle!"]], [cutscene_wait, 1], [cutscene_dialogue, ["Let's go!"]], [cutscene_battle, top_daemon, center_daemon, bottom_daemon, battle_types.challenge]];

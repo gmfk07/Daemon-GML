@@ -330,6 +330,7 @@ function calculate_effect_damage(effect, class, using_daemon, target_daemon)
 				}
 			}
 			damage *= multiplier;
+			damage -= target_daemon.physical_defense;
 		}
 	}
 	else if (effect[0] == effects.energy_damage)
@@ -361,6 +362,7 @@ function calculate_effect_damage(effect, class, using_daemon, target_daemon)
 				}
 			}
 			damage *= multiplier;
+			damage -= target_daemon.energy_defense;
 		}
 	}
 	

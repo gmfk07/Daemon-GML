@@ -15,6 +15,8 @@ function initialize_battle_daemon(obj, data, player_owned=false)
 	obj.hand_size = data.hand_size;
 	obj.physical_attack = data.physical_attack;
 	obj.energy_attack = data.energy_attack;
+	obj.physical_defense = data.physical_defense;
+	obj.energy_defense = data.energy_defense;
 	
 	obj.player_owned = player_owned;
 	

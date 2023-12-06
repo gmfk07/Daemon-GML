@@ -120,7 +120,9 @@ player_top_daemon_data =
 	unused_moves: [move_claw_data],
 	hand_size: 3,
 	physical_attack: 2,
-	energy_attack: 0
+	energy_attack: 0,
+	physical_defense: 2,
+	energy_defense: 0
 }
 
 player_center_daemon_data =
@@ -134,7 +136,9 @@ player_center_daemon_data =
 	unused_moves: [move_claw_data],
 	hand_size: 5,
 	physical_attack: 2,
-	energy_attack: 0
+	energy_attack: 0,
+	physical_defense: 2,
+	energy_defense: 0
 }
 
 player_bottom_daemon_data =
@@ -148,7 +152,9 @@ player_bottom_daemon_data =
 	unused_moves: [move_claw_data],
 	hand_size: 5,
 	physical_attack: 2,
-	energy_attack: 0
+	energy_attack: 0,
+	physical_defense: 2,
+	energy_defense: 0
 }
 
 enemy_top_daemon_data =
@@ -161,7 +167,9 @@ enemy_top_daemon_data =
 	moves: [move_claw_data, move_claw_data, move_claw_data],
 	hand_size: 2,
 	physical_attack: 2,
-	energy_attack: 0
+	energy_attack: 0,
+	physical_defense: 2,
+	energy_defense: 0
 }
 
 enemy_center_daemon_data =
@@ -174,7 +182,9 @@ enemy_center_daemon_data =
 	moves: [move_clash_data, move_clash_data, move_clash_data],
 	hand_size: 2,
 	physical_attack: 2,
-	energy_attack: 0
+	energy_attack: 0,
+	physical_defense: 3,
+	energy_defense: 0
 }
 
 enemy_bottom_daemon_data =
@@ -187,7 +197,9 @@ enemy_bottom_daemon_data =
 	moves: [move_claw_data, move_claw_data, move_claw_data],
 	hand_size: 2,
 	physical_attack: 2,
-	energy_attack: 0
+	energy_attack: 0,
+	physical_defense: 2,
+	energy_defense: 0
 }
 
 ds_map_add(daemon_data_map, positions.player_top, player_top_daemon_data);
@@ -208,7 +220,9 @@ reserve_daemon_data1 =
 	unused_moves: [move_claw_data, move_bolster_data],
 	hand_size: 2,
 	physical_attack: 2,
-	energy_attack: 0
+	energy_attack: 0,
+	physical_defense: 3,
+	energy_defense: 0
 }
 reserve_daemon_data2 =
 {
@@ -221,7 +235,9 @@ reserve_daemon_data2 =
 	unused_moves: [move_claw_data],
 	hand_size: 3,
 	physical_attack: 2,
-	energy_attack: 0
+	energy_attack: 0,
+	physical_defense: 0,
+	energy_defense: 3
 }
 ds_list_add(daemon_reserve_list, reserve_daemon_data1);
 ds_list_add(daemon_reserve_list, reserve_daemon_data2);
