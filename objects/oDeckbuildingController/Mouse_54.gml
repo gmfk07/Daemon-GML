@@ -1,2 +1,2 @@
-/// @description Return to previous room
+/// @description Return to overworld
 room_goto_previous();

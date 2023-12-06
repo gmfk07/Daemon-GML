@@ -44,10 +44,36 @@ move_bite_data =
 	animation: [[animation_spawn_projectile, sProjectile, 8], [animation_act]]
 }
 
+move_burst_data =
+{
+	name: "Burst",
+	art: sExplodeArt,
+	class: classes.impulse,
+	cost: 3,
+	targets: targets.all_enemies,
+	can_target_dead: false,
+	phase: battle_phases.action,
+	effects: [[effects.physical_damage, 3]],
+	animation: [[animation_spawn_projectile, sProjectile, 8], [animation_act]]
+}
+
+move_omegabite_data =
+{
+	name: "Omega Bite",
+	art: sBiteArt,
+	class: classes.impulse,
+	cost: 3,
+	targets: targets.single_enemy,
+	can_target_dead: false,
+	phase: battle_phases.action,
+	effects: [[effects.physical_damage, 7]],
+	animation: [[animation_spawn_projectile, sProjectile, 8], [animation_act]]
+}
+
 move_shatter_data =
 {
 	name: "Shatter",
-	art: sBiteArt,
+	art: sExplodeArt,
 	class: classes.impulse,
 	cost: 2,
 	targets: targets.single_enemy,
@@ -68,6 +94,19 @@ move_clash_data =
 	phase: battle_phases.action,
 	effects: [[effects.physical_damage, 5]],
 	animation: [[animation_spawn_projectile, sProjectile, 8], [animation_act]]
+}
+
+move_bolster_data =
+{
+	name: "Bolster",
+	art: sBiteArt,
+	class: classes.bulwark,
+	cost: 2,
+	targets: targets.self_only,
+	can_target_dead: false,
+	phase: battle_phases.action,
+	effects: [[effects.status_effect, status_effects.strengthened, 3]],
+	animation: [[animation_act]]
 }
 
 player_top_daemon_data =
@@ -91,7 +130,7 @@ player_center_daemon_data =
 	hp: 10,
 	initiative: 10,
 	classes: [classes.impulse],
-	moves: [move_claw_data, move_bite_data, move_shatter_data, move_bite_data, move_bite_data],
+	moves: [move_claw_data, move_bite_data, move_shatter_data, move_bite_data, move_bite_data, move_burst_data, move_omegabite_data],
 	unused_moves: [move_claw_data],
 	hand_size: 5,
 	physical_attack: 2,
@@ -101,13 +140,13 @@ player_center_daemon_data =
 player_bottom_daemon_data =
 {
 	sprite: sComcat,
-	name: "Comcat III",
+	name: "Comcat II",
 	hp: 10,
 	initiative: 10,
 	classes: [classes.impulse],
-	moves: [move_claw_data, move_claw_data, move_claw_data, move_claw_data, move_claw_data, move_claw_data],
+	moves: [move_claw_data, move_bite_data, move_shatter_data, move_bite_data, move_bite_data, move_burst_data, move_omegabite_data],
 	unused_moves: [move_claw_data],
-	hand_size: 3,
+	hand_size: 5,
 	physical_attack: 2,
 	energy_attack: 0
 }
@@ -166,7 +205,7 @@ reserve_daemon_data1 =
 	initiative: 10,
 	classes: [classes.bulwark],
 	moves: [move_clash_data, move_clash_data, move_clash_data],
-	unused_moves: [move_claw_data],
+	unused_moves: [move_claw_data, move_bolster_data],
 	hand_size: 2,
 	physical_attack: 2,
 	energy_attack: 0

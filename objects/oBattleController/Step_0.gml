@@ -58,27 +58,34 @@ else if (phase == battle_phases.selecting)
 			possible_targets = get_possible_living_target_positions(selected_daemon.position, selected_card.move.targets);
 		}
 		
-		var closest_target_dist = max_target_select_distance;
-		var closest_target = noone;
-		for (var i=0; i < array_length(possible_targets); i++)
+		if (move_data.targets == targets.all_enemies || move_data.targets == targets.all_allies)
 		{
-			var target = ds_map_find_value(position_daemon_map, possible_targets[i]);
-			var dist = point_distance(mouse_x, mouse_y, target.x, target.y);
-			
-			if (dist < closest_target_dist)
-			{
-				closest_target_dist = dist;
-				closest_target = target;
-			}
-		}
-		
-		if (closest_target == noone)
-		{
-			selected_targets = [];
+			selected_targets = possible_targets;
 		}
 		else
 		{
-			selected_targets = [closest_target.position];
+			var closest_target_dist = max_target_select_distance;
+			var closest_target = noone;
+			for (var i=0; i < array_length(possible_targets); i++)
+			{
+				var target = ds_map_find_value(position_daemon_map, possible_targets[i]);
+				var dist = point_distance(mouse_x, mouse_y, target.x, target.y);
+			
+				if (dist < closest_target_dist)
+				{
+					closest_target_dist = dist;
+					closest_target = target;
+				}
+			}
+		
+			if (closest_target == noone)
+			{
+				selected_targets = [];
+			}
+			else
+			{
+				selected_targets = [closest_target.position];
+			}
 		}
 	}
 	

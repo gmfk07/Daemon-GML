@@ -29,9 +29,9 @@ function save_room()
 	}
 	
 	//Fill battle_wild_npc_data
-	for (var i=0; i < _battle_challenge_npc_num; i++)
+	for (var i=0; i < _battle_wild_npc_num; i++)
 	{
-		var inst = instance_find(oBattleChallengeNPC, i);
+		var inst = instance_find(oBattleWildNPC, i);
 		
 		room_struct.battle_wild_npc_data[i] = {
 			x : inst.x,
@@ -102,7 +102,7 @@ function load_room()
 	for (var i=0; i < room_struct.battle_wild_npc_num; i++)
 	{
 		var data = room_struct.battle_wild_npc_data[i];
-		with (instance_create_layer(data.x, data.y, "Instances", oBattleChallengeNPC))
+		with (instance_create_layer(data.x, data.y, "Instances", oBattleWildNPC))
 		{
 			battle_cutscene = data.battle_cutscene;
 			triggered_combat = data.triggered_combat;

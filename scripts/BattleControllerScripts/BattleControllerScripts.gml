@@ -59,6 +59,7 @@ function start_new_turn()
 	with (ds_map_find_value(position_daemon_map, positions.enemy_bottom)) { event_user(0); }
 	
 	phase = battle_phases.selecting;
+	max_points++;
 	points = max_points;
 	var battle_daemon_array = get_all_battle_daemon();
 	
@@ -149,6 +150,7 @@ function get_possible_target_positions(user_position, targets)
 	switch (targets)
 	{
 		case targets.single_enemy:
+		case targets.all_enemies:
 			switch (user_position)
 			{
 				case positions.player_top:
@@ -246,6 +248,10 @@ function get_possible_target_positions(user_position, targets)
 				break;
 			}
 		break;
+		
+		case targets.self_only:
+			return [selected_daemon.position];
+		break;
 	}
 }
 
@@ -316,6 +322,13 @@ function calculate_effect_damage(effect, class, using_daemon, target_daemon)
 					multiplier += VULNERABLE_DAMAGE_MULTIPLIER - 1;
 				}
 			}
+			for (var i=0; i < ds_list_size(using_daemon.status_effect_list); i++)
+			{
+				if (using_daemon.status_effect_list[| i].status_effect == status_effects.strengthened)
+				{
+					multiplier += STRENGTHENED_DAMAGE_MULTIPLIER - 1;
+				}
+			}
 			damage *= multiplier;
 		}
 	}
@@ -338,6 +351,13 @@ function calculate_effect_damage(effect, class, using_daemon, target_daemon)
 				if (target_daemon.status_effect_list[| i].status_effect == status_effects.vulnerable)
 				{
 					multiplier += VULNERABLE_DAMAGE_MULTIPLIER - 1;
+				}
+			}
+			for (var i=0; i < ds_list_size(using_daemon.status_effect_list); i++)
+			{
+				if (using_daemon.status_effect_list[| i].status_effect == status_effects.strengthened)
+				{
+					multiplier += STRENGTHENED_DAMAGE_MULTIPLIER - 1;
 				}
 			}
 			damage *= multiplier;

@@ -7,7 +7,7 @@ function get_target_sprite(given_targets)
 		break;
 		
 		case targets.all_enemies:
-			return sSingleEnemy;
+			return sAllEnemies;
 		break;
 		
 		case targets.single_ally_self_exclusive:
@@ -20,6 +20,10 @@ function get_target_sprite(given_targets)
 		
 		case targets.single_enemy:
 			return sSingleEnemy;
+		break;
+		
+		case targets.self_only:
+			return sSelfOnly;
 		break;
 	}
 }

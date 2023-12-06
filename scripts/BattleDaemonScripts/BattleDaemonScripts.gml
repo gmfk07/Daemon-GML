@@ -11,6 +11,7 @@ function initialize_battle_daemon(obj, data, player_owned=false)
 	{
 		ds_list_add(obj.deck_list, data.moves[i]);
 	}
+	ds_list_shuffle(obj.deck_list);
 	obj.hand_size = data.hand_size;
 	obj.physical_attack = data.physical_attack;
 	obj.energy_attack = data.energy_attack;

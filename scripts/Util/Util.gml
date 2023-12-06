@@ -47,7 +47,8 @@ enum targets
 	single_ally_self_exclusive,
 	single_enemy,
 	all_allies,
-	all_enemies
+	all_enemies,
+	self_only
 }
 
 enum attack_types
@@ -68,7 +69,8 @@ enum effects
 
 enum status_effects
 {
-	vulnerable
+	vulnerable, //take additional damage
+	strengthened //deal additional damage
 }
 
 function get_class_strengths(class)
@@ -138,6 +140,10 @@ function get_status_effect_icon(status_effect)
 		case status_effects.vulnerable:
 			return sIconVulnerable;
 		break;
+		
+		case status_effects.strengthened:
+			return sIconStrengthened;
+		break;
 	}
 }
 
@@ -148,6 +154,10 @@ function get_status_effect_name(status_effect)
 		case status_effects.vulnerable:
 			return "Vulnerable";
 		break;
+		
+		case status_effects.strengthened:
+			return "Strengthened";
+		break;
 	}
 }
 
@@ -155,3 +165,4 @@ function get_status_effect_name(status_effect)
 #macro ATTACK_OUTCLASS_DAMAGE_MULTIPLIER 1.5
 #macro DEFENDER_OUTCLASS_DAMAGE_MULTIPLIER 0.5
 #macro VULNERABLE_DAMAGE_MULTIPLIER 1.5
+#macro STRENGTHENED_DAMAGE_MULTIPLIER 1.5

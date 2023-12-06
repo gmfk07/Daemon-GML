@@ -49,8 +49,8 @@ selected_targets = [];
 move_card_list = ds_list_create();
 move_animation_card = noone;
 catch_button = noone;
-points = starting_points;
-max_points = starting_points;
+//Every turn we increase max_points, so set max_points to 1 less than starting
+max_points = starting_points - 1;
 battle_type = global.data_controller.battle_type;
 
 randomize();
