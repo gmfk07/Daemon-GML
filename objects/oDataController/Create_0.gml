@@ -2,6 +2,7 @@
 global.data_controller = self;
 daemon_data_map = ds_map_create();
 daemon_reserve_list = ds_list_create();
+daemon_species_list = ds_list_create();
 
 move_move_data =
 {
@@ -109,15 +110,30 @@ move_bolster_data =
 	animation: [[animation_act]]
 }
 
-player_top_daemon_data =
-{
+//Populate species data
+var comcat_data = {
+	sprite: sComcat,
+	name: "Comcat II",
+	hp: 10,
+	initiative: 10,
+	classes: [classes.impulse],
+	starting_moves: [move_claw_data, move_claw_data, move_claw_data, move_bite_data, move_bite_data, move_bite_data],
+	unlocked_moves: [[move_claw_data]],
+	hand_size: 5,
+	physical_attack: 2,
+	energy_attack: 0,
+	physical_defense: 2,
+	energy_defense: 0
+}
+
+var caracara_data = {
 	sprite: sCaracara,
 	name: "Caracara",
 	hp: 7,
 	initiative: 15,
 	classes: [classes.null],
 	moves: [move_claw_data, move_claw_data, move_claw_data, move_claw_data, move_claw_data, move_bite_data],
-	unused_moves: [move_claw_data],
+	unlocked_moves: [[move_claw_data]],
 	hand_size: 3,
 	physical_attack: 2,
 	energy_attack: 0,
@@ -125,61 +141,14 @@ player_top_daemon_data =
 	energy_defense: 0
 }
 
-player_center_daemon_data =
-{
-	sprite: sComcat,
-	name: "Comcat II",
-	hp: 10,
-	initiative: 10,
-	classes: [classes.impulse],
-	moves: [move_claw_data, move_bite_data, move_shatter_data, move_bite_data, move_bite_data, move_burst_data, move_omegabite_data],
-	unused_moves: [move_claw_data],
-	hand_size: 5,
-	physical_attack: 2,
-	energy_attack: 0,
-	physical_defense: 2,
-	energy_defense: 0
-}
-
-player_bottom_daemon_data =
-{
-	sprite: sComcat,
-	name: "Comcat II",
-	hp: 10,
-	initiative: 10,
-	classes: [classes.impulse],
-	moves: [move_claw_data, move_bite_data, move_shatter_data, move_bite_data, move_bite_data, move_burst_data, move_omegabite_data],
-	unused_moves: [move_claw_data],
-	hand_size: 5,
-	physical_attack: 2,
-	energy_attack: 0,
-	physical_defense: 2,
-	energy_defense: 0
-}
-
-enemy_top_daemon_data =
-{
-	sprite: sComcat,
-	name: "Comcat",
-	hp: 10,
-	initiative: 10,
-	classes: [classes.impulse],
-	moves: [move_claw_data, move_claw_data, move_claw_data],
-	hand_size: 2,
-	physical_attack: 2,
-	energy_attack: 0,
-	physical_defense: 2,
-	energy_defense: 0
-}
-
-enemy_center_daemon_data =
-{
+var knightman_data = {
 	sprite: sKnightman,
 	name: "Knightman",
 	hp: 10,
 	initiative: 10,
 	classes: [classes.bulwark],
 	moves: [move_clash_data, move_clash_data, move_clash_data],
+	unlocked_moves: [[move_clash_data, move_bolster_data]],
 	hand_size: 2,
 	physical_attack: 2,
 	energy_attack: 0,
@@ -187,19 +156,45 @@ enemy_center_daemon_data =
 	energy_defense: 0
 }
 
+ds_list_add(daemon_species_list, comcat_data, caracara_data, knightman_data);
+
+player_top_daemon_data =
+{
+	index: 1,
+	moves: [move_claw_data, move_claw_data, move_claw_data, move_claw_data, move_claw_data, move_bite_data],
+	unused_moves: [move_claw_data],
+}
+
+player_center_daemon_data =
+{
+	index: 0,
+	moves: [move_claw_data, move_bite_data, move_shatter_data, move_bite_data, move_bite_data, move_burst_data, move_omegabite_data],
+	unused_moves: [move_claw_data],
+}
+
+player_bottom_daemon_data =
+{
+	index: 0,
+	moves: [move_claw_data, move_bite_data, move_shatter_data, move_bite_data, move_bite_data, move_burst_data, move_omegabite_data],
+	unused_moves: [move_claw_data],
+}
+
+enemy_top_daemon_data =
+{
+	index: 0,
+	moves: [move_claw_data, move_claw_data, move_claw_data],
+}
+
+enemy_center_daemon_data =
+{
+	index: 2,
+	moves: [move_clash_data, move_clash_data, move_clash_data],
+}
+
 enemy_bottom_daemon_data =
 {
-	sprite: sComcat,
-	name: "Comcat III",
-	hp: 10,
-	initiative: 10,
-	classes: [classes.impulse],
+	index: 0,
 	moves: [move_claw_data, move_claw_data, move_claw_data],
-	hand_size: 2,
-	physical_attack: 2,
-	energy_attack: 0,
-	physical_defense: 2,
-	energy_defense: 0
 }
 
 ds_map_add(daemon_data_map, positions.player_top, player_top_daemon_data);
@@ -211,33 +206,15 @@ ds_map_add(daemon_data_map, positions.enemy_bottom, player_bottom_daemon_data);
 
 reserve_daemon_data1 =
 {
-	sprite: sKnightman,
-	name: "Knightman",
-	hp: 10,
-	initiative: 10,
-	classes: [classes.bulwark],
+	index: 2,
 	moves: [move_clash_data, move_clash_data, move_clash_data],
 	unused_moves: [move_claw_data, move_bolster_data],
-	hand_size: 2,
-	physical_attack: 2,
-	energy_attack: 0,
-	physical_defense: 3,
-	energy_defense: 0
 }
 reserve_daemon_data2 =
 {
-	sprite: sCaracara,
-	name: "Caracara",
-	hp: 7,
-	initiative: 15,
-	classes: [classes.null],
+	index: 1,
 	moves: [move_claw_data, move_claw_data, move_claw_data, move_claw_data, move_claw_data, move_bite_data],
 	unused_moves: [move_claw_data],
-	hand_size: 3,
-	physical_attack: 2,
-	energy_attack: 0,
-	physical_defense: 0,
-	energy_defense: 3
 }
 ds_list_add(daemon_reserve_list, reserve_daemon_data1);
 ds_list_add(daemon_reserve_list, reserve_daemon_data2);

@@ -7,4 +7,5 @@ if (selected)
 	y = mouse_y;
 }
 
-sprite_index = data.sprite;
+var species_data = get_species_data(data.index);
+sprite_index = species_data.sprite;

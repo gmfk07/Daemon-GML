@@ -1,22 +1,23 @@
 function initialize_battle_daemon(obj, data, player_owned=false)
 {
-	obj.sprite_index = data.sprite;
-	obj.max_hp = data.hp;
-	obj.hp = data.hp;
-	obj.name = data.name;
-	obj.classes = data.classes;
+	var species_data = get_species_data(data.index);
+	obj.sprite_index = species_data.sprite;
+	obj.max_hp = species_data.hp;
+	obj.hp = species_data.hp;
+	obj.name = species_data.name;
+	obj.classes = species_data.classes;
 	obj.moves = data.moves;
-	obj.initiative = data.initiative;
+	obj.initiative = species_data.initiative;
 	for (var i=0; i < array_length(data.moves); i++)
 	{
 		ds_list_add(obj.deck_list, data.moves[i]);
 	}
 	ds_list_shuffle(obj.deck_list);
-	obj.hand_size = data.hand_size;
-	obj.physical_attack = data.physical_attack;
-	obj.energy_attack = data.energy_attack;
-	obj.physical_defense = data.physical_defense;
-	obj.energy_defense = data.energy_defense;
+	obj.hand_size = species_data.hand_size;
+	obj.physical_attack = species_data.physical_attack;
+	obj.energy_attack = species_data.energy_attack;
+	obj.physical_defense = species_data.physical_defense;
+	obj.energy_defense = species_data.energy_defense;
 	
 	obj.player_owned = player_owned;
 	

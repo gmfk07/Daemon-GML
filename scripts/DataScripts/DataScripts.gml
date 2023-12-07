@@ -53,14 +53,19 @@ function start_deckbuilding(daemon_data)
 
 function deckbuilding_transfer_unused_move_to_moves(index)
 {
-	var move = global.data_controller.deckbuilding_daemon.unused_moves[index]
+	var move = global.data_controller.deckbuilding_daemon.unused_moves[index];
 	array_delete(global.data_controller.deckbuilding_daemon.unused_moves, index, 1);
 	array_push(global.data_controller.deckbuilding_daemon.moves, move);
 }
 
 function deckbuilding_transfer_move_to_unused_moves(index)
 {
-	var move = global.data_controller.deckbuilding_daemon.moves[index]
+	var move = global.data_controller.deckbuilding_daemon.moves[index];
 	array_delete(global.data_controller.deckbuilding_daemon.moves, index, 1);
 	array_push(global.data_controller.deckbuilding_daemon.unused_moves, move);
+}
+
+function get_species_data(index)
+{
+	return global.data_controller.daemon_species_list[| index];
 }
