@@ -292,7 +292,14 @@ function take_enemy_turn()
 		
 		selected_battle_daemon.selected_move = ds_list_find_value(hand_list_plus_move, selected_move_index);
 		var target_position_order = array_shuffle(get_possible_living_target_positions(user_position_order[i], hand_list_plus_move[| j].targets));
-		selected_battle_daemon.selected_targets = [target_position_order[0]];
+		if (selected_battle_daemon.selected_move.targets == targets.all_allies || selected_battle_daemon.selected_move.targets == targets.all_enemies)
+		{
+			selected_battle_daemon.selected_targets = target_position_order;
+		}
+		else
+		{
+			selected_battle_daemon.selected_targets = [target_position_order[0]];
+		}
 		ds_list_destroy(hand_list_plus_move);
 	}
 }
