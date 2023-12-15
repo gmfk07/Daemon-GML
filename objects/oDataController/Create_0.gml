@@ -18,6 +18,19 @@ move_move_data =
 	animation: [[animation_swap, 6], [animation_act]]
 }
 
+move_quickswap_data =
+{
+	name: "Quick Swap",
+	art: sMoveArt,
+	class: classes.impulse,
+	cost: 1,
+	targets: targets.single_ally_self_exclusive,
+	can_target_dead: true,
+	phase: battle_phases.prep,
+	attack_type: attack_types.none,
+	effects: [[effects.swap]],
+	animation: [[animation_swap, 6], [animation_act]]
+}
 
 move_claw_data =
 {
@@ -117,7 +130,7 @@ var comcat_data = {
 	hp: 10,
 	initiative: 10,
 	classes: [classes.impulse],
-	starting_moves: [move_claw_data, move_claw_data, move_claw_data, move_bite_data, move_bite_data, move_bite_data],
+	starting_moves: [move_quickswap_data, move_claw_data, move_claw_data, move_bite_data, move_bite_data, move_bite_data],
 	unlocked_moves: [[move_claw_data]],
 	hand_size: 5,
 	physical_attack: 2,
@@ -168,7 +181,7 @@ player_top_daemon_data =
 player_center_daemon_data =
 {
 	index: 0,
-	moves: [move_claw_data, move_bite_data, move_shatter_data, move_bite_data, move_bite_data, move_burst_data, move_omegabite_data],
+	moves: [move_quickswap_data, move_bite_data, move_shatter_data, move_bite_data, move_bite_data, move_burst_data, move_omegabite_data],
 	unused_moves: [move_claw_data],
 }
 

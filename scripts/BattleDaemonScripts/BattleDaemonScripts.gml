@@ -220,6 +220,39 @@ function swap_daemons(position1, position2)
 	
 	battle_daemon1.position = position2;
 	battle_daemon2.position = position1;
+	
+	battle_daemon_recalculate_targets(battle_daemon2);
+}
+
+//Recalculates the targets of a daemon that was recently swapped
+function battle_daemon_recalculate_targets(battle_daemon)
+{
+	if (battle_daemon.selected_move != noone)
+	{
+		if (array_length(battle_daemon.selected_targets) == 1)
+		{
+			if (battle_daemon.selected_targets[0] == positions.enemy_top && battle_daemon.position == positions.player_bottom)
+			{
+				battle_daemon.selected_targets[0] = positions.enemy_center;
+			}
+			if (battle_daemon.selected_targets[0] == positions.player_top && battle_daemon.position == positions.enemy_bottom)
+			{
+				battle_daemon.selected_targets[0] = positions.player_center;
+			}
+			if (battle_daemon.selected_targets[0] == positions.enemy_bottom && battle_daemon.position == positions.player_top)
+			{
+				battle_daemon.selected_targets[0] = positions.enemy_center;
+			}
+			if (battle_daemon.selected_targets[0] == positions.player_bottom && battle_daemon.position == positions.enemy_top)
+			{
+				battle_daemon.selected_targets[0] = positions.player_center;
+			}
+		}
+		else if (battle_daemon.selected_move.targets == targets.all_enemies || battle_daemon.selected_move.targets == targets.all_allies)
+		{
+			battle_daemon.selected_targets = get_possible_target_positions(battle_daemon.position, battle_daemon.selected_move.targets);
+		}
+	}
 }
 
 function get_class_modifier(attack_class, defending_daemon_classes)
