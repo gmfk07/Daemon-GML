@@ -105,5 +105,10 @@ function handle_experience_gain(xp)
 
 function get_all_unlocked_moves(index, level)
 {
-	var starting_moves = global.data_controller.daemon_species_list[|bottom_daemon.index].starting_moves;
+	var moves = global.data_controller.daemon_species_list[|index].starting_moves;
+	for (var i=0; i<level-1; i++)
+	{
+		moves = array_concat(moves, global.data_controller.daemon_species_list[|index].unlocked_moves[i]);
+	}
+	return moves;
 }
