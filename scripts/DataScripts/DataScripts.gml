@@ -69,3 +69,41 @@ function get_species_data(index)
 {
 	return global.data_controller.daemon_species_list[| index];
 }
+
+function handle_experience_gain(xp)
+{
+	global.data_controller.player_top_daemon_data.experience += xp;
+	while (global.data_controller.player_top_daemon_data.experience >= global.data_controller.player_top_daemon_data.level)
+	{
+		var top_daemon = global.data_controller.player_top_daemon_data;
+		top_daemon.experience -= top_daemon.level;
+		top_daemon.level++;
+		//Add new cards to unused moves
+		global.data_controller.player_top_daemon_data.unused_moves = array_concat(top_daemon.unused_moves, global.data_controller.daemon_species_list[|top_daemon.index].unlocked_moves[top_daemon.level-2]);
+	}
+	
+	global.data_controller.player_center_daemon_data.experience += xp;
+	while (global.data_controller.player_center_daemon_data.experience >= global.data_controller.player_center_daemon_data.level)
+	{
+		var center_daemon = global.data_controller.player_center_daemon_data;
+		center_daemon.experience -= center_daemon.level;
+		center_daemon.level++;
+		//Add new cards to unused moves
+		global.data_controller.player_center_daemon_data.unused_moves = array_concat(center_daemon.unused_moves, global.data_controller.daemon_species_list[|center_daemon.index].unlocked_moves[center_daemon.level-2]);
+	}
+	
+	global.data_controller.player_bottom_daemon_data.experience += xp;
+	while (global.data_controller.player_bottom_daemon_data.experience >= global.data_controller.player_bottom_daemon_data.level)
+	{
+		var bottom_daemon = global.data_controller.player_bottom_daemon_data;
+		bottom_daemon.experience -= bottom_daemon.level;
+		bottom_daemon.level++;
+		//Add new cards to unused moves
+		global.data_controller.player_bottom_daemon_data.unused_moves = array_concat(bottom_daemon.unused_moves, global.data_controller.daemon_species_list[|bottom_daemon.index].unlocked_moves[bottom_daemon.level-2]);
+	}
+}
+
+function get_all_unlocked_moves(index, level)
+{
+	var starting_moves = global.data_controller.daemon_species_list[|bottom_daemon.index].starting_moves;
+}

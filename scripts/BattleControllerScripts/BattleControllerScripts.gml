@@ -36,9 +36,11 @@ function start_new_turn()
 		global.data_controller.overworld_flag = overworld_flags.defeat;
 		room_goto_previous();
 	}
-	else if (is_victory())
+	//Hold down K when entering battle for insta-win
+	else if (is_victory() || keyboard_check(ord("K")))
 	{
 		global.data_controller.overworld_flag = overworld_flags.victory;
+		handle_experience_gain(1);
 		room_goto_previous();
 	}
 	

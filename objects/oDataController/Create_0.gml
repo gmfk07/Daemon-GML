@@ -176,6 +176,8 @@ player_top_daemon_data =
 	index: 1,
 	moves: [move_claw_data, move_claw_data, move_claw_data, move_claw_data, move_claw_data, move_bite_data],
 	unused_moves: [move_claw_data],
+	level: 1,
+	experience: 0
 }
 
 player_center_daemon_data =
@@ -183,6 +185,8 @@ player_center_daemon_data =
 	index: 0,
 	moves: [move_quickswap_data, move_bite_data, move_shatter_data, move_bite_data, move_bite_data, move_burst_data, move_omegabite_data],
 	unused_moves: [move_claw_data],
+	level: 1,
+	experience: 0
 }
 
 player_bottom_daemon_data =
@@ -190,6 +194,8 @@ player_bottom_daemon_data =
 	index: 0,
 	moves: [move_claw_data, move_bite_data, move_shatter_data, move_bite_data, move_bite_data, move_burst_data, move_omegabite_data],
 	unused_moves: [move_claw_data],
+	level: 1,
+	experience: 0
 }
 
 enemy_top_daemon_data =
