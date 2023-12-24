@@ -7,8 +7,8 @@ top_daemon = {
 	moves: get_all_unlocked_moves(0, 2)
 }
 center_daemon = {
-	index: 0,
-	moves: get_all_unlocked_moves(0, 2)
+	index: 3,
+	moves: get_all_unlocked_moves(3, 2)
 }
 bottom_daemon = {
 	index: 0,

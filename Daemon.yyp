@@ -106,6 +106,7 @@
     {"id":{"name":"sCardShell","path":"sprites/sCardShell/sCardShell.yy",},},
     {"id":{"name":"sWall","path":"sprites/sWall/sWall.yy",},},
     {"id":{"name":"oDataController","path":"objects/oDataController/oDataController.yy",},},
+    {"id":{"name":"sSkull","path":"sprites/sSkull/sSkull.yy",},},
     {"id":{"name":"sCaracara","path":"sprites/sCaracara/sCaracara.yy",},},
     {"id":{"name":"TileSet1","path":"tilesets/TileSet1/TileSet1.yy",},},
     {"id":{"name":"fnt_point_cost","path":"fonts/fnt_point_cost/fnt_point_cost.yy",},},

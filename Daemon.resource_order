@@ -59,6 +59,7 @@
     {"name":"sCardShell","order":4,"path":"sprites/sCardShell/sCardShell.yy",},
     {"name":"sWall","order":2,"path":"sprites/sWall/sWall.yy",},
     {"name":"oDataController","order":2,"path":"objects/oDataController/oDataController.yy",},
+    {"name":"sSkull","order":4,"path":"sprites/sSkull/sSkull.yy",},
     {"name":"sCaracara","order":3,"path":"sprites/sCaracara/sCaracara.yy",},
     {"name":"TileSet1","order":1,"path":"tilesets/TileSet1/TileSet1.yy",},
     {"name":"sCatch","order":3,"path":"sprites/sCatch/sCatch.yy",},

@@ -58,6 +58,19 @@ move_bite_data =
 	animation: [[animation_spawn_projectile, sProjectile, 8], [animation_act]]
 }
 
+move_dark_stab_data =
+{
+	name: "Dark Stab",
+	art: sBiteArt,
+	class: classes.penumbra,
+	cost: 2,
+	targets: targets.single_enemy,
+	can_target_dead: false,
+	phase: battle_phases.action,
+	effects: [[effects.physical_damage, 5]],
+	animation: [[animation_spawn_projectile, sProjectile, 8], [animation_act]]
+}
+
 move_burst_data =
 {
 	name: "Burst",
@@ -145,7 +158,7 @@ var caracara_data = {
 	hp: 7,
 	initiative: 15,
 	classes: [classes.null],
-	moves: [move_claw_data, move_claw_data, move_claw_data, move_claw_data, move_claw_data, move_bite_data],
+	starting_moves: [move_claw_data, move_claw_data, move_claw_data, move_claw_data, move_claw_data, move_bite_data],
 	unlocked_moves: [[move_claw_data]],
 	hand_size: 3,
 	physical_attack: 2,
@@ -160,7 +173,7 @@ var knightman_data = {
 	hp: 10,
 	initiative: 10,
 	classes: [classes.bulwark],
-	moves: [move_clash_data, move_clash_data, move_clash_data],
+	starting_moves: [move_clash_data, move_clash_data, move_clash_data],
 	unlocked_moves: [[move_clash_data, move_bolster_data]],
 	hand_size: 2,
 	physical_attack: 2,
@@ -169,7 +182,22 @@ var knightman_data = {
 	energy_defense: 0
 }
 
-ds_list_add(daemon_species_list, comcat_data, caracara_data, knightman_data);
+var skull_data = {
+	sprite: sSkull,
+	name: "Skull",
+	hp: 14,
+	initiative: 2,
+	classes: [classes.penumbra],
+	starting_moves: [move_clash_data, move_clash_data, move_clash_data],
+	unlocked_moves: [[move_dark_stab_data, move_dark_stab_data]],
+	hand_size: 2,
+	physical_attack: 2,
+	energy_attack: 1,
+	physical_defense: 2,
+	energy_defense: 0
+}
+
+ds_list_add(daemon_species_list, comcat_data, caracara_data, knightman_data, skull_data);
 
 player_top_daemon_data =
 {
