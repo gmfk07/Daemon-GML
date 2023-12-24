@@ -35,6 +35,11 @@ function swap_daemon_data_from_reserve_indices(reserve_index1, reserve_index2)
     ds_list_set(global.data_controller.daemon_reserve_list, reserve_index2, temp_reserve1_data);
 }
 
+function clear_reserves()
+{
+	ds_list_clear(global.data_controller.daemon_reserve_list);
+}
+
 function set_victory_cutscene(cutscene)
 {
 	global.data_controller.victory_cutscene = cutscene;

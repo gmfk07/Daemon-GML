@@ -18,7 +18,14 @@ if (keyboard_check_pressed(ord("E")))
 	{
 		if (oPlayer.near_dialogue)
 		{
-			start_cutscene([[cutscene_dialogue, oPlayer.closest_interactable.dialogue]]);
+			if (!oPlayer.closest_interactable.open_party)
+			{
+				start_cutscene([[cutscene_dialogue, oPlayer.closest_interactable.dialogue]]);
+			}
+			else
+			{
+				start_cutscene([[cutscene_dialogue, oPlayer.closest_interactable.dialogue], [cutscene_party]]);
+			}
 		}
 	}
 }

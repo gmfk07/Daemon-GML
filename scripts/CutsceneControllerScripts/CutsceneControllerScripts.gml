@@ -85,3 +85,10 @@ function cutscene_battle(top_daemon, center_daemon, bottom_daemon, battle_type)
     room_goto(rBattle);
     goto_next_scene();
 }
+
+function cutscene_party()
+{
+	room_goto(rParty);
+	global.data_controller.selecting_starters = true;
+	//We rely on party controller to call goto_next_scene()
+}

@@ -32,6 +32,19 @@ move_quickswap_data =
 	animation: [[animation_swap, 6], [animation_act]]
 }
 
+move_poke_data =
+{
+	name: "Poke",
+	art: sClawArt,
+	class: classes.impulse,
+	cost: 0,
+	targets: targets.single_enemy,
+	can_target_dead: false,
+	phase: battle_phases.action,
+	effects: [[effects.physical_damage, 1]],
+	animation: [[animation_spawn_projectile, sProjectile, 8], [animation_act]]
+}
+
 move_claw_data =
 {
 	name: "Claw",
@@ -144,7 +157,7 @@ var comcat_data = {
 	initiative: 10,
 	classes: [classes.impulse],
 	starting_moves: [move_quickswap_data, move_claw_data, move_claw_data, move_bite_data, move_bite_data, move_bite_data],
-	unlocked_moves: [[move_claw_data]],
+	unlocked_moves: [[move_poke_data]],
 	hand_size: 5,
 	physical_attack: 2,
 	energy_attack: 0,
