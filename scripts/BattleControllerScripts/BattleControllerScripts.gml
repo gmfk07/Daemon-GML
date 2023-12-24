@@ -375,7 +375,7 @@ function calculate_effect_damage(effect, class, using_daemon, target_daemon)
 		}
 	}
 	
-	return floor(damage);
+	return max(floor(damage), 1);
 }
 
 //Returns an array of length equal to target_daemon_array with the damage that each daemon will take

@@ -199,7 +199,7 @@ var skull_data = {
 	sprite: sSkull,
 	name: "Skull",
 	hp: 14,
-	initiative: 2,
+	initiative: 5,
 	classes: [classes.penumbra],
 	starting_moves: [move_clash_data, move_clash_data, move_clash_data],
 	unlocked_moves: [[move_dark_stab_data, move_dark_stab_data]],
@@ -210,31 +210,61 @@ var skull_data = {
 	energy_defense: 0
 }
 
-ds_list_add(daemon_species_list, comcat_data, caracara_data, knightman_data, skull_data);
+var eyebot_data = {
+	sprite: sEyebot,
+	name: "Eyebot",
+	hp: 8,
+	initiative: 20,
+	classes: [classes.advent],
+	starting_moves: [move_clash_data, move_clash_data, move_clash_data],
+	unlocked_moves: [[move_dark_stab_data, move_dark_stab_data]],
+	hand_size: 4,
+	physical_attack: 0,
+	energy_attack: 3,
+	physical_defense: 1,
+	energy_defense: 1
+}
+
+var jouwel_data = {
+	sprite: sJouwel,
+	name: "Jouwel",
+	hp: 8,
+	initiative: 5,
+	classes: [classes.element],
+	starting_moves: [move_clash_data, move_clash_data, move_clash_data],
+	unlocked_moves: [[move_dark_stab_data, move_dark_stab_data]],
+	hand_size: 4,
+	physical_attack: 0,
+	energy_attack: 3,
+	physical_defense: 3,
+	energy_defense: 0
+}
+
+ds_list_add(daemon_species_list, comcat_data, caracara_data, knightman_data, skull_data, eyebot_data, jouwel_data);
 
 player_top_daemon_data =
 {
-	index: 1,
-	moves: [move_claw_data, move_claw_data, move_claw_data, move_claw_data, move_claw_data, move_bite_data],
-	unused_moves: [move_claw_data],
+	index: 0,
+	moves: get_all_unlocked_moves(0, 1),
+	unused_moves: [],
 	level: 1,
 	experience: 0
 }
 
 player_center_daemon_data =
 {
-	index: 0,
-	moves: [move_quickswap_data, move_bite_data, move_shatter_data, move_bite_data, move_bite_data, move_burst_data, move_omegabite_data],
-	unused_moves: [move_claw_data],
+	index: 1,
+	moves: get_all_unlocked_moves(1, 1),
+	unused_moves: [],
 	level: 1,
 	experience: 0
 }
 
 player_bottom_daemon_data =
 {
-	index: 0,
-	moves: [move_claw_data, move_bite_data, move_shatter_data, move_bite_data, move_bite_data, move_burst_data, move_omegabite_data],
-	unused_moves: [move_claw_data],
+	index: 2,
+	moves: get_all_unlocked_moves(2, 1),
+	unused_moves: [],
 	level: 1,
 	experience: 0
 }
@@ -266,18 +296,31 @@ ds_map_add(daemon_data_map, positions.enemy_bottom, player_bottom_daemon_data);
 
 reserve_daemon_data1 =
 {
-	index: 2,
-	moves: [move_clash_data, move_clash_data, move_clash_data],
-	unused_moves: [move_claw_data, move_bolster_data],
+	index: 3,
+	moves: get_all_unlocked_moves(3, 1),
+	unused_moves: [],
+	level: 1,
+	experience: 0
 }
 reserve_daemon_data2 =
 {
-	index: 1,
-	moves: [move_claw_data, move_claw_data, move_claw_data, move_claw_data, move_claw_data, move_bite_data],
-	unused_moves: [move_claw_data],
+	index: 4,
+	moves: get_all_unlocked_moves(4, 1),
+	unused_moves: [],
+	level: 1,
+	experience: 0
+}
+reserve_daemon_data3 =
+{
+	index: 5,
+	moves: get_all_unlocked_moves(5, 1),
+	unused_moves: [],
+	level: 1,
+	experience: 0
 }
 ds_list_add(daemon_reserve_list, reserve_daemon_data1);
 ds_list_add(daemon_reserve_list, reserve_daemon_data2);
+ds_list_add(daemon_reserve_list, reserve_daemon_data3);
 
 global.room_data =
 {
