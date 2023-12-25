@@ -95,6 +95,9 @@ function try_get_next_acting_battle_daemon(battle_daemon_array, phase)
 
 function battle_daemon_act(battle_daemon)
 {
+	battle_daemon_tick_infection(battle_daemon);
+	battle_daemon_tick_status(battle_daemon);
+	
 	var move = battle_daemon.selected_move;
 	if (move != noone)
 	{
@@ -188,6 +191,7 @@ function battle_daemon_add_status_effect(battle_daemon, _status_effect, _duratio
 //Ticks all of a daemon's status effects down by 1.
 function battle_daemon_tick_status(battle_daemon)
 {
+	var status_effect_list = battle_daemon.status_effect_list;
 	for (var i=0; i < ds_list_size(status_effect_list); i++)
 	{
 		status_effect_list[| i].duration --;
@@ -270,4 +274,41 @@ function get_class_modifier(attack_class, defending_daemon_classes)
 		}
 	}
 	return result;
+}
+
+function battle_daemon_has_status_effect(battle_daemon, status_effect)
+{
+	for (var i=0; i < ds_list_size(battle_daemon.status_effect_list); i++)
+	{
+		if (battle_daemon.status_effect_list[| i].status_effect == status_effect)
+		{
+			return true;
+		}
+	}
+	return false;
+}
+
+function battle_daemon_get_status_effect_duration(battle_daemon, status_effect)
+{
+	for (var i=0; i < ds_list_size(battle_daemon.status_effect_list); i++)
+	{
+		if (battle_daemon.status_effect_list[| i].status_effect == status_effect)
+		{
+			return battle_daemon.status_effect_list[| i].duration;
+		}
+	}
+}
+
+//Deals damage to a daemon equal to infection stacks if the daemon is infected.
+function battle_daemon_tick_infection(battle_daemon)
+{
+	if (battle_daemon_has_status_effect(battle_daemon, status_effects.infected))
+	{
+		var damage = battle_daemon_get_status_effect_duration(battle_daemon, status_effects.infected);
+		battle_daemon_take_damage_at_position(battle_daemon.position, damage, attack_types.energy);
+
+		global.battle_animation_controller.num_ongoing_animations++;
+		var created = instance_create_depth(target_battle_daemon.x, target_battle_daemon.y, -10, oDamageDisplay);
+		created.damage = damage;
+	}
 }

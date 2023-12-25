@@ -70,7 +70,8 @@ enum effects
 enum status_effects
 {
 	vulnerable, //take additional damage
-	strengthened //deal additional damage
+	strengthened, //deal additional damage
+	infected //take stacks worth of damage when acting
 }
 
 function get_class_strengths(class)
@@ -144,6 +145,10 @@ function get_status_effect_icon(status_effect)
 		case status_effects.strengthened:
 			return sIconStrengthened;
 		break;
+		
+		case status_effects.infected:
+			return sIconInfected;
+		break;
 	}
 }
 
@@ -157,6 +162,10 @@ function get_status_effect_name(status_effect)
 		
 		case status_effects.strengthened:
 			return "Strengthened";
+		break;
+		
+		case status_effects.infected:
+			return "Infected";
 		break;
 	}
 }

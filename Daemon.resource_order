@@ -27,6 +27,7 @@
     {"name":"oDialogueController","order":5,"path":"objects/oDialogueController/oDialogueController.yy",},
     {"name":"sPoints","order":1,"path":"sprites/sPoints/sPoints.yy",},
     {"name":"oBattleWildNPC","order":8,"path":"objects/oBattleWildNPC/oBattleWildNPC.yy",},
+    {"name":"sIconInfected","order":3,"path":"sprites/sIconInfected/sIconInfected.yy",},
     {"name":"sSingleEnemy","order":4,"path":"sprites/sSingleEnemy/sSingleEnemy.yy",},
     {"name":"sSingleAllySelfInclusive","order":1,"path":"sprites/sSingleAllySelfInclusive/sSingleAllySelfInclusive.yy",},
     {"name":"sCardShellBulwark","order":3,"path":"sprites/sCardShellBulwark/sCardShellBulwark.yy",},

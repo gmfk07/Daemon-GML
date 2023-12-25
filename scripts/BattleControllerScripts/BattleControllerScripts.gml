@@ -356,19 +356,13 @@ function calculate_effect_damage(effect, class, using_daemon, target_daemon)
 			{
 				multiplier += DEFENDER_OUTCLASS_DAMAGE_MULTIPLIER - 1;
 			}
-			for (var i=0; i < ds_list_size(target_daemon.status_effect_list); i++)
+			if (battle_daemon_has_status_effect(target_daemon, status_effects.vulnerable))
 			{
-				if (target_daemon.status_effect_list[| i].status_effect == status_effects.vulnerable)
-				{
-					multiplier += VULNERABLE_DAMAGE_MULTIPLIER - 1;
-				}
+				multiplier += VULNERABLE_DAMAGE_MULTIPLIER - 1;
 			}
-			for (var i=0; i < ds_list_size(using_daemon.status_effect_list); i++)
+			if (battle_daemon_has_status_effect(target_daemon, status_effects.strengthened))
 			{
-				if (using_daemon.status_effect_list[| i].status_effect == status_effects.strengthened)
-				{
-					multiplier += STRENGTHENED_DAMAGE_MULTIPLIER - 1;
-				}
+				multiplier += STRENGTHENED_DAMAGE_MULTIPLIER - 1;
 			}
 			damage *= multiplier;
 			damage -= target_daemon.energy_defense;

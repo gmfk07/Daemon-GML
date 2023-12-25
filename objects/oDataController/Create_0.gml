@@ -84,6 +84,19 @@ move_beam_data =
 	animation: [[animation_spawn_projectile, sProjectile, 12], [animation_act]]
 }
 
+move_zap_data =
+{
+	name: "Zap",
+	art: sBeamArt,
+	class: classes.element,
+	cost: 3,
+	targets: targets.single_enemy,
+	can_target_dead: false,
+	phase: battle_phases.action,
+	effects: [[effects.energy_damage, 1], [effects.energy_damage, 2]],
+	animation: [[animation_spawn_projectile, sProjectile, 12], [animation_act]]
+}
+
 move_dark_stab_data =
 {
 	name: "Dark Stab",
@@ -94,6 +107,19 @@ move_dark_stab_data =
 	can_target_dead: false,
 	phase: battle_phases.action,
 	effects: [[effects.physical_damage, 5]],
+	animation: [[animation_spawn_projectile, sProjectile, 8], [animation_act]]
+}
+
+move_venomous_stab_data =
+{
+	name: "Venomous Stab",
+	art: sBiteArt,
+	class: classes.penumbra,
+	cost: 3,
+	targets: targets.single_enemy,
+	can_target_dead: false,
+	phase: battle_phases.action,
+	effects: [[effects.physical_damage, 2], [effects.status_effect, status_effects.infected, 4]],
 	animation: [[animation_spawn_projectile, sProjectile, 8], [animation_act]]
 }
 
@@ -214,8 +240,8 @@ var skull_data = {
 	hp: 14,
 	initiative: 5,
 	classes: [classes.penumbra],
-	starting_moves: [move_clash_data, move_clash_data, move_clash_data],
-	unlocked_moves: [[move_dark_stab_data, move_dark_stab_data]],
+	starting_moves: [move_dark_stab_data, move_dark_stab_data, move_dark_stab_data],
+	unlocked_moves: [[move_venomous_stab_data, move_venomous_stab_data]],
 	hand_size: 2,
 	physical_attack: 2,
 	energy_attack: 1,
@@ -244,7 +270,7 @@ var jouwel_data = {
 	hp: 8,
 	initiative: 5,
 	classes: [classes.element],
-	starting_moves: [move_clash_data, move_clash_data, move_clash_data],
+	starting_moves: [move_zap_data, move_zap_data, move_zap_data],
 	unlocked_moves: [[move_dark_stab_data, move_dark_stab_data]],
 	hand_size: 4,
 	physical_attack: 0,
