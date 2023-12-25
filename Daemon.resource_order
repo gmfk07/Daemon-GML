@@ -57,6 +57,7 @@
     {"name":"oDamageDisplay","order":1,"path":"objects/oDamageDisplay/oDamageDisplay.yy",},
     {"name":"BattleEffectScripts","order":8,"path":"scripts/BattleEffectScripts/BattleEffectScripts.yy",},
     {"name":"oDialogueNPC","order":4,"path":"objects/oDialogueNPC/oDialogueNPC.yy",},
+    {"name":"sMendArt","order":5,"path":"sprites/sMendArt/sMendArt.yy",},
     {"name":"oBattleChallengeNPC","order":6,"path":"objects/oBattleChallengeNPC/oBattleChallengeNPC.yy",},
     {"name":"sPhaseTracker","order":2,"path":"sprites/sPhaseTracker/sPhaseTracker.yy",},
     {"name":"sCardShell","order":4,"path":"sprites/sCardShell/sCardShell.yy",},

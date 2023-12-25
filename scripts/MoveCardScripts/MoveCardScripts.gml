@@ -114,3 +114,15 @@ function get_phase_sprite_from_battle_phase(battle_phase)
 		break;
 	}
 }
+
+function is_attacking_move(move_data)
+{
+	for (var i=0; i<array_length(move_data.effects); i++)
+	{
+		if (move_data.effects[i][0] == effects.physical_damage || move_data.effects[i][0] == effects.energy_damage)
+		{
+			return true;
+		}
+	}
+	return false;
+}

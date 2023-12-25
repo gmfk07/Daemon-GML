@@ -71,6 +71,19 @@ move_bite_data =
 	animation: [[animation_spawn_projectile, sProjectile, 8], [animation_act]]
 }
 
+move_mend_data =
+{
+	name: "Mend",
+	art: sMendArt,
+	class: classes.impulse,
+	cost: 1,
+	targets: targets.self_only,
+	can_target_dead: false,
+	phase: battle_phases.action,
+	effects: [[effects.heal, 5]],
+	animation: [[animation_act]]
+}
+
 move_beam_data =
 {
 	name: "Beam",
@@ -196,7 +209,7 @@ var comcat_data = {
 	initiative: 10,
 	classes: [classes.impulse],
 	starting_moves: [move_quickswap_data, move_claw_data, move_claw_data, move_bite_data, move_bite_data, move_bite_data],
-	unlocked_moves: [[move_poke_data]],
+	unlocked_moves: [[move_poke_data, move_mend_data]],
 	hand_size: 5,
 	physical_attack: 2,
 	energy_attack: 0,

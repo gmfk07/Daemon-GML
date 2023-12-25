@@ -103,6 +103,7 @@
     {"id":{"name":"oDialogueNPC","path":"objects/oDialogueNPC/oDialogueNPC.yy",},},
     {"id":{"name":"oSlot","path":"objects/oSlot/oSlot.yy",},},
     {"id":{"name":"sPrep","path":"sprites/sPrep/sPrep.yy",},},
+    {"id":{"name":"sMendArt","path":"sprites/sMendArt/sMendArt.yy",},},
     {"id":{"name":"oBattleChallengeNPC","path":"objects/oBattleChallengeNPC/oBattleChallengeNPC.yy",},},
     {"id":{"name":"oDeckbuildingController","path":"objects/oDeckbuildingController/oDeckbuildingController.yy",},},
     {"id":{"name":"sPhaseTracker","path":"sprites/sPhaseTracker/sPhaseTracker.yy",},},

@@ -114,20 +114,20 @@ function battle_daemon_act(battle_daemon)
 						//Damage
 						case effects.physical_damage:
 							var damage = calculate_effect_damage(move.effects[j], move.class, battle_daemon, target_battle_daemon);
-							battle_daemon_take_damage_at_position(target_daemon, damage, attack_types.physical);
+							battle_daemon_take_damage_at_position(target_daemon, damage);
 				
 							global.battle_animation_controller.num_ongoing_animations++;
 							var created = instance_create_depth(target_battle_daemon.x, target_battle_daemon.y, -10, oDamageDisplay);
-							created.damage = damage;
+							created.amount = -damage;
 						break;
 					
 						case effects.energy_damage:
 							var damage = calculate_effect_damage(move.effects[j], move.class, battle_daemon, target_battle_daemon);
-							battle_daemon_take_damage_at_position(target_daemon, damage, attack_types.energy);
+							battle_daemon_take_damage_at_position(target_daemon, damage);
 				
 							global.battle_animation_controller.num_ongoing_animations++;
 							var created = instance_create_depth(target_battle_daemon.x, target_battle_daemon.y, -10, oDamageDisplay);
-							created.damage = damage;
+							created.amount = -damage;
 						break;
 			
 						//Swap
@@ -138,6 +138,14 @@ function battle_daemon_act(battle_daemon)
 						//Status effects
 						case effects.status_effect:
 							battle_daemon_add_status_effect(target_battle_daemon, move.effects[j][1], move.effects[j][2]);
+						break;
+						
+						//Heal
+						case effects.heal:
+							battle_daemon_heal_at_position(target_daemon, move.effects[j][1]);
+							global.battle_animation_controller.num_ongoing_animations++;
+							var created = instance_create_depth(target_battle_daemon.x, target_battle_daemon.y, -10, oDamageDisplay);
+							created.amount = move.effects[j][1];
 						break;
 					}
 				}
@@ -155,11 +163,16 @@ function battle_daemon_animate_move(battle_daemon)
 	animate_move(battle_daemon.selected_move, battle_daemon, battle_daemon.selected_targets);
 }
 
-function battle_daemon_take_damage_at_position(position, damage, attack_type)
+function battle_daemon_take_damage_at_position(position, damage)
 {
 	var battle_daemon = ds_map_find_value(global.battle_controller.position_daemon_map, position);
 	battle_daemon.hp = median(battle_daemon.hp - damage, 0, battle_daemon.max_hp);
-	//Todo: add code for defense here
+}
+
+function battle_daemon_heal_at_position(position, heal_amount)
+{
+	var battle_daemon = ds_map_find_value(global.battle_controller.position_daemon_map, position);
+	battle_daemon.hp = median(battle_daemon.hp + heal_amount, 0, battle_daemon.max_hp);
 }
 
 function battle_daemon_add_status_effect(battle_daemon, _status_effect, _duration)
@@ -305,7 +318,7 @@ function battle_daemon_tick_infection(battle_daemon)
 	if (battle_daemon_has_status_effect(battle_daemon, status_effects.infected))
 	{
 		var damage = battle_daemon_get_status_effect_duration(battle_daemon, status_effects.infected);
-		battle_daemon_take_damage_at_position(battle_daemon.position, damage, attack_types.energy);
+		battle_daemon_take_damage_at_position(battle_daemon.position, damage);
 
 		global.battle_animation_controller.num_ongoing_animations++;
 		var created = instance_create_depth(target_battle_daemon.x, target_battle_daemon.y, -10, oDamageDisplay);
