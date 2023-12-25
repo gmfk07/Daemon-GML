@@ -88,7 +88,19 @@ function cutscene_battle(top_daemon, center_daemon, bottom_daemon, battle_type)
 
 function cutscene_party()
 {
-	room_goto(rParty);
+	if (room != rParty)
+	{
+		room_goto(rParty);
+	}
 	global.data_controller.selecting_starters = true;
 	//We rely on party controller to call goto_next_scene()
+}
+
+function cutscene_delete_closest_interactable()
+{
+	with (oPlayer.closest_interactable)
+	{
+		instance_destroy();
+	}
+	goto_next_scene();
 }

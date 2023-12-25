@@ -2,6 +2,7 @@ function save_room()
 {
 	var _battle_challenge_npc_num = instance_number(oBattleChallengeNPC);
 	var _battle_wild_npc_num = instance_number(oBattleWildNPC);
+	var _dialogue_npc_num = instance_number(oDialogueNPC);
 	
 	var room_struct =
 	{
@@ -10,7 +11,9 @@ function save_room()
 		battle_challenge_npc_num : _battle_challenge_npc_num,
 		battle_challenge_npc_data: array_create(_battle_challenge_npc_num),
 		battle_wild_npc_num: _battle_wild_npc_num,
-		battle_wild_npc_data: array_create(_battle_wild_npc_num)
+		battle_wild_npc_data: array_create(_battle_wild_npc_num),
+		dialogue_npc_num: _dialogue_npc_num,
+		dialogue_npc_data: array_create(_dialogue_npc_num)
 	}
 	
 	//Fill battle_challenge_npc_data
@@ -38,6 +41,19 @@ function save_room()
 			y : inst.y,
 			battle_cutscene: inst.battle_cutscene,
 			triggered_combat: inst.triggered_combat
+		}
+	}
+	
+	//Fill dialogue_npc_data
+	for (var i=0; i < _dialogue_npc_num; i++)
+	{
+		var inst = instance_find(oDialogueNPC, i);
+		
+		room_struct.dialogue_npc_data[i] = {
+			x : inst.x,
+			y : inst.y,
+			cutscene: inst.cutscene,
+			sprite_index : inst.sprite_index
 		}
 	}
 	
@@ -69,6 +85,11 @@ function load_room()
 	if (instance_exists(oBattleWildNPC))
 	{
 		instance_destroy(oBattleWildNPC);
+	}
+	
+	if (instance_exists(oDialogueNPC))
+	{
+		instance_destroy(oDialogueNPC);
 	}
 	
 	//Battle Challenge NPCs
@@ -118,6 +139,17 @@ function load_room()
 				}
 				triggered_combat = false;
 			}
+		}
+	}
+	
+	//Dialogue NPCs
+	for (var i=0; i < room_struct.dialogue_npc_num; i++)
+	{
+		var data = room_struct.dialogue_npc_data[i];
+		with (instance_create_layer(data.x, data.y, "Instances", oDialogueNPC))
+		{
+			cutscene = data.cutscene;
+			sprite_index = data.sprite_index;
 		}
 	}
 	

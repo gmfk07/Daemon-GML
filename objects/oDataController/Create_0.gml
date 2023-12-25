@@ -71,6 +71,19 @@ move_bite_data =
 	animation: [[animation_spawn_projectile, sProjectile, 8], [animation_act]]
 }
 
+move_beam_data =
+{
+	name: "Beam",
+	art: sBeamArt,
+	class: classes.advent,
+	cost: 2,
+	targets: targets.single_enemy,
+	can_target_dead: false,
+	phase: battle_phases.action,
+	effects: [[effects.energy_damage, 5]],
+	animation: [[animation_spawn_projectile, sProjectile, 12], [animation_act]]
+}
+
 move_dark_stab_data =
 {
 	name: "Dark Stab",
@@ -152,7 +165,7 @@ move_bolster_data =
 //Populate species data
 var comcat_data = {
 	sprite: sComcat,
-	name: "Comcat II",
+	name: "Comcat",
 	hp: 10,
 	initiative: 10,
 	classes: [classes.impulse],
@@ -216,7 +229,7 @@ var eyebot_data = {
 	hp: 8,
 	initiative: 20,
 	classes: [classes.advent],
-	starting_moves: [move_clash_data, move_clash_data, move_clash_data],
+	starting_moves: [move_beam_data, move_beam_data, move_beam_data],
 	unlocked_moves: [[move_dark_stab_data, move_dark_stab_data]],
 	hand_size: 4,
 	physical_attack: 0,

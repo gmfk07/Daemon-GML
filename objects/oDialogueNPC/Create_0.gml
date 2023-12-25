@@ -1,6 +1,6 @@
-/// @description Default dialogue
+/// @description Default cutscene
 // You can write your code in this editor
-dialogue = ["default dialogue"];
+cutscene = [[cutscene_dialogue, "default dialogue"]];
 
 
 

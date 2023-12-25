@@ -37,6 +37,7 @@
     {"name":"sAction","order":1,"path":"sprites/sAction/sAction.yy",},
     {"name":"rDeckbuilding","order":4,"path":"rooms/rDeckbuilding/rDeckbuilding.yy",},
     {"name":"fnt_dialogue","order":2,"path":"fonts/fnt_dialogue/fnt_dialogue.yy",},
+    {"name":"sBeamArt","order":4,"path":"sprites/sBeamArt/sBeamArt.yy",},
     {"name":"oPartyDaemon","order":1,"path":"objects/oPartyDaemon/oPartyDaemon.yy",},
     {"name":"sCardShellImpulse","order":1,"path":"sprites/sCardShellImpulse/sCardShellImpulse.yy",},
     {"name":"sSelfOnly","order":5,"path":"sprites/sSelfOnly/sSelfOnly.yy",},

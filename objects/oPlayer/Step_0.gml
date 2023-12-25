@@ -52,4 +52,9 @@ if (keyboard_check_pressed(vk_tab))
 }
 
 closest_interactable = instance_nearest(x, y, oDialogueNPC);
-near_dialogue = point_distance(x, y, closest_interactable.x+16, closest_interactable.y+16) <= min_interact_distance;
+if (closest_interactable == noone)
+{
+	near_dialogue = false;
+} else {
+	near_dialogue = point_distance(x, y, closest_interactable.x+16, closest_interactable.y+16) <= min_interact_distance;
+}

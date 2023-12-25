@@ -1,0 +1,2 @@
+sprite_index = sPlayer;
+cutscene = [[cutscene_dialogue, ["Hello! Welcome to the World of Daemon!", "Select your team of 3 starting daemons from the beginner's selection provided by each studio!"]], [cutscene_party], [cutscene_delete_closest_interactable]];
