@@ -64,7 +64,8 @@ enum effects
 	physical_damage, //deals physical damage, 1 param: damage
 	energy_damage, //deals energy damage, 1 param: damage
 	heal, //heals, 1 param: healing
-	status_effect //applies status effect, 2 param: status effect, turn duration
+	status_effect, //applies status effect, 2 param: status effect, turn duration
+	cure //removes stacks of negative status effect, 1 param: stacks
 }
 
 enum status_effects

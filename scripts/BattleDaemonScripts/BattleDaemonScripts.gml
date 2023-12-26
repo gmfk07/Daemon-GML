@@ -147,6 +147,11 @@ function battle_daemon_act(battle_daemon)
 							var created = instance_create_depth(target_battle_daemon.x, target_battle_daemon.y, -10, oDamageDisplay);
 							created.amount = move.effects[j][1];
 						break;
+						
+						//Cure
+						case effects.cure:
+							battle_daemon_cure_at_position(target_daemon, move.effects[j][1]);
+						break;
 					}
 				}
 			}
@@ -321,7 +326,37 @@ function battle_daemon_tick_infection(battle_daemon)
 		battle_daemon_take_damage_at_position(battle_daemon.position, damage);
 
 		global.battle_animation_controller.num_ongoing_animations++;
-		var created = instance_create_depth(target_battle_daemon.x, target_battle_daemon.y, -10, oDamageDisplay);
-		created.damage = damage;
+		var created = instance_create_depth(battle_daemon.x, battle_daemon.y, -10, oDamageDisplay);
+		created.amount = damage;
 	}
+}
+
+//Removes stack stacks of all negative status effects.
+function battle_daemon_cure_at_position(position, stacks)
+{
+	var battle_daemon = ds_map_find_value(global.battle_controller.position_daemon_map, position);
+	for (var i=0; i < ds_list_size(battle_daemon.status_effect_list); i++)
+	{
+		var status_effect = battle_daemon.status_effect_list[| i];
+		if (status_effect.status_effect == status_effects.vulnerable || status_effect.status_effect = status_effects.infected)
+		{
+			status_effect.duration -= stacks;
+		}
+	}
+	
+	do 
+	{
+		var deleted_status = false;
+		
+		for (var i=0; i < ds_list_size(battle_daemon.status_effect_list); i++)
+		{
+			if (battle_daemon.status_effect_list[| i].duration <= 0)
+			{
+				ds_list_delete(battle_daemon.status_effect_list, i);
+				deleted_status = true;
+				break;
+			}
+		}
+	}
+	until (deleted_status == false)
 }

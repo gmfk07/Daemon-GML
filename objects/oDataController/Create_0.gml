@@ -84,6 +84,19 @@ move_mend_data =
 	animation: [[animation_act]]
 }
 
+move_herbal_remedy_data =
+{
+	name: "Herbal Remedy",
+	art: sMendArt,
+	class: classes.impulse,
+	cost: 1,
+	targets: targets.single_ally_self_inclusive,
+	can_target_dead: false,
+	phase: battle_phases.action,
+	effects: [[effects.cure, 2]],
+	animation: [[animation_act]]
+}
+
 move_beam_data =
 {
 	name: "Beam",
@@ -235,7 +248,7 @@ var comcat_data = {
 	initiative: 10,
 	classes: [classes.impulse],
 	starting_moves: [move_quickswap_data, move_claw_data, move_claw_data, move_bite_data, move_bite_data, move_bite_data],
-	unlocked_moves: [[move_poke_data, move_mend_data], [move_chomp_chomp_data]],
+	unlocked_moves: [[move_poke_data, move_mend_data, move_herbal_remedy_data], [move_chomp_chomp_data]],
 	hand_size: 5,
 	physical_attack: 2,
 	energy_attack: 0,
