@@ -27,6 +27,7 @@ function save_room()
 			defeated: inst.defeated,
 			battle_cutscene: inst.battle_cutscene,
 			defeated_cutscene: inst.defeated_cutscene,
+			cutscene: inst.cutscene,
 			triggered_combat: inst.triggered_combat
 		}
 	}
@@ -53,7 +54,8 @@ function save_room()
 			x : inst.x,
 			y : inst.y,
 			cutscene: inst.cutscene,
-			sprite_index : inst.sprite_index
+			sprite_index : inst.sprite_index,
+			is_battle_challenge_npc: object_index == oBattleChallengeNPC
 		}
 	}
 	
@@ -101,6 +103,7 @@ function load_room()
 			defeated = data.defeated;
 			battle_cutscene = data.battle_cutscene;
 			defeated_cutscene = data.defeated_cutscene;
+			cutscene = data.cutscene;
 			triggered_combat = data.triggered_combat;
 			if (triggered_combat && global.data_controller.overworld_flag == overworld_flags.victory)
 			{
@@ -146,10 +149,14 @@ function load_room()
 	for (var i=0; i < room_struct.dialogue_npc_num; i++)
 	{
 		var data = room_struct.dialogue_npc_data[i];
-		with (instance_create_layer(data.x, data.y, "Instances", oDialogueNPC))
+		//Don't double-spawn battle challenge npcs
+		if (!data.is_battle_challenge_npc)
 		{
-			cutscene = data.cutscene;
-			sprite_index = data.sprite_index;
+			with (instance_create_layer(data.x, data.y, "Instances", oDialogueNPC))
+			{
+				cutscene = data.cutscene;
+				sprite_index = data.sprite_index;
+			}
 		}
 	}
 	

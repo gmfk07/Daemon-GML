@@ -162,11 +162,37 @@ move_omegabite_data =
 	animation: [[animation_spawn_projectile, sProjectile, 8], [animation_act]]
 }
 
+move_chomp_chomp_data =
+{
+	name: "Chomp Chomp",
+	art: sBiteArt,
+	class: classes.impulse,
+	cost: 5,
+	targets: targets.single_enemy,
+	can_target_dead: false,
+	phase: battle_phases.action,
+	effects: [[effects.physical_damage, 5], [effects.physical_damage, 5]],
+	animation: [[animation_spawn_projectile, sProjectile, 8], [animation_act]]
+}
+
+move_sunder_data =
+{
+	name: "Sunder",
+	art: sExplodeArt,
+	class: classes.null,
+	cost: 1,
+	targets: targets.single_enemy,
+	can_target_dead: false,
+	phase: battle_phases.action,
+	effects: [[effects.energy_damage, 3]],
+	animation: [[animation_spawn_projectile, sProjectile, 8], [animation_act]]
+}
+
 move_shatter_data =
 {
 	name: "Shatter",
 	art: sExplodeArt,
-	class: classes.impulse,
+	class: classes.null,
 	cost: 2,
 	targets: targets.single_enemy,
 	can_target_dead: false,
@@ -205,11 +231,11 @@ move_bolster_data =
 var comcat_data = {
 	sprite: sComcat,
 	name: "Comcat",
-	hp: 10,
+	hp: 20,
 	initiative: 10,
 	classes: [classes.impulse],
 	starting_moves: [move_quickswap_data, move_claw_data, move_claw_data, move_bite_data, move_bite_data, move_bite_data],
-	unlocked_moves: [[move_poke_data, move_mend_data]],
+	unlocked_moves: [[move_poke_data, move_mend_data], [move_chomp_chomp_data]],
 	hand_size: 5,
 	physical_attack: 2,
 	energy_attack: 0,
@@ -220,11 +246,11 @@ var comcat_data = {
 var caracara_data = {
 	sprite: sCaracara,
 	name: "Caracara",
-	hp: 7,
+	hp: 14,
 	initiative: 15,
 	classes: [classes.null],
-	starting_moves: [move_claw_data, move_claw_data, move_claw_data, move_claw_data, move_claw_data, move_bite_data],
-	unlocked_moves: [[move_claw_data]],
+	starting_moves: [move_sunder_data, move_sunder_data, move_sunder_data, move_sunder_data, move_sunder_data, move_sunder_data],
+	unlocked_moves: [[move_shatter_data, move_shatter_data]],
 	hand_size: 3,
 	physical_attack: 2,
 	energy_attack: 0,
@@ -235,7 +261,7 @@ var caracara_data = {
 var knightman_data = {
 	sprite: sKnightman,
 	name: "Knightman",
-	hp: 10,
+	hp: 20,
 	initiative: 10,
 	classes: [classes.bulwark],
 	starting_moves: [move_clash_data, move_clash_data, move_clash_data],
@@ -250,12 +276,12 @@ var knightman_data = {
 var skull_data = {
 	sprite: sSkull,
 	name: "Skull",
-	hp: 14,
+	hp: 28,
 	initiative: 5,
 	classes: [classes.penumbra],
 	starting_moves: [move_dark_stab_data, move_dark_stab_data, move_dark_stab_data],
 	unlocked_moves: [[move_venomous_stab_data, move_venomous_stab_data]],
-	hand_size: 2,
+	hand_size: 3,
 	physical_attack: 2,
 	energy_attack: 1,
 	physical_defense: 2,
@@ -265,7 +291,7 @@ var skull_data = {
 var eyebot_data = {
 	sprite: sEyebot,
 	name: "Eyebot",
-	hp: 8,
+	hp: 16,
 	initiative: 20,
 	classes: [classes.advent],
 	starting_moves: [move_beam_data, move_beam_data, move_beam_data],
@@ -280,7 +306,7 @@ var eyebot_data = {
 var jouwel_data = {
 	sprite: sJouwel,
 	name: "Jouwel",
-	hp: 8,
+	hp: 16,
 	initiative: 5,
 	classes: [classes.element],
 	starting_moves: [move_zap_data, move_zap_data, move_zap_data],

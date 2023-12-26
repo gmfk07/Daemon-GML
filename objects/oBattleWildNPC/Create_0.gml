@@ -1,4 +1,4 @@
-/// @description Default cutscene and team
+/// @description Default cutscene, team, and behavior
 move_claw_data = global.data_controller.move_claw_data;
 
 top_daemon = {
@@ -18,3 +18,9 @@ bottom_daemon = {
 }
 
 battle_cutscene = [[cutscene_battle, top_daemon, center_daemon, bottom_daemon, battle_types.wild]];
+behavior = [wild_behaviors.wander, 512];
+
+//All time in milliseconds
+wander_time = random_range(min_wander_time, max_wander_time);
+target_x = x;
+target_y = y;

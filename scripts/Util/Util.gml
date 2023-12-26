@@ -74,6 +74,12 @@ enum status_effects
 	infected //take stacks worth of damage when acting
 }
 
+enum wild_behaviors
+{
+	idle, //stand still, 0 params
+	wander //wander around, 1 param: max_distance_wander
+}
+
 function get_class_strengths(class)
 {
 	switch (class)
