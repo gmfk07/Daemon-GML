@@ -43,6 +43,8 @@ function save_room()
 		room_struct.battle_wild_npc_data[i] = {
 			x : inst.x,
 			y : inst.y,
+			home_x : inst.home_x,
+			home_y : inst.home_y,
 			battle_cutscene: inst.battle_cutscene,
 			triggered_combat: inst.triggered_combat,
 			spawned_by: inst.spawned_by
@@ -158,6 +160,8 @@ function load_room()
 			battle_cutscene = data.battle_cutscene;
 			triggered_combat = data.triggered_combat;
 			spawned_by = data.spawned_by;
+			home_x = data.home_x;
+			home_y = data.home_y;
 			
 			if (triggered_combat && global.data_controller.overworld_flag == overworld_flags.victory)
 			{

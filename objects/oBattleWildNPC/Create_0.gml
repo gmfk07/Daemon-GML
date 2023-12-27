@@ -18,11 +18,13 @@ bottom_daemon = {
 }
 
 battle_cutscene = [[cutscene_battle, top_daemon, center_daemon, bottom_daemon, battle_types.wild]];
-behavior = [wild_behaviors.wander, 512];
+behavior = [wild_behaviors.wander_leashed, 128, 512];
 
 //All time in milliseconds
 wander_time = random_range(min_wander_time, max_wander_time);
 target_x = x;
 target_y = y;
+home_x = x;
+home_y = y;
 
 spawned_by = noone;

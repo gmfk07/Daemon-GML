@@ -78,7 +78,8 @@ enum status_effects
 enum wild_behaviors
 {
 	idle, //stand still, 0 params
-	wander //wander around, 1 param: max_distance_wander
+	wander, //wander around, 1 param: max_distance_wander
+	wander_leashed //wander around within home area, 2 param: max_distance_wander_relative, max_distance_from_home
 }
 
 function get_class_strengths(class)
