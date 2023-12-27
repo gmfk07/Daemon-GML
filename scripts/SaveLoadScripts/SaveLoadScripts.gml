@@ -69,6 +69,7 @@ function save_room()
 		var inst = instance_find(oBattleWildNPCSpawner, i);
 		
 		room_struct.battle_wild_npc_spawner_data[i] = {
+			spawner_id: inst.spawner_id,
 			x : inst.x,
 			y : inst.y,
 			amount_spawned: inst.amount_spawned,
@@ -146,7 +147,8 @@ function load_room()
 			}
 		}
 	}
-	
+
+	var spawner_id_to_update = -1;
 	//Battle Wild NPCs
 	for (var i=0; i < room_struct.battle_wild_npc_num; i++)
 	{
@@ -155,13 +157,14 @@ function load_room()
 		{
 			battle_cutscene = data.battle_cutscene;
 			triggered_combat = data.triggered_combat;
+			spawned_by = data.spawned_by;
 			
 			if (triggered_combat && global.data_controller.overworld_flag == overworld_flags.victory)
 			{
 				//Check for parent spawner and update them on their child's death
 				if (data.spawned_by != noone)
 				{
-					data.spawned_by.amount_spawned--;
+					spawner_id_to_update = data.spawned_by;
 				}
 				
 				instance_destroy();
@@ -177,6 +180,20 @@ function load_room()
 		}
 	}
 	
+	//Battle Wild NPC Spawners
+	for (var i=0; i < room_struct.battle_wild_npc_spawner_num; i++)
+	{
+		var data = room_struct.battle_wild_npc_spawner_data[i];
+		with (instance_create_layer(data.x, data.y, "Instances", oBattleWildNPCSpawner))
+		{
+				amount_spawned = data.spawner_id == spawner_id_to_update ? data.amount_spawned - 1 : data.amount_spawned;
+				battles = data.battles;
+				min_spawn_wait = data.min_spawn_wait;
+				max_spawn_wait = data.max_spawn_wait;
+				max_to_spawn = data.max_to_spawn;
+		}
+	}
+	
 	//Dialogue NPCs
 	for (var i=0; i < room_struct.dialogue_npc_num; i++)
 	{
@@ -189,20 +206,6 @@ function load_room()
 				cutscene = data.cutscene;
 				sprite_index = data.sprite_index;
 			}
-		}
-	}
-	
-	//Battle Wild NPC Spawners
-	for (var i=0; i < room_struct.battle_wild_npc_spawner_num; i++)
-	{
-		var data = room_struct.battle_wild_npc_spawner_data[i];
-		with (instance_create_layer(data.x, data.y, "Instances", oBattleWildNPCSpawner))
-		{
-				amount_spawned = data.amount_spawned;
-				battles = data.battles;
-				min_spawn_wait = data.min_spawn_wait;
-				max_spawn_wait = data.max_spawn_wait;
-				max_to_spawn = data.max_to_spawn;
 		}
 	}
 	

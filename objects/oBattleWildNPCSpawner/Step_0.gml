@@ -28,7 +28,7 @@ if (spawning && spawn_timer >= spawn_time)
 	}
 	
 	npc.battle_cutscene = [[cutscene_battle, top_daemon, center_daemon, bottom_daemon, battle_types.wild]];
-	npc.spawned_by = self;
+	npc.spawned_by = spawner_id;
 	
 	amount_spawned++;
 	
