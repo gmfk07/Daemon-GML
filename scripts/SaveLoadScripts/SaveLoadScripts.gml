@@ -3,6 +3,7 @@ function save_room()
 	var _battle_challenge_npc_num = instance_number(oBattleChallengeNPC);
 	var _battle_wild_npc_num = instance_number(oBattleWildNPC);
 	var _dialogue_npc_num = instance_number(oDialogueNPC);
+	var _battle_wild_npc_spawner_num = instance_number(oBattleWildNPCSpawner);
 	
 	var room_struct =
 	{
@@ -13,7 +14,9 @@ function save_room()
 		battle_wild_npc_num: _battle_wild_npc_num,
 		battle_wild_npc_data: array_create(_battle_wild_npc_num),
 		dialogue_npc_num: _dialogue_npc_num,
-		dialogue_npc_data: array_create(_dialogue_npc_num)
+		dialogue_npc_data: array_create(_dialogue_npc_num),
+		battle_wild_npc_spawner_num: _battle_wild_npc_spawner_num,
+		battle_wild_npc_spawner_data: array_create(_battle_wild_npc_spawner_num),
 	}
 	
 	//Fill battle_challenge_npc_data
@@ -41,7 +44,8 @@ function save_room()
 			x : inst.x,
 			y : inst.y,
 			battle_cutscene: inst.battle_cutscene,
-			triggered_combat: inst.triggered_combat
+			triggered_combat: inst.triggered_combat,
+			spawned_by: inst.spawned_by
 		}
 	}
 	
@@ -56,6 +60,22 @@ function save_room()
 			cutscene: inst.cutscene,
 			sprite_index : inst.sprite_index,
 			is_battle_challenge_npc: object_index == oBattleChallengeNPC
+		}
+	}
+	
+	//Fill battle_wild_npc_spawner_data
+	for (var i=0; i < _battle_wild_npc_spawner_num; i++)
+	{
+		var inst = instance_find(oBattleWildNPCSpawner, i);
+		
+		room_struct.battle_wild_npc_spawner_data[i] = {
+			x : inst.x,
+			y : inst.y,
+			amount_spawned: inst.amount_spawned,
+			battles: inst.battles,
+			min_spawn_wait: inst.min_spawn_wait,
+			max_spawn_wait: inst.max_spawn_wait,
+			max_to_spawn: inst.max_to_spawn
 		}
 	}
 	
@@ -94,6 +114,11 @@ function load_room()
 		instance_destroy(oDialogueNPC);
 	}
 	
+	if (instance_exists(oBattleWildNPCSpawner))
+	{
+		instance_destroy(oBattleWildNPCSpawner);
+	}
+	
 	//Battle Challenge NPCs
 	for (var i=0; i < room_struct.battle_challenge_npc_num; i++)
 	{
@@ -130,8 +155,15 @@ function load_room()
 		{
 			battle_cutscene = data.battle_cutscene;
 			triggered_combat = data.triggered_combat;
+			
 			if (triggered_combat && global.data_controller.overworld_flag == overworld_flags.victory)
 			{
+				//Check for parent spawner and update them on their child's death
+				if (data.spawned_by != noone)
+				{
+					data.spawned_by.amount_spawned--;
+				}
+				
 				instance_destroy();
 			}
 			else if (triggered_combat && global.data_controller.overworld_flag == overworld_flags.defeat)
@@ -157,6 +189,20 @@ function load_room()
 				cutscene = data.cutscene;
 				sprite_index = data.sprite_index;
 			}
+		}
+	}
+	
+	//Battle Wild NPC Spawners
+	for (var i=0; i < room_struct.battle_wild_npc_spawner_num; i++)
+	{
+		var data = room_struct.battle_wild_npc_spawner_data[i];
+		with (instance_create_layer(data.x, data.y, "Instances", oBattleWildNPCSpawner))
+		{
+				amount_spawned = data.amount_spawned;
+				battles = data.battles;
+				min_spawn_wait = data.min_spawn_wait;
+				max_spawn_wait = data.max_spawn_wait;
+				max_to_spawn = data.max_to_spawn;
 		}
 	}
 	

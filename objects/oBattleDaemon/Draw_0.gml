@@ -24,5 +24,5 @@ var pc;
 pc = (hp / max_hp) * 100;
 
 draw_set_font(fnt_damage);
-draw_text(x+sprite_width/2, y+sprite_height/2-8, hp);
 draw_healthbar(x-sprite_width/2, y+sprite_height/2-16, x+sprite_width/2, y+sprite_height/2, pc, c_black, c_red, c_lime, 0, true, true);
+draw_text(x+sprite_width/2, y+sprite_height/2-8, hp);

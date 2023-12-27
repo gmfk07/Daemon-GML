@@ -24,3 +24,5 @@ behavior = [wild_behaviors.wander, 512];
 wander_time = random_range(min_wander_time, max_wander_time);
 target_x = x;
 target_y = y;
+
+spawned_by = noone;

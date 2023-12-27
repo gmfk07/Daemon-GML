@@ -67,6 +67,7 @@
     {"name":"sCaracara","order":3,"path":"sprites/sCaracara/sCaracara.yy",},
     {"name":"TileSet1","order":1,"path":"tilesets/TileSet1/TileSet1.yy",},
     {"name":"sEyebot","order":5,"path":"sprites/sEyebot/sEyebot.yy",},
+    {"name":"oBattleWildNPCSpawner","order":9,"path":"objects/oBattleWildNPCSpawner/oBattleWildNPCSpawner.yy",},
     {"name":"sCatch","order":3,"path":"sprites/sCatch/sCatch.yy",},
     {"name":"DialogueControllerScripts","order":7,"path":"scripts/DialogueControllerScripts/DialogueControllerScripts.yy",},
     {"name":"sPointCost","order":2,"path":"sprites/sPointCost/sPointCost.yy",},
