@@ -61,6 +61,7 @@
     {"id":{"name":"oDialogueController","path":"objects/oDialogueController/oDialogueController.yy",},},
     {"id":{"name":"sPoints","path":"sprites/sPoints/sPoints.yy",},},
     {"id":{"name":"oBattleWildNPC","path":"objects/oBattleWildNPC/oBattleWildNPC.yy",},},
+    {"id":{"name":"DeckbuildingScripts","path":"scripts/DeckbuildingScripts/DeckbuildingScripts.yy",},},
     {"id":{"name":"sIconInfected","path":"sprites/sIconInfected/sIconInfected.yy",},},
     {"id":{"name":"sSingleEnemy","path":"sprites/sSingleEnemy/sSingleEnemy.yy",},},
     {"id":{"name":"sProjectile","path":"sprites/sProjectile/sProjectile.yy",},},

@@ -6,5 +6,10 @@ if (is_used)
 else
 {
 	deckbuilding_transfer_unused_move_to_moves(index);
+	if (global.deckbuilding_controller.unused_index == index && index > 0)
+	{
+		global.deckbuilding_controller.unused_index--;
+	}
 }
-room_restart();
+delete_deckbuilding_cards();
+create_deckbuilding_cards();

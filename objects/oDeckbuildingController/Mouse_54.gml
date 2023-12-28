@@ -1,2 +1,5 @@
 /// @description Return to overworld
-room_goto_previous();
+if (array_length(active_moves) >= min_cards)
+{
+	room_goto_previous();
+}
