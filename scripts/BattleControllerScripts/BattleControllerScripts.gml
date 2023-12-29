@@ -324,19 +324,21 @@ function calculate_effect_damage(effect, class, using_daemon, target_daemon)
 			{
 				multiplier += DEFENDER_OUTCLASS_DAMAGE_MULTIPLIER - 1;
 			}
-			for (var i=0; i < ds_list_size(target_daemon.status_effect_list); i++)
+			if (battle_daemon_has_status_effect(target_daemon, status_effects.physical_vulnerable))
 			{
-				if (target_daemon.status_effect_list[| i].status_effect == status_effects.vulnerable)
-				{
-					multiplier += VULNERABLE_DAMAGE_MULTIPLIER - 1;
-				}
+				multiplier += VULNERABLE_DAMAGE_MULTIPLIER - 1;
 			}
-			for (var i=0; i < ds_list_size(using_daemon.status_effect_list); i++)
+			if (battle_daemon_has_status_effect(target_daemon, status_effects.physical_bolstered))
 			{
-				if (using_daemon.status_effect_list[| i].status_effect == status_effects.strengthened)
-				{
-					multiplier += STRENGTHENED_DAMAGE_MULTIPLIER - 1;
-				}
+				multiplier += BOLSTERED_DAMAGE_MULTIPLIER - 1;
+			}
+			if (battle_daemon_has_status_effect(using_daemon, status_effects.physical_strengthened))
+			{
+				multiplier += STRENGTHENED_DAMAGE_MULTIPLIER - 1;
+			}
+			if (battle_daemon_has_status_effect(using_daemon, status_effects.physical_weakened))
+			{
+				multiplier += WEAKENED_DAMAGE_MULTIPLIER - 1;
 			}
 			damage *= multiplier;
 			damage -= target_daemon.physical_defense;
@@ -356,11 +358,11 @@ function calculate_effect_damage(effect, class, using_daemon, target_daemon)
 			{
 				multiplier += DEFENDER_OUTCLASS_DAMAGE_MULTIPLIER - 1;
 			}
-			if (battle_daemon_has_status_effect(target_daemon, status_effects.vulnerable))
+			if (battle_daemon_has_status_effect(target_daemon, status_effects.energy_vulnerable))
 			{
 				multiplier += VULNERABLE_DAMAGE_MULTIPLIER - 1;
 			}
-			if (battle_daemon_has_status_effect(target_daemon, status_effects.strengthened))
+			if (battle_daemon_has_status_effect(using_daemon, status_effects.energy_strengthened))
 			{
 				multiplier += STRENGTHENED_DAMAGE_MULTIPLIER - 1;
 			}
@@ -397,7 +399,7 @@ function can_use_move(position, restrictions)
 {
 	for (var i=0; i<array_length(restrictions); i++)
 	{
-		switch (restrictions[i])
+		switch (restrictions[i][0])
 		{
 			case restrictions.backline:
 				if (position == positions.player_center || position == positions.enemy_center)

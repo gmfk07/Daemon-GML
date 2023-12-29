@@ -57,8 +57,8 @@ move_claw_data =
 	targets: targets.single_enemy,
 	can_target_dead: false,
 	phase: battle_phases.prep,
-	effects: [[effects.physical_damage, 2]],
-	restrictions: [[restrictions.backline]],
+	effects: [[effects.physical_damage, 2], [effects.status_effect, status_effects.physical_weakened, 5]],
+	restrictions: [],
 	animation: [[animation_spawn_projectile, sProjectile, 8], [animation_act]]
 }
 
@@ -71,8 +71,8 @@ move_bite_data =
 	targets: targets.single_enemy,
 	can_target_dead: false,
 	phase: battle_phases.action,
-	effects: [[effects.physical_damage, 5]],
-	restrictions: [],
+	effects: [[effects.physical_damage, 6], [effects.status_effect, status_effects.physical_strengthened, 5]],
+	restrictions: [[restrictions.frontline]],
 	animation: [[animation_spawn_projectile, sProjectile, 8], [animation_act]]
 }
 
@@ -160,6 +160,20 @@ move_venomous_stab_data =
 	animation: [[animation_spawn_projectile, sProjectile, 8], [animation_act]]
 }
 
+move_weakening_stab_data =
+{
+	name: "Weakening Stab",
+	art: sBiteArt,
+	class: classes.penumbra,
+	cost: 3,
+	targets: targets.single_enemy,
+	can_target_dead: false,
+	phase: battle_phases.action,
+	effects: [[effects.physical_damage, 2], [effects.status_effect, status_effects.physical_weakened, 3]],
+	restrictions: [],
+	animation: [[animation_spawn_projectile, sProjectile, 8], [animation_act]]
+}
+
 move_burst_data =
 {
 	name: "Burst",
@@ -225,9 +239,23 @@ move_shatter_data =
 	targets: targets.single_enemy,
 	can_target_dead: false,
 	phase: battle_phases.action,
-	effects: [[effects.physical_damage, 2], [effects.status_effect, status_effects.vulnerable, 3]],
+	effects: [[effects.physical_damage, 2], [effects.status_effect, status_effects.physical_vulnerable, 3]],
 	restrictions: [],
 	animation: [[animation_spawn_projectile, sProjectile, 8], [animation_act]]
+}
+
+move_vitrify_data =
+{
+	name: "Vitrify",
+	art: sExplodeArt,
+	class: classes.null,
+	cost: 2,
+	targets: targets.self_only,
+	can_target_dead: false,
+	phase: battle_phases.action,
+	effects: [[effects.heal, 10], [effects.status_effect, status_effects.physical_vulnerable, 3], [effects.status_effect, status_effects.energy_vulnerable, 3]],
+	restrictions: [],
+	animation: [[animation_act]]
 }
 
 move_clash_data =
@@ -253,8 +281,22 @@ move_bolster_data =
 	targets: targets.self_only,
 	can_target_dead: false,
 	phase: battle_phases.action,
-	effects: [[effects.status_effect, status_effects.strengthened, 3]],
+	effects: [[effects.status_effect, status_effects.physical_bolstered, 3]],
 	restrictions: [],
+	animation: [[animation_act]]
+}
+
+move_recuperate_data =
+{
+	name: "Recuperate",
+	art: sMendArt,
+	class: classes.bulwark,
+	cost: 1,
+	targets: targets.self_only,
+	can_target_dead: false,
+	phase: battle_phases.action,
+	effects: [[effects.heal,  6]],
+	restrictions: [[restrictions.backline]],
 	animation: [[animation_act]]
 }
 
@@ -296,7 +338,7 @@ var knightman_data = {
 	initiative: 10,
 	classes: [classes.bulwark],
 	starting_moves: [move_clash_data, move_clash_data, move_clash_data, move_clash_data, move_clash_data, move_clash_data, move_clash_data, move_clash_data, move_clash_data],
-	unlocked_moves: [[move_bolster_data, move_bolster_data], [], []],
+	unlocked_moves: [[move_bolster_data, move_bolster_data], [move_recuperate_data, move_recuperate_data], []],
 	hand_size: 3,
 	physical_attack: 2,
 	energy_attack: 0,

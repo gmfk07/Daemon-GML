@@ -96,7 +96,6 @@ function try_get_next_acting_battle_daemon(battle_daemon_array, phase)
 function battle_daemon_act(battle_daemon)
 {
 	battle_daemon_tick_infection(battle_daemon);
-	battle_daemon_tick_status(battle_daemon);
 	
 	var move = battle_daemon.selected_move;
 	if (move != noone)
@@ -198,8 +197,39 @@ function battle_daemon_add_status_effect(battle_daemon, _status_effect, _duratio
 			}
 		}
 		
+		var opposite_status_effect_already_exists = false;
+		var opposite_status_effect = get_status_effect_opposite(_status_effect)
+		if (opposite_status_effect != noone)
+		{
+			for (i=0; i < ds_list_size(status_effect_list); i++)
+			{
+				//If the opposite status effect already exists, subtract the current status effect
+				if (status_effect_list[| i].status_effect == opposite_status_effect)
+				{
+					opposite_status_effect_already_exists = true;
+					var opposite_duration = status_effect_list[| i].duration;
+					
+					//Hitting zero stacks
+					status_effect_list[| i].duration -= _duration;
+					
+					if (status_effect_list[| i].duration == 0)
+					{
+						ds_list_delete(status_effect_list, i);
+						return;
+					}
+					//Going negative
+					if (status_effect_list[| i].duration < 0)
+					{
+						ds_list_delete(status_effect_list, i);
+						ds_list_add(status_effect_list, {status_effect: _status_effect, duration: _duration - opposite_duration});
+						return;
+					}
+				}
+			}
+		}
+		
 		//If status effect doesn't already exist, add it
-		if (!status_effect_already_exists)
+		if (!status_effect_already_exists && !opposite_status_effect_already_exists)
 		{
 			ds_list_add(status_effect_list, {status_effect: _status_effect, duration: _duration});
 		}
@@ -338,7 +368,11 @@ function battle_daemon_cure_at_position(position, stacks)
 	for (var i=0; i < ds_list_size(battle_daemon.status_effect_list); i++)
 	{
 		var status_effect = battle_daemon.status_effect_list[| i];
-		if (status_effect.status_effect == status_effects.vulnerable || status_effect.status_effect = status_effects.infected)
+		if (status_effect.status_effect == status_effects.physical_weakened
+		|| status_effect.status_effect == status_effects.physical_vulnerable
+		|| status_effect.status_effect == status_effects.energy_weakened
+		|| status_effect.status_effect == status_effects.energy_vulnerable
+		|| status_effect.status_effect = status_effects.infected)
 		{
 			status_effect.duration -= stacks;
 		}

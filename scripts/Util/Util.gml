@@ -76,8 +76,14 @@ enum restrictions
 
 enum status_effects
 {
-	vulnerable, //take additional damage
-	strengthened, //deal additional damage
+	physical_vulnerable, //take additional physical damage
+	physical_bolstered, //take less physical damage
+	energy_vulnerable, //take additional physical damage
+	energy_bolstered, //take less physical damage
+	physical_strengthened, //deal additional physical damage
+	physical_weakened, //deal less physical damage
+	energy_strengthened, //deal additional energy damage
+	energy_weakened, //deal less energy damage
 	infected //take stacks worth of damage when acting
 }
 
@@ -152,12 +158,36 @@ function get_status_effect_icon(status_effect)
 {
 	switch (status_effect)
 	{
-		case status_effects.vulnerable:
-			return sIconVulnerable;
+		case status_effects.physical_strengthened:
+			return sIconPhysicalStrengthened;
 		break;
 		
-		case status_effects.strengthened:
-			return sIconStrengthened;
+		case status_effects.physical_weakened:
+			return sIconPhysicalWeakened;
+		break;
+		
+		case status_effects.physical_bolstered:
+			return sIconPhysicalBolstered;
+		break;
+		
+		case status_effects.physical_vulnerable:
+			return sIconPhysicalVulnerable;
+		break;
+		
+		case status_effects.energy_strengthened:
+			return sIconEnergyStrengthened;
+		break;
+		
+		case status_effects.energy_weakened:
+			return sIconEnergyWeakened;
+		break;
+		
+		case status_effects.energy_bolstered:
+			return sIconEnergyBolstered;
+		break;
+		
+		case status_effects.energy_vulnerable:
+			return sIconEnergyVulnerable;
 		break;
 		
 		case status_effects.infected:
@@ -169,13 +199,37 @@ function get_status_effect_icon(status_effect)
 function get_status_effect_name(status_effect)
 {
 	switch (status_effect)
-	{
-		case status_effects.vulnerable:
-			return "Vulnerable";
+	{	
+		case status_effects.physical_strengthened:
+			return "Physical Strengthened";
 		break;
 		
-		case status_effects.strengthened:
-			return "Strengthened";
+		case status_effects.physical_weakened:
+			return "Physical Weakened";
+		break;
+		
+		case status_effects.physical_bolstered:
+			return "Physical Bolstered";
+		break;
+		
+		case status_effects.physical_vulnerable:
+			return "Physical Vulnerable";
+		break;
+	
+		case status_effects.energy_strengthened:
+			return "Energy Strengthened";
+		break;
+	
+		case status_effects.energy_weakened:
+			return "Energy Weakened";
+		break;
+		
+		case status_effects.energy_bolstered:
+			return "Energy Bolstered";
+		break;
+	
+		case status_effects.energy_vulnerable:
+			return "Energy Vulnerable";
 		break;
 		
 		case status_effects.infected:
@@ -184,8 +238,50 @@ function get_status_effect_name(status_effect)
 	}
 }
 
+//Returns the opposite status effect that counters this one, or noone if none apply.
+function get_status_effect_opposite(status_effect)
+{
+	switch (status_effect)
+	{
+		case status_effects.physical_strengthened:
+			return status_effects.physical_weakened;
+		break;
+		
+		case status_effects.physical_weakened:
+			return status_effects.physical_strengthened;
+		break;
+		
+		case status_effects.physical_bolstered:
+			return status_effects.physical_vulnerable;
+		break;
+		
+		case status_effects.physical_vulnerable:
+			return status_effects.physical_bolstered;
+		break;
+		
+		case status_effects.energy_strengthened:
+			return status_effects.energy_weakened;
+		break;
+		
+		case status_effects.energy_weakened:
+			return status_effects.energy_strengthened;
+		break;
+		
+		case status_effects.energy_bolstered:
+			return status_effects.energy_vulnerable;
+		break;
+		
+		case status_effects.energy_vulnerable:
+			return status_effects.energy_bolstered;
+		break;
+	}
+	return noone;
+}
+
 #macro SELECTED_IMAGE_SCALE 1.5
 #macro ATTACK_OUTCLASS_DAMAGE_MULTIPLIER 1.5
 #macro DEFENDER_OUTCLASS_DAMAGE_MULTIPLIER 0.5
 #macro VULNERABLE_DAMAGE_MULTIPLIER 1.5
 #macro STRENGTHENED_DAMAGE_MULTIPLIER 1.5
+#macro BOLSTERED_DAMAGE_MULTIPLIER 0.5
+#macro WEAKENED_DAMAGE_MULTIPLIER 0.5
