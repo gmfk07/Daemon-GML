@@ -5,6 +5,7 @@
     {"name":"Deckbuilding","order":4,"path":"folders/Objects/Deckbuilding.yy",},
     {"name":"Overworld","order":1,"path":"folders/Objects/Overworld.yy",},
     {"name":"Party","order":3,"path":"folders/Objects/Party.yy",},
+    {"name":"Backgrounds","order":12,"path":"folders/Sprites/Backgrounds.yy",},
     {"name":"Battle Animations","order":6,"path":"folders/Sprites/Battle Animations.yy",},
     {"name":"Battle Icons","order":3,"path":"folders/Sprites/Battle Icons.yy",},
     {"name":"Battle Sprites","order":8,"path":"folders/Sprites/Battle Sprites.yy",},

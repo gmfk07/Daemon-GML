@@ -327,7 +327,7 @@ function battle_daemon_tick_infection(battle_daemon)
 
 		global.battle_animation_controller.num_ongoing_animations++;
 		var created = instance_create_depth(battle_daemon.x, battle_daemon.y, -10, oDamageDisplay);
-		created.amount = damage;
+		created.amount = -damage;
 	}
 }
 

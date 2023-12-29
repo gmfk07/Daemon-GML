@@ -68,6 +68,12 @@ enum effects
 	cure //removes stacks of negative status effect, 1 param: stacks
 }
 
+enum restrictions
+{
+	backline,
+	frontline
+}
+
 enum status_effects
 {
 	vulnerable, //take additional damage

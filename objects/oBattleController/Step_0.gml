@@ -58,6 +58,26 @@ else if (phase == battle_phases.selecting)
 			possible_targets = get_possible_living_target_positions(selected_daemon.position, selected_card.move.targets);
 		}
 		
+		for (var i=0; i<array_length(move_data.restrictions); i++)
+		{
+			switch (move_data.restrictions[i][0])
+			{
+				case restrictions.backline:
+					if (selected_daemon.position == positions.player_center || selected_daemon.position == positions.enemy_center)
+					{
+						possible_targets = [];
+					}
+					break;
+					
+				case restrictions.frontline:
+					if (selected_daemon.position == positions.player_top || selected_daemon.position == positions.enemy_top || selected_daemon.position == positions.player_bottom || selected_daemon.position == positions.enemy_bottom)
+					{
+						possible_targets = [];
+					}
+					break;
+			}
+		}
+		
 		if (move_data.targets == targets.all_enemies || move_data.targets == targets.all_allies)
 		{
 			selected_targets = possible_targets;

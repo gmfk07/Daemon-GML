@@ -28,9 +28,33 @@ function get_target_sprite(given_targets)
 	}
 }
 
-function get_description_string(given_effects)
+function get_description_string(given_effects, given_restrictions)
 {
 	var result = "";
+	
+	for (var i=0; i < array_length(given_restrictions); i++)
+	{
+		if (i > 0)
+		{
+			result += ", ";
+		}
+		
+		var restriction = given_restrictions[i]
+		switch (restriction[0])
+		{
+			case restrictions.backline:
+				result += "Backline";
+				break;
+				
+			case restrictions.frontline:
+				result += "Frontline"
+				break;
+		}
+	}
+	if (array_length(given_restrictions) > 0)
+	{
+		result += ".\n"
+	}
 	
 	for (var i=0; i < array_length(given_effects); i++)
 	{
@@ -56,6 +80,9 @@ function get_description_string(given_effects)
 			break;
 			case effects.status_effect:
 				result += "Inflict " + get_status_effect_name(effect[1]) + " " + string(effect[2]);
+			break;
+			case effects.cure:
+				result += "Cure " + string(effect[1]);
 			break;
 		}
 	}

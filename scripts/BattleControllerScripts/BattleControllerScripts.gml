@@ -274,7 +274,7 @@ function take_enemy_turn()
 		
 		for (var j=0; j < ds_list_size(hand_list_plus_move); j++)
 		{
-			if (array_length(get_possible_living_target_positions(user_position_order[i], hand_list_plus_move[| j].targets)) == 0)
+			if (array_length(get_possible_living_target_positions(user_position_order[i], hand_list_plus_move[| j].targets)) == 0 || !can_use_move(user_position_order[i], hand_list_plus_move[| j].restrictions))
 			{
 				continue;
 			}
@@ -391,4 +391,29 @@ function calculate_total_move_damage(move, using_daemon, target_daemon_position_
 	}
 	
 	return result;
+}
+
+function can_use_move(position, restrictions)
+{
+	for (var i=0; i<array_length(restrictions); i++)
+	{
+		switch (restrictions[i])
+		{
+			case restrictions.backline:
+				if (position == positions.player_center || position == positions.enemy_center)
+				{
+					return false;
+				}
+			break;
+		
+			case restrictions.frontline:
+				if (position == positions.player_top || position == positions.enemy_top ||
+				position == positions.player_bottom || position == positions.enemy_bottom)
+				{
+					return false;
+				}
+			break;
+		}
+	}
+	return true;
 }

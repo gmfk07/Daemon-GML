@@ -17,14 +17,17 @@ if (spawning && spawn_timer >= spawn_time)
 	var top_daemon = {
 		index: battle[0],
 		moves: get_all_unlocked_moves(battle[0], battle[1]),
+		unused_moves: []
 	}
 	var center_daemon = {
 		index: battle[2],
 		moves: get_all_unlocked_moves(battle[2], battle[3]),
+		unused_moves: []
 	}
 	var bottom_daemon = {
 		index: battle[4],
 		moves: get_all_unlocked_moves(battle[4], battle[5]),
+		unused_moves: []
 	}
 	
 	npc.battle_cutscene = [[cutscene_battle, top_daemon, center_daemon, bottom_daemon, battle_types.wild]];
