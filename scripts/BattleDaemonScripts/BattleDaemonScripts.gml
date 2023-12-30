@@ -273,6 +273,7 @@ function swap_daemons(position1, position2)
 	battle_daemon1.position = position2;
 	battle_daemon2.position = position1;
 	
+	battle_daemon_recalculate_targets(battle_daemon1);
 	battle_daemon_recalculate_targets(battle_daemon2);
 }
 
@@ -283,21 +284,23 @@ function battle_daemon_recalculate_targets(battle_daemon)
 	{
 		if (array_length(battle_daemon.selected_targets) == 1)
 		{
-			if (battle_daemon.selected_targets[0] == positions.enemy_top && battle_daemon.position == positions.player_bottom)
-			{
-				battle_daemon.selected_targets[0] = positions.enemy_center;
-			}
-			if (battle_daemon.selected_targets[0] == positions.player_top && battle_daemon.position == positions.enemy_bottom)
+			//Bottom aiming at top
+			if (battle_daemon.selected_targets[0] == positions.player_top && (battle_daemon.position == positions.player_bottom || battle_daemon.position == positions.enemy_bottom))
 			{
 				battle_daemon.selected_targets[0] = positions.player_center;
 			}
-			if (battle_daemon.selected_targets[0] == positions.enemy_bottom && battle_daemon.position == positions.player_top)
+			if (battle_daemon.selected_targets[0] == positions.enemy_top && (battle_daemon.position == positions.player_bottom || battle_daemon.position == positions.enemy_bottom))
 			{
 				battle_daemon.selected_targets[0] = positions.enemy_center;
 			}
-			if (battle_daemon.selected_targets[0] == positions.player_bottom && battle_daemon.position == positions.enemy_top)
+			//Top aiming at bottom
+			if (battle_daemon.selected_targets[0] == positions.player_bottom && (battle_daemon.position == positions.player_top || battle_daemon.position == positions.enemy_top))
 			{
 				battle_daemon.selected_targets[0] = positions.player_center;
+			}
+			if (battle_daemon.selected_targets[0] == positions.enemy_bottom && (battle_daemon.position == positions.player_top || battle_daemon.position == positions.enemy_top))
+			{
+				battle_daemon.selected_targets[0] = positions.enemy_center;
 			}
 		}
 		else if (battle_daemon.selected_move.targets == targets.all_enemies || battle_daemon.selected_move.targets == targets.all_allies)
