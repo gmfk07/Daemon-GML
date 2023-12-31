@@ -28,9 +28,21 @@ function get_target_sprite(given_targets)
 	}
 }
 
-function get_description_string(given_effects, given_restrictions)
+function get_description_string(given_effects, given_self_effects, given_restrictions)
 {
 	var result = "";
+	
+	if (array_length(given_self_effects) > 0)
+	{
+		result += "Self: "
+	}
+	
+	result += get_string_from_effects(given_self_effects);
+	
+	if (array_length(given_self_effects) > 0)
+	{
+		result += ".\n"
+	}
 	
 	for (var i=0; i < array_length(given_restrictions); i++)
 	{
@@ -39,7 +51,7 @@ function get_description_string(given_effects, given_restrictions)
 			result += ", ";
 		}
 		
-		var restriction = given_restrictions[i]
+		var restriction = given_restrictions[i];
 		switch (restriction[0])
 		{
 			case restrictions.backline:
@@ -56,6 +68,15 @@ function get_description_string(given_effects, given_restrictions)
 		result += ".\n"
 	}
 	
+	result += get_string_from_effects(given_effects);
+	result += ".";
+	
+	return result;
+}
+
+function get_string_from_effects(given_effects)
+{
+	var result = "";
 	for (var i=0; i < array_length(given_effects); i++)
 	{
 		if (i > 0)
@@ -86,7 +107,6 @@ function get_description_string(given_effects, given_restrictions)
 			break;
 		}
 	}
-	
 	return result;
 }
 
@@ -142,11 +162,11 @@ function get_phase_sprite_from_battle_phase(battle_phase)
 	}
 }
 
-function is_attacking_move(move_data)
+function is_attacking_effects(given_effects)
 {
-	for (var i=0; i<array_length(move_data.effects); i++)
+	for (var i=0; i<array_length(given_effects); i++)
 	{
-		if (move_data.effects[i][0] == effects.physical_damage || move_data.effects[i][0] == effects.energy_damage)
+		if (given_effects[i][0] == effects.physical_damage || given_effects[i][0] == effects.energy_damage)
 		{
 			return true;
 		}

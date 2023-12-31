@@ -15,6 +15,7 @@ move_move_data =
 	phase: battle_phases.move,
 	attack_type: attack_types.none,
 	effects: [[effects.swap]],
+	self_effects: [],
 	restrictions: [],
 	animation: [[animation_swap, 6], [animation_act]]
 }
@@ -30,6 +31,7 @@ move_quickswap_data =
 	phase: battle_phases.prep,
 	attack_type: attack_types.none,
 	effects: [[effects.swap]],
+	self_effects: [],
 	restrictions: [],
 	animation: [[animation_swap, 6], [animation_act]]
 }
@@ -44,6 +46,7 @@ move_poke_data =
 	can_target_dead: false,
 	phase: battle_phases.action,
 	effects: [[effects.physical_damage, 1]],
+	self_effects: [],
 	restrictions: [],
 	animation: [[animation_spawn_projectile, sProjectile, 8], [animation_act]]
 }
@@ -57,7 +60,8 @@ move_claw_data =
 	targets: targets.single_enemy,
 	can_target_dead: false,
 	phase: battle_phases.prep,
-	effects: [[effects.physical_damage, 2], [effects.status_effect, status_effects.physical_weakened, 5]],
+	self_effects: [[effects.physical_damage, 1]],
+	effects: [[effects.physical_damage, 2]],
 	restrictions: [],
 	animation: [[animation_spawn_projectile, sProjectile, 8], [animation_act]]
 }
@@ -72,6 +76,7 @@ move_bite_data =
 	can_target_dead: false,
 	phase: battle_phases.action,
 	effects: [[effects.physical_damage, 6], [effects.status_effect, status_effects.physical_strengthened, 5]],
+	self_effects: [],
 	restrictions: [[restrictions.frontline]],
 	animation: [[animation_spawn_projectile, sProjectile, 8], [animation_act]]
 }
@@ -86,6 +91,7 @@ move_mend_data =
 	can_target_dead: false,
 	phase: battle_phases.action,
 	effects: [[effects.heal, 5]],
+	self_effects: [],
 	restrictions: [],
 	animation: [[animation_act]]
 }
@@ -100,6 +106,7 @@ move_herbal_remedy_data =
 	can_target_dead: false,
 	phase: battle_phases.action,
 	effects: [[effects.cure, 2]],
+	self_effects: [],
 	restrictions: [],
 	animation: [[animation_act]]
 }
@@ -114,6 +121,7 @@ move_beam_data =
 	can_target_dead: false,
 	phase: battle_phases.action,
 	effects: [[effects.energy_damage, 5]],
+	self_effects: [],
 	restrictions: [],
 	animation: [[animation_spawn_projectile, sProjectile, 12], [animation_act]]
 }
@@ -128,6 +136,7 @@ move_zap_data =
 	can_target_dead: false,
 	phase: battle_phases.action,
 	effects: [[effects.energy_damage, 1], [effects.energy_damage, 2]],
+	self_effects: [],
 	restrictions: [],
 	animation: [[animation_spawn_projectile, sProjectile, 12], [animation_act]]
 }
@@ -142,6 +151,7 @@ move_dark_stab_data =
 	can_target_dead: false,
 	phase: battle_phases.action,
 	effects: [[effects.physical_damage, 5]],
+	self_effects: [],
 	restrictions: [],
 	animation: [[animation_spawn_projectile, sProjectile, 8], [animation_act]]
 }
@@ -156,6 +166,7 @@ move_venomous_stab_data =
 	can_target_dead: false,
 	phase: battle_phases.action,
 	effects: [[effects.physical_damage, 2], [effects.status_effect, status_effects.infected, 4]],
+	self_effects: [],
 	restrictions: [],
 	animation: [[animation_spawn_projectile, sProjectile, 8], [animation_act]]
 }
@@ -170,6 +181,7 @@ move_weakening_stab_data =
 	can_target_dead: false,
 	phase: battle_phases.action,
 	effects: [[effects.physical_damage, 2], [effects.status_effect, status_effects.physical_weakened, 3]],
+	self_effects: [],
 	restrictions: [],
 	animation: [[animation_spawn_projectile, sProjectile, 8], [animation_act]]
 }
@@ -184,6 +196,7 @@ move_burst_data =
 	can_target_dead: false,
 	phase: battle_phases.action,
 	effects: [[effects.physical_damage, 3]],
+	self_effects: [],
 	restrictions: [],
 	animation: [[animation_spawn_projectile, sProjectile, 8], [animation_act]]
 }
@@ -198,6 +211,7 @@ move_omegabite_data =
 	can_target_dead: false,
 	phase: battle_phases.action,
 	effects: [[effects.physical_damage, 7]],
+	self_effects: [],
 	restrictions: [],
 	animation: [[animation_spawn_projectile, sProjectile, 8], [animation_act]]
 }
@@ -212,6 +226,7 @@ move_chomp_chomp_data =
 	can_target_dead: false,
 	phase: battle_phases.action,
 	effects: [[effects.physical_damage, 5], [effects.physical_damage, 5]],
+	self_effects: [],
 	restrictions: [],
 	animation: [[animation_spawn_projectile, sProjectile, 8], [animation_act]]
 }
@@ -226,6 +241,7 @@ move_sunder_data =
 	can_target_dead: false,
 	phase: battle_phases.action,
 	effects: [[effects.energy_damage, 3]],
+	self_effects: [],
 	restrictions: [],
 	animation: [[animation_spawn_projectile, sProjectile, 8], [animation_act]]
 }
@@ -240,6 +256,7 @@ move_shatter_data =
 	can_target_dead: false,
 	phase: battle_phases.action,
 	effects: [[effects.physical_damage, 2], [effects.status_effect, status_effects.physical_vulnerable, 3]],
+	self_effects: [],
 	restrictions: [],
 	animation: [[animation_spawn_projectile, sProjectile, 8], [animation_act]]
 }
@@ -254,6 +271,7 @@ move_vitrify_data =
 	can_target_dead: false,
 	phase: battle_phases.action,
 	effects: [[effects.heal, 10], [effects.status_effect, status_effects.physical_vulnerable, 3], [effects.status_effect, status_effects.energy_vulnerable, 3]],
+	self_effects: [],
 	restrictions: [],
 	animation: [[animation_act]]
 }
@@ -268,6 +286,7 @@ move_clash_data =
 	can_target_dead: false,
 	phase: battle_phases.action,
 	effects: [[effects.physical_damage, 5]],
+	self_effects: [],
 	restrictions: [],
 	animation: [[animation_spawn_projectile, sProjectile, 8], [animation_act]]
 }
@@ -282,6 +301,7 @@ move_bolster_data =
 	can_target_dead: false,
 	phase: battle_phases.action,
 	effects: [[effects.status_effect, status_effects.physical_bolstered, 3]],
+	self_effects: [],
 	restrictions: [],
 	animation: [[animation_act]]
 }
@@ -296,6 +316,7 @@ move_recuperate_data =
 	can_target_dead: false,
 	phase: battle_phases.action,
 	effects: [[effects.heal,  6]],
+	self_effects: [],
 	restrictions: [[restrictions.backline]],
 	animation: [[animation_act]]
 }

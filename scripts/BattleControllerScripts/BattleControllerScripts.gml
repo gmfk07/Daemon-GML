@@ -375,7 +375,7 @@ function calculate_effect_damage(effect, class, using_daemon, target_daemon)
 }
 
 //Returns an array of length equal to target_daemon_array with the damage that each daemon will take
-function calculate_total_move_damage(move, using_daemon, target_daemon_position_array)
+function calculate_total_effects_damage(given_effects, given_class, using_daemon, target_daemon_position_array)
 {
 	var result = [];
 	
@@ -384,9 +384,9 @@ function calculate_total_move_damage(move, using_daemon, target_daemon_position_
 		var target_daemon = ds_map_find_value(position_daemon_map, target_daemon_position_array[i]);
 		var damage = 0;
 		
-		for (var j=0; j<array_length(move.effects); j++)
+		for (var j=0; j<array_length(given_effects); j++)
 		{
-			damage += calculate_effect_damage(move.effects[j], move.class, using_daemon, target_daemon);
+			damage += calculate_effect_damage(given_effects[j], given_class, using_daemon, target_daemon);
 		}
 
 		array_push(result, damage);

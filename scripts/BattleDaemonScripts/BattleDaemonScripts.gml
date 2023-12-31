@@ -106,60 +106,71 @@ function battle_daemon_act(battle_daemon)
 			var target_battle_daemon = ds_map_find_value(global.battle_controller.position_daemon_map, target_daemon);
 			if (target_battle_daemon.hp > 0 || move.can_target_dead)
 			{
-				for (var j=0; j < array_length(move.effects); j++)
-				{
-					switch (move.effects[j][0])
-					{
-						//Damage
-						case effects.physical_damage:
-							var damage = calculate_effect_damage(move.effects[j], move.class, battle_daemon, target_battle_daemon);
-							battle_daemon_take_damage_at_position(target_daemon, damage);
-				
-							global.battle_animation_controller.num_ongoing_animations++;
-							var created = instance_create_depth(target_battle_daemon.x, target_battle_daemon.y, -10, oDamageDisplay);
-							created.amount = -damage;
-						break;
-					
-						case effects.energy_damage:
-							var damage = calculate_effect_damage(move.effects[j], move.class, battle_daemon, target_battle_daemon);
-							battle_daemon_take_damage_at_position(target_daemon, damage);
-				
-							global.battle_animation_controller.num_ongoing_animations++;
-							var created = instance_create_depth(target_battle_daemon.x, target_battle_daemon.y, -10, oDamageDisplay);
-							created.amount = -damage;
-						break;
-			
-						//Swap
-						case effects.swap:
-							swap_daemons(battle_daemon.position, target_daemon);
-						break;
-						
-						//Status effects
-						case effects.status_effect:
-							battle_daemon_add_status_effect(target_battle_daemon, move.effects[j][1], move.effects[j][2]);
-						break;
-						
-						//Heal
-						case effects.heal:
-							battle_daemon_heal_at_position(target_daemon, move.effects[j][1]);
-							global.battle_animation_controller.num_ongoing_animations++;
-							var created = instance_create_depth(target_battle_daemon.x, target_battle_daemon.y, -10, oDamageDisplay);
-							created.amount = move.effects[j][1];
-						break;
-						
-						//Cure
-						case effects.cure:
-							battle_daemon_cure_at_position(target_daemon, move.effects[j][1]);
-						break;
-					}
-				}
+				battle_daemon_apply_effects_to_target(move.effects, move.class, battle_daemon, target_daemon);
 			}
+		}
+		
+		if (array_length(move.self_effects) > 0)
+		{
+			battle_daemon_apply_effects_to_target(move.self_effects, move.class, battle_daemon, battle_daemon.position);
 		}
 	}
 	battle_daemon.attacked = true;
 	battle_daemon.image_blend = c_white;
 	battle_daemon.selected_move = noone;
 	battle_daemon.selected_targets = [];
+}
+
+function battle_daemon_apply_effects_to_target(effects, class, battle_daemon, target_daemon)
+{
+	var target_battle_daemon = ds_map_find_value(global.battle_controller.position_daemon_map, target_daemon);
+	for (var j=0; j < array_length(effects); j++)
+	{
+		switch (effects[j][0])
+		{
+			//Damage
+			case effects.physical_damage:
+				var damage = calculate_effect_damage(effects[j], class, battle_daemon, target_battle_daemon);
+				battle_daemon_take_damage_at_position(target_daemon, damage);
+	
+				global.battle_animation_controller.num_ongoing_animations++;
+				var created = instance_create_depth(target_battle_daemon.x, target_battle_daemon.y, -10, oDamageDisplay);
+				created.amount = -damage;
+			break;
+		
+			case effects.energy_damage:
+				var damage = calculate_effect_damage(effects[j], class, battle_daemon, target_battle_daemon);
+				battle_daemon_take_damage_at_position(target_daemon, damage);
+	
+				global.battle_animation_controller.num_ongoing_animations++;
+				var created = instance_create_depth(target_battle_daemon.x, target_battle_daemon.y, -10, oDamageDisplay);
+				created.amount = -damage;
+			break;
+
+			//Swap
+			case effects.swap:
+				swap_daemons(battle_daemon.position, target_daemon);
+			break;
+			
+			//Status effects
+			case effects.status_effect:
+				battle_daemon_add_status_effect(target_battle_daemon, effects[j][1], effects[j][2]);
+			break;
+			
+			//Heal
+			case effects.heal:
+				battle_daemon_heal_at_position(target_daemon, effects[j][1]);
+				global.battle_animation_controller.num_ongoing_animations++;
+				var created = instance_create_depth(target_battle_daemon.x, target_battle_daemon.y, -10, oDamageDisplay);
+				created.amount = effects[j][1];
+			break;
+			
+			//Cure
+			case effects.cure:
+				battle_daemon_cure_at_position(target_daemon, effects[j][1]);
+			break;
+		}
+	}
 }
 
 function battle_daemon_animate_move(battle_daemon)
