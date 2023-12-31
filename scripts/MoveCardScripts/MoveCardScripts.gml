@@ -105,6 +105,9 @@ function get_string_from_effects(given_effects)
 			case effects.cure:
 				result += "Cure " + string(effect[1]);
 			break;
+			case effects.charge:
+				result += "Charge";
+			break;
 		}
 	}
 	return result;

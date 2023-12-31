@@ -18,7 +18,7 @@ move_move_data =
 	effects: [[effects.swap]],
 	self_effects: [],
 	restrictions: [],
-	animation: [[animation_swap, 6], [animation_act]]
+	animation: [[animation_swap_target, 6], [animation_act]]
 }
 
 move_quickswap_data =
@@ -34,7 +34,7 @@ move_quickswap_data =
 	effects: [[effects.swap]],
 	self_effects: [],
 	restrictions: [],
-	animation: [[animation_swap, 6], [animation_act]]
+	animation: [[animation_swap_target, 6], [animation_act]]
 }
 
 move_poke_data =
@@ -61,10 +61,10 @@ move_claw_data =
 	targets: targets.single_enemy,
 	can_target_dead: false,
 	phase: battle_phases.prep,
-	self_effects: [[effects.physical_damage, 1]],
-	effects: [[effects.physical_damage, 2]],
+	self_effects: [[effects.charge]],
+	effects: [[effects.physical_damage, 2], [effects.status_effect, status_effects.physical_vulnerable, 3]],
 	restrictions: [],
-	animation: [[animation_spawn_projectile, sProjectile, 8], [animation_act]]
+	animation: [[animation_swap_charge, 6, positions.player_center], [animation_spawn_projectile, sProjectile, 8], [animation_act]]
 }
 
 move_bite_data =
@@ -122,7 +122,7 @@ move_beam_data =
 	can_target_dead: false,
 	phase: battle_phases.action,
 	effects: [[effects.energy_damage, 5]],
-	self_effects: [],
+	self_effects: [effects.status_effect, status_effects.energy_strengthened, 2],
 	restrictions: [],
 	animation: [[animation_spawn_projectile, sProjectile, 12], [animation_act]]
 }

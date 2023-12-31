@@ -169,6 +169,11 @@ function battle_daemon_apply_effects_to_target(effects, class, battle_daemon, ta
 			case effects.cure:
 				battle_daemon_cure_at_position(target_daemon, effects[j][1]);
 			break;
+			
+			//Charge
+			case effects.charge:
+				battle_daemon_charge_at_position(target_daemon);
+			break;
 		}
 	}
 }
@@ -188,6 +193,18 @@ function battle_daemon_heal_at_position(position, heal_amount)
 {
 	var battle_daemon = ds_map_find_value(global.battle_controller.position_daemon_map, position);
 	battle_daemon.hp = median(battle_daemon.hp + heal_amount, 0, battle_daemon.max_hp);
+}
+
+function battle_daemon_charge_at_position(position)
+{
+	if (position == positions.player_top || position == positions.player_bottom)
+	{
+		swap_daemons(position, positions.player_center);
+	}
+	if (position == positions.enemy_top || position == positions.enemy_bottom)
+	{
+		swap_daemons(position, positions.enemy_center);
+	}
 }
 
 function battle_daemon_add_status_effect(battle_daemon, _status_effect, _duration)
