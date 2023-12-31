@@ -13,7 +13,7 @@ if (phase == battle_phases.selecting)
 	for (var i = 0; i < moves_len; i++)
 	{
 		var created = instance_create_layer((room_width/(card_count + 1))*(i + 1), 2*sprite_get_height(sCardShell)/3, "Cards", oBattleMoveCard);
-		created.move = ds_list_find_value(selected_daemon.hand_list, i);
+		created.move = get_move_data(ds_list_find_value(selected_daemon.hand_list, i));
 		
 		//Check for same class
 		if (created.move.class == classes.classless || created.move.class == selected_daemon.classes[0] || (array_length(selected_daemon.classes) == 2 && created.move.class == selected_daemon.classes[1]))
@@ -26,7 +26,7 @@ if (phase == battle_phases.selecting)
 	
 	//Add move card
 	var created = instance_create_layer((room_width/(card_count + 1))*(i + 1), 2*sprite_get_height(sCardShell)/3, "Cards", oBattleMoveCard);
-	created.move = move_move_data;
+	created.move = get_move_data(0);
 	created.same_class = true;
 	ds_list_add(move_card_list, created);
 }

@@ -72,7 +72,12 @@ function deckbuilding_transfer_move_to_unused_moves(index)
 
 function get_species_data(index)
 {
-	return global.data_controller.daemon_species_list[| index];
+	return global.data_controller.daemon_species_array[index];
+}
+
+function get_move_data(index)
+{
+	return global.data_controller.daemon_move_array[index];
 }
 
 function handle_experience_gain(xp)
@@ -84,7 +89,7 @@ function handle_experience_gain(xp)
 		top_daemon.experience -= top_daemon.level;
 		top_daemon.level++;
 		//Add new cards to unused moves
-		top_daemon.unused_moves = array_concat(top_daemon.unused_moves, global.data_controller.daemon_species_list[|top_daemon.index].unlocked_moves[top_daemon.level-2]);
+		top_daemon.unused_moves = array_concat(top_daemon.unused_moves, get_species_data(top_daemon.index).unlocked_moves[top_daemon.level-2]);
 	}
 	
 	var center_daemon = global.data_controller.daemon_data_map[? positions.player_center];
@@ -94,7 +99,7 @@ function handle_experience_gain(xp)
 		center_daemon.experience -= center_daemon.level;
 		center_daemon.level++;
 		//Add new cards to unused moves
-		center_daemon.unused_moves = array_concat(center_daemon.unused_moves, global.data_controller.daemon_species_list[|center_daemon.index].unlocked_moves[center_daemon.level-2]);
+		center_daemon.unused_moves = array_concat(center_daemon.unused_moves, get_species_data(center_daemon.index).unlocked_moves[center_daemon.level-2]);
 	}
 	
 	var bottom_daemon = global.data_controller.daemon_data_map[? positions.player_bottom];
@@ -104,16 +109,16 @@ function handle_experience_gain(xp)
 		bottom_daemon.experience -= bottom_daemon.level;
 		bottom_daemon.level++;
 		//Add new cards to unused moves
-		bottom_daemon.unused_moves = array_concat(bottom_daemon.unused_moves, global.data_controller.daemon_species_list[|bottom_daemon.index].unlocked_moves[bottom_daemon.level-2]);
+		bottom_daemon.unused_moves = array_concat(bottom_daemon.unused_moves, get_species_data(bottom_daemon.index).unlocked_moves[bottom_daemon.level-2]);
 	}
 }
 
 function get_all_unlocked_moves(index, level)
 {
-	var moves = global.data_controller.daemon_species_list[|index].starting_moves;
+	var moves = get_species_data(index).starting_moves;
 	for (var i=0; i<level-1; i++)
 	{
-		moves = array_concat(moves, global.data_controller.daemon_species_list[|index].unlocked_moves[i]);
+		moves = array_concat(moves, get_species_data(index).unlocked_moves[i]);
 	}
 	return moves;
 }

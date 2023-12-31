@@ -2,7 +2,8 @@
 global.data_controller = self;
 daemon_data_map = ds_map_create();
 daemon_reserve_list = ds_list_create();
-daemon_species_list = ds_list_create();
+daemon_species_array = [];
+daemon_move_array = [];
 
 move_move_data =
 {
@@ -75,7 +76,7 @@ move_bite_data =
 	targets: targets.single_enemy,
 	can_target_dead: false,
 	phase: battle_phases.action,
-	effects: [[effects.physical_damage, 6], [effects.status_effect, status_effects.physical_strengthened, 5]],
+	effects: [[effects.physical_damage, 6]],
 	self_effects: [],
 	restrictions: [[restrictions.frontline]],
 	animation: [[animation_spawn_projectile, sProjectile, 8], [animation_act]]
@@ -321,6 +322,27 @@ move_recuperate_data =
 	animation: [[animation_act]]
 }
 
+var _filename = "daemon_moves.dae"
+
+if (false) //file_exists(_filename))
+{
+	var _buffer = buffer_load(_filename);
+	var _json = buffer_read(_buffer, buffer_string);
+	buffer_delete(_buffer);
+	var _load_array = json_parse(_json);
+	daemon_move_array = _load_array;
+} else {
+	array_push(daemon_move_array, move_move_data, move_quickswap_data, move_poke_data, move_claw_data, move_bite_data, move_mend_data, move_herbal_remedy_data, move_beam_data, move_zap_data, move_dark_stab_data, move_venomous_stab_data, move_weakening_stab_data, move_burst_data, move_omegabite_data, move_chomp_chomp_data, move_sunder_data, move_shatter_data, move_vitrify_data, move_clash_data, move_bolster_data, move_recuperate_data);
+	show_message(array_length(daemon_move_array));
+
+	var _json = json_stringify(daemon_species_array);
+	var _buffer = buffer_create(string_byte_length(_json) + 1, buffer_fixed, 1);
+
+	buffer_write(_buffer, buffer_string, _json);
+	buffer_save(_buffer, _filename);
+	buffer_delete(_buffer);
+}
+
 //Populate species data
 var comcat_data = {
 	sprite: sComcat,
@@ -328,8 +350,8 @@ var comcat_data = {
 	hp: 20,
 	initiative: 10,
 	classes: [classes.impulse],
-	starting_moves: [move_quickswap_data, move_quickswap_data, move_quickswap_data, move_claw_data, move_claw_data, move_claw_data, move_claw_data, move_claw_data, move_claw_data, move_claw_data, move_claw_data, move_claw_data, move_bite_data, move_bite_data, move_bite_data],
-	unlocked_moves: [[move_poke_data, move_mend_data, move_herbal_remedy_data], [move_chomp_chomp_data], []],
+	starting_moves: [1, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 4, 4, 4],
+	unlocked_moves: [[3, 5, 6], [14], []],
 	hand_size: 5,
 	physical_attack: 2,
 	energy_attack: 0,
@@ -343,8 +365,8 @@ var caracara_data = {
 	hp: 14,
 	initiative: 15,
 	classes: [classes.null],
-	starting_moves: [move_sunder_data, move_sunder_data, move_sunder_data, move_sunder_data, move_sunder_data, move_sunder_data, move_sunder_data, move_sunder_data, move_sunder_data],
-	unlocked_moves: [[move_shatter_data, move_shatter_data], [], []],
+	starting_moves: [15, 15, 15, 15, 15, 15, 15, 15, 15],
+	unlocked_moves: [[16, 16], [], []],
 	hand_size: 3,
 	physical_attack: 2,
 	energy_attack: 0,
@@ -358,8 +380,8 @@ var knightman_data = {
 	hp: 20,
 	initiative: 10,
 	classes: [classes.bulwark],
-	starting_moves: [move_clash_data, move_clash_data, move_clash_data, move_clash_data, move_clash_data, move_clash_data, move_clash_data, move_clash_data, move_clash_data],
-	unlocked_moves: [[move_bolster_data, move_bolster_data], [move_recuperate_data, move_recuperate_data], []],
+	starting_moves: [18, 18, 18, 18, 18, 18, 18, 18, 18],
+	unlocked_moves: [[19, 19], [20, 20], []],
 	hand_size: 3,
 	physical_attack: 2,
 	energy_attack: 0,
@@ -373,8 +395,8 @@ var skull_data = {
 	hp: 28,
 	initiative: 5,
 	classes: [classes.penumbra],
-	starting_moves: [move_dark_stab_data, move_dark_stab_data, move_dark_stab_data, move_dark_stab_data, move_dark_stab_data, move_dark_stab_data, move_dark_stab_data, move_dark_stab_data, move_dark_stab_data],
-	unlocked_moves: [[move_venomous_stab_data, move_venomous_stab_data], [], []],
+	starting_moves: [9, 9, 9, 9, 9, 9, 9, 9, 9],
+	unlocked_moves: [[10, 10], [], []],
 	hand_size: 3,
 	physical_attack: 2,
 	energy_attack: 1,
@@ -388,8 +410,8 @@ var eyebot_data = {
 	hp: 16,
 	initiative: 20,
 	classes: [classes.advent],
-	starting_moves: [move_beam_data, move_beam_data, move_beam_data, move_beam_data, move_beam_data, move_beam_data, move_beam_data, move_beam_data, move_beam_data, move_beam_data, move_beam_data, move_beam_data],
-	unlocked_moves: [[move_dark_stab_data, move_dark_stab_data], [], []],
+	starting_moves: [7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7],
+	unlocked_moves: [[9, 9], [], []],
 	hand_size: 4,
 	physical_attack: 0,
 	energy_attack: 3,
@@ -403,16 +425,35 @@ var jouwel_data = {
 	hp: 16,
 	initiative: 5,
 	classes: [classes.element],
-	starting_moves: [move_zap_data, move_zap_data, move_zap_data, move_zap_data, move_zap_data, move_zap_data, move_zap_data, move_zap_data, move_zap_data],
-	unlocked_moves: [[move_dark_stab_data, move_dark_stab_data], [], []],
+	starting_moves: [8, 8, 8, 8, 8, 8, 8, 8, 8],
+	unlocked_moves: [[9, 9], [], []],
 	hand_size: 4,
 	physical_attack: 0,
 	energy_attack: 3,
 	physical_defense: 3,
 	energy_defense: 0
 }
+ 
+var _filename = "daemon_species.dae"
 
-ds_list_add(daemon_species_list, comcat_data, caracara_data, knightman_data, skull_data, eyebot_data, jouwel_data);
+if (false)//file_exists(_filename))
+{
+	var _buffer = buffer_load(_filename);
+	var _json = buffer_read(_buffer, buffer_string);
+	buffer_delete(_buffer);
+	var _load_array = json_parse(_json);
+	
+	daemon_species_array = _load_array;
+} else {
+	array_push(daemon_species_array, comcat_data, caracara_data, knightman_data, skull_data, eyebot_data, jouwel_data);
+	
+	var _json = json_stringify(daemon_species_array);
+	var _buffer = buffer_create(string_byte_length(_json) + 1, buffer_fixed, 1);
+
+	buffer_write(_buffer, buffer_string, _json);
+	buffer_save(_buffer, _filename);
+	buffer_delete(_buffer);
+}
 
 player_top_daemon_data =
 {

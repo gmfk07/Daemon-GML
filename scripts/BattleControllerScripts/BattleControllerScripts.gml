@@ -269,16 +269,17 @@ function take_enemy_turn()
 		
 		var hand_list_plus_move = ds_list_create();
 		ds_list_copy(hand_list_plus_move, selected_battle_daemon.hand_list);
-		ds_list_add(hand_list_plus_move, global.data_controller.move_move_data)
+		ds_list_add(hand_list_plus_move, 0);
 		ds_list_shuffle(hand_list_plus_move);
 		
 		for (var j=0; j < ds_list_size(hand_list_plus_move); j++)
 		{
-			if (array_length(get_possible_living_target_positions(user_position_order[i], hand_list_plus_move[| j].targets)) == 0 || !can_use_move(user_position_order[i], hand_list_plus_move[| j].restrictions))
+			var move_data = get_move_data(hand_list_plus_move[| j]);
+			if (array_length(get_possible_living_target_positions(user_position_order[i], move_data.targets)) == 0 || !can_use_move(user_position_order[i], move_data.restrictions))
 			{
 				continue;
 			}
-			var cost = hand_list_plus_move[| j].cost;
+			var cost = move_data.cost;
 			if (enemy_points - cost >= 0)
 			{
 				selected_move_index = j;
@@ -292,8 +293,8 @@ function take_enemy_turn()
 			continue;
 		}
 		
-		selected_battle_daemon.selected_move = ds_list_find_value(hand_list_plus_move, selected_move_index);
-		var target_position_order = array_shuffle(get_possible_living_target_positions(user_position_order[i], hand_list_plus_move[| j].targets));
+		selected_battle_daemon.selected_move = get_move_data(ds_list_find_value(hand_list_plus_move, selected_move_index));
+		var target_position_order = array_shuffle(get_possible_living_target_positions(user_position_order[i], move_data.targets));
 		if (selected_battle_daemon.selected_move.targets == targets.all_allies || selected_battle_daemon.selected_move.targets == targets.all_enemies)
 		{
 			selected_battle_daemon.selected_targets = target_position_order;

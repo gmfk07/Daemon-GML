@@ -3,18 +3,24 @@ move_claw_data = global.data_controller.move_claw_data;
 
 top_daemon = {
 	index: 0,
-	moves: [move_claw_data, move_claw_data, move_claw_data],
-	unused_moves: [move_claw_data],
+	moves: get_all_unlocked_moves(0, 1),
+	unused_moves: [],
+	level: 1,
+	xp: 0
 }
 center_daemon = {
 	index: 0,
-	moves: [move_claw_data, move_claw_data, move_claw_data],
-	unused_moves: [move_claw_data],
+	moves: get_all_unlocked_moves(0, 1),
+	unused_moves: [],
+	level: 1,
+	xp: 0
 }
 bottom_daemon = {
 	index: 0,
-	moves: [move_claw_data, move_claw_data, move_claw_data],
-	unused_moves: [move_claw_data],
+	moves: get_all_unlocked_moves(0, 1),
+	unused_moves: [],
+	level: 1,
+	xp: 0
 }
 
 battle_cutscene = [[cutscene_battle, top_daemon, center_daemon, bottom_daemon, battle_types.wild]];

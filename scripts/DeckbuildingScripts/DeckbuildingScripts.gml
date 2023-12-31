@@ -7,7 +7,7 @@ function create_deckbuilding_cards()
         	for (var i=0; i < min(cards_per_row, array_length(active_moves) - j * cards_per_row); i++)
         	{
         		var created = instance_create_layer(128 + i*156, 128 + j*216, "Instances", oDeckbuildingMoveCard);
-        		created.move = active_moves[i + j*cards_per_row];
+        		created.move = get_move_data(active_moves[i + j*cards_per_row]);
         		created.index = j * cards_per_row + i;
         		created.is_used = true;
         		//Check for same class
@@ -22,7 +22,7 @@ function create_deckbuilding_cards()
         for (var i = unused_index; i < array_length(unused_moves); i++)
         {
         	var created = instance_create_layer(128 + iters*156, room_height/2 + 256, "Instances", oDeckbuildingMoveCard);
-        	created.move = unused_moves[i];
+        	created.move = get_move_data(unused_moves[i]);
         	created.index = i;
         	created.is_used = false;
         	//Check for same class
