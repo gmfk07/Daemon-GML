@@ -122,3 +122,16 @@ function get_all_unlocked_moves(index, level)
 	}
 	return moves;
 }
+
+function raise_event_flag(event_flag)
+{
+	if (ds_list_find_index(global.data_controller.event_flags, event_flag) == -1)
+	{
+		ds_list_add(global.data_controller.event_flags,  event_flag);
+	}
+}
+
+function has_event_flag(event_flag)
+{
+	return ds_list_find_index(global.data_controller.event_flags, event_flag) != -1;
+}

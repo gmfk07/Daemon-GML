@@ -5,6 +5,8 @@ daemon_reserve_list = ds_list_create();
 daemon_species_array = [];
 daemon_move_array = [];
 
+event_flags = ds_list_create();
+
 move_move_data =
 {
 	name: "Move",

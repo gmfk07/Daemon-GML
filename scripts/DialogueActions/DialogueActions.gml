@@ -2,6 +2,7 @@
 #macro CHOICE new ChoiceAction
 #macro OPTION new OptionAction
 #macro GOTO new GotoAction
+#macro EVENTFLAG new SetEventFlag
 
 function DialogueAction() constructor {
 	act = function() { };
@@ -49,5 +50,14 @@ function GotoAction(_topic): DialogueAction() constructor {
 	act = function(textbox)
 	{
 		textbox.set_topic(topic);
+	}
+}
+
+function SetEventFlag(_flag): DialogueAction() constructor {
+	flag = _flag;
+	
+	act = function(textbox)
+	{
+		raise_event_flag(flag);
 	}
 }

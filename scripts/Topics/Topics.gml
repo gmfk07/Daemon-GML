@@ -20,7 +20,8 @@ global.topics[$ "Example2"] = [
 ];
 
 global.topics[$ "correct pussycat"] = [
-	TEXT("Very nice")
+	TEXT("Very nice"),
+	EVENTFLAG("correct")
 ];
 
 global.topics[$ "incorrect pussycat"] = [
