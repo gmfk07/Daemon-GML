@@ -1,3 +1,3 @@
-battle_cutscene = [[cutscene_dialogue, ["Hey noob nice team you got there haha", "Unfortunately for you, you've entered my detection radius... I challenge you to a battle!", "Beating new players is great XP!"]], [cutscene_battle, top_daemon, center_daemon, bottom_daemon]];
-defeated_cutscene = [[cutscene_dialogue, ["Hey! You're not supposed to beat me!", "How embarassing... losing to a brand new player..."]]];
-cutscene = [[cutscene_dialogue, ["You just got lucky, man."]]];
+battle_cutscene = [[cutscene_dialogue, "battle npc 1 battle"], [cutscene_battle, top_daemon, center_daemon, bottom_daemon]];
+defeated_cutscene = [[cutscene_dialogue, "battle npc 1 defeated"]];
+cutscene = [[cutscene_dialogue, "battle npc 1 dialogue"]];

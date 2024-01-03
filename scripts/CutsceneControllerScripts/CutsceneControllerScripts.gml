@@ -11,6 +11,10 @@ function start_cutscene(data)
 //Goes to the next scene, or ends the cutscene if this was the last scene.
 function goto_next_scene()
 {
+	with (global.dialogue_controller)
+	{
+		in_dialogue = false;
+	}
     with (global.cutscene_controller)
     {
         if (array_length(scene_data) > scene_index+1)
@@ -73,7 +77,7 @@ function cutscene_dialogue(dialogue)
 	{
 		start_dialogue(dialogue);
 	}
-    //We rely on dialogue controller to call goto_next_scene()
+    //We rely on oTextBox to call goto_next_scene()
 }
 
 function cutscene_battle(top_daemon, center_daemon, bottom_daemon, battle_type)
@@ -101,6 +105,15 @@ function cutscene_delete_closest_interactable()
 	with (oPlayer.closest_interactable)
 	{
 		instance_destroy();
+	}
+	goto_next_scene();
+}
+
+function cutscene_change_sprite(_object, _sprite)
+{
+	with (_object)
+	{
+		sprite_index = _sprite;
 	}
 	goto_next_scene();
 }

@@ -34,14 +34,7 @@ function get_description_string(given_effects, given_self_effects, given_restric
 	
 	if (array_length(given_self_effects) > 0)
 	{
-		result += "Self: "
-	}
-	
-	result += get_string_from_effects(given_self_effects);
-	
-	if (array_length(given_self_effects) > 0)
-	{
-		result += ".\n"
+		result += "Self: " + get_string_from_effects(given_self_effects) + ".\n";
 	}
 	
 	for (var i=0; i < array_length(given_restrictions); i++)

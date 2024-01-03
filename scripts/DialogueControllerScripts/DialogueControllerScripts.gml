@@ -1,9 +1,5 @@
-function start_dialogue(data)
+function start_dialogue(topic)
 {
-    with (global.dialogue_controller)
-    {
-        dialogue = data;
-		dialogue_index = 0;
-		in_dialogue = true;
-    }
+    StartDialogue(topic);
+    global.dialogue_controller.in_dialogue = true;
 }

@@ -64,7 +64,7 @@ move_claw_data =
 	self_effects: [[effects.charge]],
 	effects: [[effects.physical_damage, 2], [effects.status_effect, status_effects.physical_vulnerable, 3]],
 	restrictions: [],
-	animation: [[animation_swap_charge, 6, positions.player_center], [animation_spawn_projectile, sProjectile, 8], [animation_act]]
+	animation: [[animation_swap_charge, 6], [animation_spawn_projectile, sProjectile, 8], [animation_act]]
 }
 
 move_bite_data =
@@ -122,7 +122,7 @@ move_beam_data =
 	can_target_dead: false,
 	phase: battle_phases.action,
 	effects: [[effects.energy_damage, 5]],
-	self_effects: [effects.status_effect, status_effects.energy_strengthened, 2],
+	self_effects: [[effects.status_effect, status_effects.energy_strengthened, 2]],
 	restrictions: [],
 	animation: [[animation_spawn_projectile, sProjectile, 12], [animation_act]]
 }
@@ -322,9 +322,24 @@ move_recuperate_data =
 	animation: [[animation_act]]
 }
 
+move_grapple_data =
+{
+	name: "Grapple",
+	art: sBeamArt,
+	class: classes.advent,
+	cost: 2,
+	targets: targets.single_enemy,
+	can_target_dead: false,
+	phase: battle_phases.action,
+	effects: [[effects.energy_damage, 3], [effects.charge]],
+	self_effects: [],
+	restrictions: [],
+	animation: [[animation_spawn_projectile, sProjectile, 12], [animation_target_swap_charge, 6], [animation_act]]
+}
+
 var _filename = "daemon_moves.dae"
 
-if (false) //file_exists(_filename))
+if (false)//file_exists(_filename))
 {
 	var _buffer = buffer_load(_filename);
 	var _json = buffer_read(_buffer, buffer_string);
@@ -332,10 +347,10 @@ if (false) //file_exists(_filename))
 	var _load_array = json_parse(_json);
 	daemon_move_array = _load_array;
 } else {
-	array_push(daemon_move_array, move_move_data, move_quickswap_data, move_poke_data, move_claw_data, move_bite_data, move_mend_data, move_herbal_remedy_data, move_beam_data, move_zap_data, move_dark_stab_data, move_venomous_stab_data, move_weakening_stab_data, move_burst_data, move_omegabite_data, move_chomp_chomp_data, move_sunder_data, move_shatter_data, move_vitrify_data, move_clash_data, move_bolster_data, move_recuperate_data);
-	show_message(array_length(daemon_move_array));
+	array_push(daemon_move_array, move_move_data, move_quickswap_data, move_poke_data, move_claw_data, move_bite_data, move_mend_data, move_herbal_remedy_data, move_beam_data, move_zap_data, move_dark_stab_data, move_venomous_stab_data, move_weakening_stab_data, move_burst_data, move_omegabite_data, move_chomp_chomp_data, move_sunder_data, move_shatter_data, move_vitrify_data, move_clash_data, move_bolster_data, move_recuperate_data, move_grapple_data);
+	//show_message(array_length(daemon_move_array));
 
-	var _json = json_stringify(daemon_species_array);
+	var _json = json_stringify(daemon_move_array);
 	var _buffer = buffer_create(string_byte_length(_json) + 1, buffer_fixed, 1);
 
 	buffer_write(_buffer, buffer_string, _json);
@@ -410,7 +425,7 @@ var eyebot_data = {
 	hp: 16,
 	initiative: 20,
 	classes: [classes.advent],
-	starting_moves: [7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7],
+	starting_moves: [7, 7, 7, 7, 7, 7, 7, 7, 7, 21, 21, 21],
 	unlocked_moves: [[9, 9], [], []],
 	hand_size: 4,
 	physical_attack: 0,
@@ -425,7 +440,7 @@ var jouwel_data = {
 	hp: 16,
 	initiative: 5,
 	classes: [classes.element],
-	starting_moves: [8, 8, 8, 8, 8, 8, 8, 8, 8],
+	starting_moves: [8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8],
 	unlocked_moves: [[9, 9], [], []],
 	hand_size: 4,
 	physical_attack: 0,

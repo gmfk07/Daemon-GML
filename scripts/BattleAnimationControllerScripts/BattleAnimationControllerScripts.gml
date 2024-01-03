@@ -57,6 +57,7 @@ function animation_act()
     battle_daemon_act(user_daemon);
 }
 
+//Swaps with target[0]
 function animation_swap_target(swap_speed)
 {
 	var target_daemon = ds_map_find_value(global.battle_controller.position_daemon_map, target_daemon_array[0]);
@@ -79,9 +80,10 @@ function animation_swap_target(swap_speed)
 	target_daemon.animation_move_speed = swap_speed;
 }
 
+//Swaps with center daemon
 function animation_swap_charge(swap_speed)
 {
-	var target_daemon = user_daemon.position == positions.player_top || user_daemon.position == positions.player_bottom ? positions.player_center : positions.enemy_center;
+	var target_daemon = get_center_daemon_position(user_daemon.position);
 	target_daemon = global.battle_controller.position_daemon_map[? target_daemon];
 
 	//If we're swapping with ourselves, just count that as one animation
@@ -99,5 +101,31 @@ function animation_swap_charge(swap_speed)
 	target_daemon.animating = true;
 	target_daemon.animation_target_x = user_daemon.x;
 	target_daemon.animation_target_y = user_daemon.y;
+	target_daemon.animation_move_speed = swap_speed;
+}
+
+function animation_target_swap_charge(swap_speed)
+{
+	var target_daemon = global.battle_controller.position_daemon_map[? target_daemon_array[0]];
+	
+	//Make sure to get the right center daemon
+	var center_daemon = get_center_daemon_position(target_daemon_array[0]);
+	center_daemon = global.battle_controller.position_daemon_map[? center_daemon];
+
+	//If we're swapping with ourselves, just count that as one animation
+	global.battle_animation_controller.num_ongoing_animations ++;	
+	if (target_daemon != center_daemon)
+	{
+		global.battle_animation_controller.num_ongoing_animations++;
+	}
+	
+	center_daemon.animating = true;
+	center_daemon.animation_target_x = target_daemon.x;
+	center_daemon.animation_target_y = target_daemon.y;
+	center_daemon.animation_move_speed = swap_speed;
+
+	target_daemon.animating = true;
+	target_daemon.animation_target_x = center_daemon.x;
+	target_daemon.animation_target_y = center_daemon.y;
 	target_daemon.animation_move_speed = swap_speed;
 }

@@ -279,6 +279,19 @@ function get_status_effect_opposite(status_effect)
 	return noone;
 }
 
+//Returns the center daemon position corresponding to a side of the battlefield given by position.
+function get_center_daemon_position(position)
+{
+	if (position == positions.enemy_top || position == positions.enemy_center || position == positions.enemy_bottom)
+	{
+		return positions.enemy_center;
+	}
+	else
+	{
+		return positions.player_center;
+	}
+}
+
 #macro SELECTED_IMAGE_SCALE 1.5
 #macro ATTACK_OUTCLASS_DAMAGE_MULTIPLIER 1.5
 #macro DEFENDER_OUTCLASS_DAMAGE_MULTIPLIER 0.5
