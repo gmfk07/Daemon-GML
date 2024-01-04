@@ -16,6 +16,7 @@ draw_sprite(get_phase_sprite_from_battle_phase(move.phase), 0, 0, sprite_height 
 draw_set_font(-1);
 
 draw_set_halign(fa_left);
+draw_set_font(fnt_card_text);
 draw_text(0, 0, move.name);
 draw_text_ext(16, sprite_width/2 + 32, get_description_string(move.effects, move.self_effects, move.restrictions), 16, sprite_width - 32);
 

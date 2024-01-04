@@ -161,6 +161,7 @@
     {"id":{"name":"oPartyController","path":"objects/oPartyController/oPartyController.yy",},},
     {"id":{"name":"oLockIn","path":"objects/oLockIn/oLockIn.yy",},},
     {"id":{"name":"fnt_turns_left","path":"fonts/fnt_turns_left/fnt_turns_left.yy",},},
+    {"id":{"name":"fnt_card_text","path":"fonts/fnt_card_text/fnt_card_text.yy",},},
     {"id":{"name":"oBattleDaemon","path":"objects/oBattleDaemon/oBattleDaemon.yy",},},
     {"id":{"name":"sAllAllies","path":"sprites/sAllAllies/sAllAllies.yy",},},
     {"id":{"name":"rBattle","path":"rooms/rBattle/rBattle.yy",},},

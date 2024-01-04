@@ -147,9 +147,6 @@ function cutscene_npc_move(_npc_id, _new_x, _new_y, _spd)
 				
 				x += l_dir_x;
 				y += l_dir_y;
-				
-				show_debug_message(x);
-				show_debug_message(y);
 			}
 		};
 	}

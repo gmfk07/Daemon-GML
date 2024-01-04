@@ -31,8 +31,8 @@
   "properties": [],
   "solid": false,
   "spriteId": {
-    "name": "sCardShell",
-    "path": "sprites/sCardShell/sCardShell.yy",
+    "name": "sCardShellImpulse",
+    "path": "sprites/sCardShellImpulse/sCardShellImpulse.yy",
   },
   "spriteMaskId": null,
   "visible": true,

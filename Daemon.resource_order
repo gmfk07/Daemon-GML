@@ -104,6 +104,7 @@
     {"name":"oCatch","order":1,"path":"objects/oCatch/oCatch.yy",},
     {"name":"oPartyController","order":2,"path":"objects/oPartyController/oPartyController.yy",},
     {"name":"fnt_turns_left","order":3,"path":"fonts/fnt_turns_left/fnt_turns_left.yy",},
+    {"name":"fnt_card_text","order":4,"path":"fonts/fnt_card_text/fnt_card_text.yy",},
     {"name":"oBattleDaemon","order":1,"path":"objects/oBattleDaemon/oBattleDaemon.yy",},
     {"name":"sAllAllies","order":3,"path":"sprites/sAllAllies/sAllAllies.yy",},
   ],
