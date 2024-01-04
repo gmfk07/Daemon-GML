@@ -20,7 +20,7 @@ global.topics[$ "Welcome 2"] = [
 
 global.topics[$ "Welcome 3"] = [
 	TEXT("Yeah! Get PUMPED about daemon battling!"),
-	TEXT("Each daemon is an AI program, designed by players like you and me. There are 6 classes of daemon, each maintained by an Organization."),
+	TEXT("Each daemon is an AI program, designed by players like you and me. There are 6 classes of daemon, each maintained by a studio."),
 	GOTO("Welcome 5")
 ];
 
@@ -33,6 +33,21 @@ global.topics[$ "Welcome 4"] = [
 
 global.topics[$ "Welcome 5"] = [
 	TEXT("Anyways! Come follow me to the next room!")
+];
+
+global.topics[$ "Post-welcome"] = [
+	TEXT("Hello again! Atu here with another hot tip: that guy you just battled? That gave enough xp to level up your daemons! You should equip the new cards you got into your decks."),
+	CHOICE("Just hit tab to open your daemon menu, then right-click a daemon to access its moveset. Then add or remove the cards you want! Friendly warning though - your deck size must be at least three times your daemon's hand size.",
+		OPTION("Thanks!", "Post-welcome 2"),
+		OPTION("Who was that guy?", "Post-welcome 3"))
+];
+
+global.topics[$ "Post-welcome 2"] = [
+	TEXT("No problem!"),
+];
+
+global.topics[$ "Post-welcome 3"] = [
+	TEXT("Oh boy, you're gonna have to get used to battles from... eccentric people. Most of the World of Daemon is a PvP zone, after all.")
 ];
 
 global.topics[$ "Example1"] = [

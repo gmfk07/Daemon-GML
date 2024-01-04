@@ -566,3 +566,4 @@ battle_type = battle_types.challenge;
 deckbuilding_daemon = noone;
 
 visited_rooms = [];
+last_overworld_room = room;

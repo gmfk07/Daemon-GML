@@ -83,7 +83,9 @@ function save_room()
 			battles: inst.battles,
 			min_spawn_wait: inst.min_spawn_wait,
 			max_spawn_wait: inst.max_spawn_wait,
-			max_to_spawn: inst.max_to_spawn
+			max_to_spawn: inst.max_to_spawn,
+			width: inst.width,
+			height: inst.height
 		}
 	}
 	
@@ -227,6 +229,8 @@ function load_room()
 				min_spawn_wait = data.min_spawn_wait;
 				max_spawn_wait = data.max_spawn_wait;
 				max_to_spawn = data.max_to_spawn;
+				width = data.width;
+				height = data.height;
 		}
 	}
 	

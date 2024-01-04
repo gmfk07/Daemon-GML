@@ -21,7 +21,7 @@ target_theta = (target_theta - 1) mod 360;
 
 if (keyboard_check_pressed(vk_tab))
 {
-    room_goto(rIntro);
+    room_goto(global.data_controller.last_overworld_room);
 	if (global.data_controller.selecting_starters)
 	{
 		clear_reserves();

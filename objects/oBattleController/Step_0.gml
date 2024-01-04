@@ -118,5 +118,5 @@ else if (phase == battle_phases.selecting)
 
 if (keyboard_check_pressed(ord("B")))
 {
-	room_goto(rOverworld);
+	room_goto(rIntro);
 }
