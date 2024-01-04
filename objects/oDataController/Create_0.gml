@@ -557,10 +557,12 @@ global.room_data =
 	room_overworld : 0
 }
 
-room_goto(rOverworld);
+room_goto(rIntro);
 
 victory_cutscene = [];
 defeat_cutscene = [[cutscene_dialogue, ["You were defeated..."]]];
 overworld_flag = overworld_flags.none;
 battle_type = battle_types.challenge;
 deckbuilding_daemon = noone;
+
+visited_rooms = [];

@@ -5,7 +5,7 @@ if (keyboard_check_pressed(ord("E")))
 	{
 		if (oPlayer.near_dialogue)
 		{
-			start_cutscene(oPlayer.closest_interactable.cutscene)
+			start_cutscene(oPlayer.closest_interactable.cutscene);
 		}
 	}
 }

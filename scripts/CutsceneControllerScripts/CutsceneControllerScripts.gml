@@ -60,6 +60,9 @@ function execute_scene(data)
         case 5:
             script_execute(data[0], data[1], data[2], data[3], data[4]);
             break;
+		case 6:
+            script_execute(data[0], data[1], data[2], data[3], data[4], data[5]);
+            break;
     }
 }
 
@@ -152,10 +155,11 @@ function cutscene_npc_move(_npc_id, _new_x, _new_y, _spd)
 	}
 }
 
-function cutscene_create_npc(_object, _npc_id, _x, _y)
+function cutscene_create_npc(_object, _npc_id, _cutscene, _x, _y)
 {
 	var created = instance_create_layer(_x, _y, "Instances", _object);
 	created.npc_id = _npc_id;
+	created.cutscene = _cutscene;
 	goto_next_scene();
 }
 

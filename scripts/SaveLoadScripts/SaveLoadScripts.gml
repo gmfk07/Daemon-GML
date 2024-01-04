@@ -4,6 +4,7 @@ function save_room()
 	var _battle_wild_npc_num = instance_number(oBattleWildNPC);
 	var _dialogue_npc_num = instance_number(oDialogueNPC);
 	var _battle_wild_npc_spawner_num = instance_number(oBattleWildNPCSpawner);
+	var _player_trigger_num = instance_number(oPlayerTrigger);
 	
 	var room_struct =
 	{
@@ -17,6 +18,8 @@ function save_room()
 		dialogue_npc_data: array_create(_dialogue_npc_num),
 		battle_wild_npc_spawner_num: _battle_wild_npc_spawner_num,
 		battle_wild_npc_spawner_data: array_create(_battle_wild_npc_spawner_num),
+		player_trigger_num: _player_trigger_num,
+		player_trigger_data: array_create(_player_trigger_num)
 	}
 	
 	//Fill battle_challenge_npc_data
@@ -84,9 +87,26 @@ function save_room()
 		}
 	}
 	
+	//Fill player_trigger data
+	for (var i=0; i < _player_trigger_num; i++)
+	{
+		var inst = instance_find(oPlayerTrigger, i);
+		
+		room_struct.player_trigger_data[i] = {
+			x : inst.x,
+			y : inst.y,
+			cutscene: inst.cutscene,
+			triggered: inst.triggered
+		}
+	}
+	
 	if (room_get_name(room) == "rOverworld")
 	{
 		global.room_data.room_overworld = room_struct;
+	}
+	if (room_get_name(room) == "rIntro")
+	{
+		global.room_data.room_intro = room_struct;
 	}
 }
 
@@ -97,6 +117,10 @@ function load_room()
 	if (room_get_name(room) == "rOverworld")
 	{
 		room_struct = global.room_data.room_overworld;
+	}
+	if (room_get_name(room)== "rIntro")
+	{
+		room_struct = global.room_data.room_intro;
 	}
 	
 	if (!is_struct(room_struct))
@@ -122,6 +146,11 @@ function load_room()
 	if (instance_exists(oBattleWildNPCSpawner))
 	{
 		instance_destroy(oBattleWildNPCSpawner);
+	}
+	
+	if (instance_exists(oPlayerTrigger))
+	{
+		instance_destroy(oPlayerTrigger);
 	}
 	
 	//Battle Challenge NPCs
@@ -214,6 +243,18 @@ function load_room()
 				sprite_index = data.sprite_index;
 				npc_id = data.npc_id
 			}
+		}
+	}
+	
+	//Player Triggers
+	for (var i=0; i < room_struct.player_trigger_num; i++)
+	{
+		var data = room_struct.player_trigger_data[i];
+		
+		with (instance_create_layer(data.x, data.y, "Instances", oPlayerTrigger))
+		{
+			cutscene = data.cutscene;
+			triggered = data.triggered;
 		}
 	}
 	
