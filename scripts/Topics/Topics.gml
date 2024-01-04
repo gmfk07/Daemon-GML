@@ -26,7 +26,6 @@ global.topics[$ "correct pussycat"] = [
 
 global.topics[$ "incorrect pussycat"] = [
 	TEXT("No... cmon, sing along!"),
-	GOTO("Example")
 ];
 
 global.topics[$ "battle npc 1 battle"] = [

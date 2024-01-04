@@ -31,7 +31,8 @@ function save_room()
 			battle_cutscene: inst.battle_cutscene,
 			defeated_cutscene: inst.defeated_cutscene,
 			cutscene: inst.cutscene,
-			triggered_combat: inst.triggered_combat
+			triggered_combat: inst.triggered_combat,
+			npc_id: inst.npc_id
 		}
 	}
 	
@@ -61,7 +62,8 @@ function save_room()
 			y : inst.y,
 			cutscene: inst.cutscene,
 			sprite_index : inst.sprite_index,
-			is_battle_challenge_npc: object_index == oBattleChallengeNPC
+			is_battle_challenge_npc: inst.object_index == oBattleChallengeNPC,
+			npc_id: inst.npc_id
 		}
 	}
 	
@@ -133,6 +135,7 @@ function load_room()
 			defeated_cutscene = data.defeated_cutscene;
 			cutscene = data.cutscene;
 			triggered_combat = data.triggered_combat;
+			npc_id = data.npc_id;
 			if (triggered_combat && global.data_controller.overworld_flag == overworld_flags.victory)
 			{
 				defeated = true;
@@ -209,6 +212,7 @@ function load_room()
 			{
 				cutscene = data.cutscene;
 				sprite_index = data.sprite_index;
+				npc_id = data.npc_id
 			}
 		}
 	}

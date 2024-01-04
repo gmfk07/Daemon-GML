@@ -1,11 +1,15 @@
+//Starts cutscene from cutscene_array, does nothing if data is an empty array
 function start_cutscene(data)
 {
-    with (global.cutscene_controller)
-    {
-        scene_data = data;
-        in_cutscene = true;
-        scene_index = 0;
-    }
+	if (array_length(data) > 0)
+	{
+	    with (global.cutscene_controller)
+	    {
+	        scene_data = data;
+	        in_cutscene = true;
+	        scene_index = 0;
+	    }
+	}
 }
 
 //Goes to the next scene, or ends the cutscene if this was the last scene.
@@ -109,11 +113,71 @@ function cutscene_delete_closest_interactable()
 	goto_next_scene();
 }
 
-function cutscene_change_sprite(_object, _sprite)
+function cutscene_npc_change_sprite(_npc_id, _sprite)
 {
-	with (_object)
+	var object = get_npc_from_npc_id(_npc_id)
+	with (object)
 	{
 		sprite_index = _sprite;
 	}
 	goto_next_scene();
+}
+
+function cutscene_npc_move(_npc_id, _new_x, _new_y, _spd)
+{
+	var object = get_npc_from_npc_id(_npc_id)
+	with (object)
+	{
+		if (point_distance(x, y, _new_x, _new_y) <= _spd)
+		{
+			x = _new_x;
+			y = _new_y;
+			speed = 0;
+			goto_next_scene();
+		}
+		else
+		{
+			var _dir = point_direction(x, y, _new_x, _new_y)
+			{
+				var l_dir_x = lengthdir_x(_spd, _dir);
+				var l_dir_y = lengthdir_y(_spd, _dir);
+				
+				x += l_dir_x;
+				y += l_dir_y;
+				
+				show_debug_message(x);
+				show_debug_message(y);
+			}
+		};
+	}
+}
+
+function cutscene_create_npc(_object, _npc_id, _x, _y)
+{
+	var created = instance_create_layer(_x, _y, "Instances", _object);
+	created.npc_id = _npc_id;
+	goto_next_scene();
+}
+
+//Meant to go at the end of cutscenes!
+function cutscene_branch_event_flag(event_flag, cutscene_raised, cutscene_unraised)
+{
+	goto_next_scene();
+	if (has_event_flag(event_flag))
+	{
+		start_cutscene(cutscene_raised);
+	} else {
+		start_cutscene(cutscene_unraised);
+	}
+}
+
+function get_npc_from_npc_id(_npc_id)
+{
+	with (oDialogueNPC)
+	{
+		if (npc_id == _npc_id)
+		{
+			return self;
+		}
+	}
 }
