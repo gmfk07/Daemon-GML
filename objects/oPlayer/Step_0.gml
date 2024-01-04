@@ -56,5 +56,5 @@ if (closest_interactable == noone)
 {
 	near_dialogue = false;
 } else {
-	near_dialogue = point_distance(x, y, closest_interactable.x+16, closest_interactable.y+16) <= min_interact_distance;
+	near_dialogue = point_distance(x, y, closest_interactable.x+closest_interactable.sprite_width/2, closest_interactable.y+closest_interactable.sprite_height/2) <= min_interact_distance;
 }
