@@ -93,7 +93,7 @@ function get_string_from_effects(given_effects)
 				result += "Swap";
 			break;
 			case effects.status_effect:
-				result += "Inflict " + get_status_effect_name(effect[1]) + " " + string(effect[2]);
+				result += "Inflict " + get_status_effect_sprite_name(effect[1]) + " " + string(effect[2]);
 			break;
 			case effects.cure:
 				result += "Cure " + string(effect[1]);

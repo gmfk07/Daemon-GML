@@ -2,7 +2,7 @@ global.topics = {};
 
 // First NPC
 global.topics[$ "Hey there"] = [
-	TEXT("Hey there, new player!")
+	TEXT("Hey there, new player! /sIconEnergyStrengthened woo!")
 ];
 
 global.topics[$ "Welcome"] = [

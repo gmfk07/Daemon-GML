@@ -18,7 +18,7 @@ draw_set_font(-1);
 draw_set_halign(fa_left);
 draw_set_font(fnt_card_text);
 draw_text(0, 0, move.name);
-draw_text_ext(16, sprite_width/2 + 32, get_description_string(move.effects, move.self_effects, move.restrictions), 16, sprite_width - 32);
+type(16, sprite_width/2 + 32, get_description_string(move.effects, move.self_effects, move.restrictions), string_length(get_description_string(move.effects, move.self_effects, move.restrictions)), sprite_width - 16);
 
 draw_set_halign(fa_center);
 draw_text(16, sprite_height/2 - 16, move.cost + (same_class ? 0 : 1));

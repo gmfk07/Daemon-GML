@@ -40,6 +40,26 @@ function type(x, y, text, progress, width) {
 				}
 			}
 		}
+		else if (char == "/") {
+			var asset_string = "";
+			var word_width = 0;
+			for (var ii = i + 1; ii <= string_length(text); ii++) {
+				var word_char = string_char_at(text, ii);
+				
+				// If we reached the end of the word, stop checking
+				if (word_char == "\n" || word_char == " ")
+				{
+					draw_sprite(asset_get_index(asset_string), 0, x + draw_x, y + draw_y);
+					draw_x += 32;
+					break;
+				}
+				
+				i = ii;
+					
+				asset_string += word_char;
+				
+			}
+		}
 		else {
 			// Draw the letter
 			draw_text(x + draw_x, y + draw_y, char);

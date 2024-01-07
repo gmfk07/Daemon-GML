@@ -239,6 +239,48 @@ function get_status_effect_name(status_effect)
 	}
 }
 
+function get_status_effect_sprite_name(status_effect)
+{
+	switch (status_effect)
+	{	
+		case status_effects.physical_strengthened:
+			return "/sIconPhysicalStrengthened";
+		break;
+		
+		case status_effects.physical_weakened:
+			return "/sIconPhysicalWeakened";
+		break;
+		
+		case status_effects.physical_bolstered:
+			return "/sIconPhysicalBolstered";
+		break;
+		
+		case status_effects.physical_vulnerable:
+			return "/sIconPhysicalVulnerable";
+		break;
+	
+		case status_effects.energy_strengthened:
+			return "/sIconEnergyStrengthened";
+		break;
+	
+		case status_effects.energy_weakened:
+			return "/sIconEnergyWeakened";
+		break;
+		
+		case status_effects.energy_bolstered:
+			return "/sIconEnergyBolstered";
+		break;
+	
+		case status_effects.energy_vulnerable:
+			return "/sIconEnergyVulnerable";
+		break;
+		
+		case status_effects.infected:
+			return "/sIconInfected";
+		break;
+	}
+}
+
 //Returns the opposite status effect that counters this one, or noone if none apply.
 function get_status_effect_opposite(status_effect)
 {
