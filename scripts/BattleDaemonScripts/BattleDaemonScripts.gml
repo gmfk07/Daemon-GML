@@ -67,17 +67,27 @@ function try_get_next_acting_battle_daemon(battle_daemon_array, phase)
 			var is_in_phase = battle_daemon_array[i].selected_move.phase == phase;
 			var has_not_attacked = !battle_daemon_array[i].attacked;
 			var is_alive = battle_daemon_array[i].hp > 0;
+			var has_valid_move = can_use_move(battle_daemon_array[i].position, battle_daemon_array[i].selected_move.restrictions);
+			
 			if (is_in_phase && has_not_attacked && is_alive)
 			{
-				var initiative = battle_daemon_array[i].initiative;
-				if (initiative > highest_initiative)
+				if (!has_valid_move)
 				{
-					highest_initiative = initiative;
-					possible_actors = [battle_daemon_array[i]];
+					//Move invalid, don't act
+					battle_daemon_cancel_at_position(battle_daemon_array[i].position);
 				}
-				else if (initiative == highest_initiative)
+				else
 				{
-					array_push(possible_actors, battle_daemon_array[i]);
+					var initiative = battle_daemon_array[i].initiative;
+					if (initiative > highest_initiative)
+					{
+						highest_initiative = initiative;
+						possible_actors = [battle_daemon_array[i]];
+					}
+					else if (initiative == highest_initiative)
+					{
+						array_push(possible_actors, battle_daemon_array[i]);
+					}
 				}
 			}
 		}
@@ -174,6 +184,11 @@ function battle_daemon_apply_effects_to_target(effects, class, battle_daemon, ta
 			case effects.charge:
 				battle_daemon_charge_at_position(target_daemon);
 			break;
+			
+			//Cancel
+			case effects.cancel:
+				battle_daemon_cancel_at_position(target_daemon);
+			break;
 		}
 	}
 }
@@ -205,6 +220,15 @@ function battle_daemon_charge_at_position(position)
 	{
 		swap_daemons(position, positions.enemy_center);
 	}
+}
+
+function battle_daemon_cancel_at_position(position)
+{
+	var battle_daemon = ds_map_find_value(global.battle_controller.position_daemon_map, position);
+	battle_daemon.selected_move = noone;
+	battle_daemon.selected_targets = [];
+	battle_daemon.attacked = true;
+	battle_daemon.image_blend = c_white;
 }
 
 function battle_daemon_add_status_effect(battle_daemon, _status_effect, _duration)

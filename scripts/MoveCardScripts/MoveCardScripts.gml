@@ -101,6 +101,9 @@ function get_string_from_effects(given_effects)
 			case effects.charge:
 				result += "Charge";
 			break;
+			case effects.cancel:
+				result += "Cancel";
+			break;
 		}
 	}
 	return result;

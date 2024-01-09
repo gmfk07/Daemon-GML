@@ -339,6 +339,21 @@ move_grapple_data =
 	animation: [[animation_spawn_projectile, sProjectile, 12], [animation_target_swap_charge, 6], [animation_act]]
 }
 
+move_supercede_data =
+{
+	name: "Supercede",
+	art: sBeamArt,
+	class: classes.advent,
+	cost: 1,
+	targets: targets.single_enemy,
+	can_target_dead: false,
+	phase: battle_phases.prep,
+	effects: [[effects.cancel]],
+	self_effects: [],
+	restrictions: [],
+	animation: [[animation_spawn_projectile, sProjectile, 12], [animation_act]]
+}
+
 var _filename = "daemon_moves.dae"
 
 if (false)//file_exists(_filename))
@@ -349,7 +364,7 @@ if (false)//file_exists(_filename))
 	var _load_array = json_parse(_json);
 	daemon_move_array = _load_array;
 } else {
-	array_push(daemon_move_array, move_move_data, move_quickswap_data, move_poke_data, move_claw_data, move_bite_data, move_mend_data, move_herbal_remedy_data, move_beam_data, move_zap_data, move_dark_stab_data, move_venomous_stab_data, move_weakening_stab_data, move_burst_data, move_omegabite_data, move_chomp_chomp_data, move_sunder_data, move_shatter_data, move_vitrify_data, move_clash_data, move_bolster_data, move_recuperate_data, move_grapple_data);
+	array_push(daemon_move_array, move_move_data, move_quickswap_data, move_poke_data, move_claw_data, move_bite_data, move_mend_data, move_herbal_remedy_data, move_beam_data, move_zap_data, move_dark_stab_data, move_venomous_stab_data, move_weakening_stab_data, move_burst_data, move_omegabite_data, move_chomp_chomp_data, move_sunder_data, move_shatter_data, move_vitrify_data, move_clash_data, move_bolster_data, move_recuperate_data, move_grapple_data, move_supercede_data);
 	//show_message(array_length(daemon_move_array));
 
 	var _json = json_stringify(daemon_move_array);
@@ -427,7 +442,7 @@ var eyebot_data = {
 	hp: 16,
 	initiative: 20,
 	classes: [classes.advent],
-	starting_moves: [7, 7, 7, 7, 7, 7, 7, 7, 7, 21, 21, 21],
+	starting_moves: [7, 7, 7, 7, 7, 7, 7, 22, 22, 21, 21, 21],
 	unlocked_moves: [[9, 9], [], []],
 	hand_size: 4,
 	physical_attack: 0,
@@ -483,8 +498,8 @@ player_top_daemon_data =
 
 player_center_daemon_data =
 {
-	index: 1,
-	moves: get_all_unlocked_moves(1, 1),
+	index: 0,
+	moves: get_all_unlocked_moves(0, 1),
 	unused_moves: [],
 	level: 1,
 	experience: 0

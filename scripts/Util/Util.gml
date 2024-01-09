@@ -66,7 +66,8 @@ enum effects
 	heal, //heals, 1 param: healing
 	status_effect, //applies status effect, 2 param: status effect, turn duration
 	cure, //removes stacks of negative status effect, 1 param: stacks
-	charge //sends the target to the front
+	charge, //sends the target to the front
+	cancel //cancels the target's current move
 }
 
 enum restrictions
