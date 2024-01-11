@@ -99,7 +99,7 @@ else if (phase == battle_phases.selecting)
 	{
 		if (selected_daemon == noone && catch_button == noone && get_catchable_daemon_position() != noone)
 		{
-			catch_button = instance_create_layer(room_width/2, room_height - 128, "UI", oCatch);
+			catch_button = instance_create_layer(room_width/2, room_height - 128, "HUD", oCatch);
 		}
 		
 		if (selected_daemon != noone && catch_button != noone)

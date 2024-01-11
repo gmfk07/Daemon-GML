@@ -50,6 +50,11 @@ global.topics[$ "Post-welcome 3"] = [
 	TEXT("Oh boy, you're gonna have to get used to battles from... eccentric people. Most of the World of Daemon is a PvP zone, after all.")
 ];
 
+global.topics[$ "Battle explanation"] = [
+	TEXT("It's a battle! Your daemons are on the left, your opponent's are on the right. Each daemon has a deck, hand, and discard pile of their own. However, the energy these cards draw from is a shared resource."),
+	TEXT("Positioning matters! While the daemon in the front can target any daemon, other daemons have a limited range.")
+];
+
 global.topics[$ "Example1"] = [
 	TEXT("What's up gamer?"),
 	TEXT("Let's go"),

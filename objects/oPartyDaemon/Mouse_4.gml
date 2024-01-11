@@ -4,7 +4,7 @@ if (!selected)
 	selected = true;
 	global.party_controller.selected_party_daemon = self;
 	
-	layer = layer_get_id("UI");
+	layer = layer_get_id("HUD");
 	
 	if (!is_moused_over)
 	{

@@ -4,5 +4,5 @@ if (!selected && global.battle_controller.phase == battle_phases.selecting && gl
 	selected = true;
 	global.battle_controller.selected_card = self;
 	
-	layer = layer_get_id("UI");
+	layer = layer_get_id("HUD");
 }

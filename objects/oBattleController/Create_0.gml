@@ -55,3 +55,10 @@ battle_type = global.data_controller.battle_type;
 
 randomize();
 start_new_turn();
+
+var starting_battle_cutscene = [[cutscene_dialogue, "Battle explanation"]];
+if (global.data_controller.first_battle)
+{
+	start_cutscene(starting_battle_cutscene);
+}
+global.data_controller.first_battle = false;
