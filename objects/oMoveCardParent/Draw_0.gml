@@ -23,6 +23,8 @@ type(16, sprite_width/2 + 32, get_description_string(move.effects, move.self_eff
 draw_set_halign(fa_center);
 draw_text(16, sprite_height/2 - 16, move.cost + (same_class ? 0 : 1));
 
+draw_set_halign(fa_left);
+draw_sprite(get_class_icon(move.class), 0, sprite_width-16, 0);
 
 surface_reset_target();
 

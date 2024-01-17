@@ -8,6 +8,11 @@ function set_daemon_data_from_position(position, value)
     ds_map_set(global.data_controller.daemon_data_map, position, value);
 }
 
+function get_daemon_data_from_reserve_index(reserve_index)
+{
+    return global.data_controller.daemon_reserve_list[| reserve_index];
+}
+
 //Given two non-reserve positions, swaps daemons.
 function swap_daemon_data_from_positions(position1, position2)
 {
