@@ -1,4 +1,4 @@
-/// @description Draw self and target lines
+/// @description Draw self, class icons, target lines
 draw_set_alpha(1);
 draw_set_color(c_white);
 draw_self();
@@ -18,6 +18,11 @@ if (hp > 0)
 		draw_set_font(fnt_turns_left);
 		draw_text(x + i*32 - (status_effect_count/2)*32, y-64, status_effect_list[| i].duration);
 	}
+}
+
+for (var i=0; i<array_length(classes); i++)
+{
+	draw_sprite(get_class_icon(classes[i]), 0, bbox_right - (array_length(classes) - i)*16, bbox_top);
 }
 
 var pc;

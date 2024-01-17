@@ -92,3 +92,7 @@ global.topics[$ "battle npc 1 defeated"] = [
 global.topics[$ "battle npc 1 dialogue"] = [
 	TEXT("You got lucky, kid...")
 ];
+
+global.topics[$ "locked gate"] = [
+	TEXT("It's the gate to the rest of the World of Daemon. A sign says: 'defeat X and Y to obtain access! -admin XkyutefireX'")
+];

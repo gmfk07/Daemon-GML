@@ -156,6 +156,36 @@ function get_class_weaknesses(class)
 	}
 }
 
+function get_class_icon(class)
+{
+	switch (class)
+	{
+		case classes.advent:
+			return sAdventIcon;
+		break;
+		
+		case classes.bulwark:
+			return sBulwarkIcon;
+		break;
+		
+		case classes.element:
+			return sElementIcon;
+		break;
+		
+		case classes.impulse:
+			return sImpulseIcon;
+		break;
+		
+		case classes.null:
+			return sNullIcon;
+		break;
+		
+		case classes.penumbra:
+			return sPenumbraIcon;
+		break;
+	}
+}
+
 function get_status_effect_icon(status_effect)
 {
 	switch (status_effect)

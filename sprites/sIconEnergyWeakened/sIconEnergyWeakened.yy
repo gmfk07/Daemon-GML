@@ -25,8 +25,8 @@
   "nineSlice": null,
   "origin": 0,
   "parent": {
-    "name": "Battle Icons",
-    "path": "folders/Sprites/Battle Icons.yy",
+    "name": "Status Effects",
+    "path": "folders/Sprites/Battle Icons/Status Effects.yy",
   },
   "preMultiplyAlpha": false,
   "sequence": {

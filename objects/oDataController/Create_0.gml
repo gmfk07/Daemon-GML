@@ -498,8 +498,8 @@ player_top_daemon_data =
 
 player_center_daemon_data =
 {
-	index: 0,
-	moves: get_all_unlocked_moves(0, 1),
+	index: 1,
+	moves: get_all_unlocked_moves(1, 1),
 	unused_moves: [],
 	level: 1,
 	experience: 0
