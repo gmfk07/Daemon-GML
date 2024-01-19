@@ -140,6 +140,7 @@
     {"id":{"name":"sPenumbraIcon","path":"sprites/sPenumbraIcon/sPenumbraIcon.yy",},},
     {"id":{"name":"fnt_point_cost","path":"fonts/fnt_point_cost/fnt_point_cost.yy",},},
     {"id":{"name":"oBattleWildNPCSpawner","path":"objects/oBattleWildNPCSpawner/oBattleWildNPCSpawner.yy",},},
+    {"id":{"name":"sClasslessIcon","path":"sprites/sClasslessIcon/sClasslessIcon.yy",},},
     {"id":{"name":"Topics","path":"scripts/Topics/Topics.yy",},},
     {"id":{"name":"sIconEnergyWeakened","path":"sprites/sIconEnergyWeakened/sIconEnergyWeakened.yy",},},
     {"id":{"name":"sCatch","path":"sprites/sCatch/sCatch.yy",},},

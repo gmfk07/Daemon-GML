@@ -90,6 +90,7 @@
     {"name":"sEyebot","order":5,"path":"sprites/sEyebot/sEyebot.yy",},
     {"name":"sPenumbraIcon","order":5,"path":"sprites/sPenumbraIcon/sPenumbraIcon.yy",},
     {"name":"oBattleWildNPCSpawner","order":9,"path":"objects/oBattleWildNPCSpawner/oBattleWildNPCSpawner.yy",},
+    {"name":"sClasslessIcon","order":6,"path":"sprites/sClasslessIcon/sClasslessIcon.yy",},
     {"name":"Topics","order":13,"path":"scripts/Topics/Topics.yy",},
     {"name":"sIconEnergyWeakened","order":3,"path":"sprites/sIconEnergyWeakened/sIconEnergyWeakened.yy",},
     {"name":"sCatch","order":3,"path":"sprites/sCatch/sCatch.yy",},

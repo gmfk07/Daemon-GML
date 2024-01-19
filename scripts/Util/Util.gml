@@ -183,6 +183,10 @@ function get_class_icon(class)
 		case classes.penumbra:
 			return sPenumbraIcon;
 		break;
+		
+		case classes.classless:
+			return sClasslessIcon;
+		break;
 	}
 }
 
