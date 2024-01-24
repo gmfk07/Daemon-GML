@@ -1,4 +1,4 @@
-/// @description Swap move/unused move
+/// @description Swap move / unused move
 if (is_used)
 {
 	deckbuilding_transfer_move_to_unused_moves(index);
