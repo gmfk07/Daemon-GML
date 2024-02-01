@@ -12,5 +12,5 @@ if (selected)
 	x = source_x;
 	y = source_y;
 	
-	layer = layer_get_id("Interactables");
+	layer = layer_get_id("Daemon");
 }

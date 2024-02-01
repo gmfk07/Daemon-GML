@@ -102,6 +102,9 @@ function save_room()
 		}
 	}
 	
+	//Fill cutscene controller data
+	var inst = global.cutscene_controller;
+	
 	if (room_get_name(room) == "rOverworld")
 	{
 		global.room_data.room_overworld = room_struct;

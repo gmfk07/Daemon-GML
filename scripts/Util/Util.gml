@@ -96,6 +96,36 @@ enum wild_behaviors
 	wander_leashed //wander around within home area, 2 param: max_distance_wander_relative, max_distance_from_home
 }
 
+function get_class_string(class)
+{
+	switch (class)
+	{
+		case classes.advent:
+			return "Advent";
+		break;
+			
+		case classes.bulwark:
+			return "Bulwark";
+		break;
+		
+		case classes.element:
+			return "Element";
+		break;
+		
+		case classes.impulse:
+			return "Impulse";
+		break;
+		
+		case classes.null:
+			return "Null";
+		break;
+		
+		case classes.penumbra:
+			return "Penumbra";
+		break;
+	}
+}
+
 function get_class_strengths(class)
 {
 	switch (class)

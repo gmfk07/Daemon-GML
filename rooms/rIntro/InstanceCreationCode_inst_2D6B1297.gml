@@ -1,3 +1,15 @@
+top_daemon = {
+	index: 0,
+	moves: []
+}
+center_daemon = {
+	index: 0,
+	moves: []
+}
+bottom_daemon = {
+	index: 0,
+	moves: []
+}
 width = 128;
 height = 128;
 cutscene = [
@@ -8,5 +20,6 @@ cutscene = [
 			[cutscene_dialogue, "Welcome"],
 			[cutscene_party],
 			[cutscene_dialogue, "Welcome 2"],
+			[cutscene_battle, top_daemon, center_daemon, bottom_daemon],
 			[cutscene_npc_move, 42, 1390, y, 12]
 			];

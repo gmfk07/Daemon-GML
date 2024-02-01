@@ -2,7 +2,7 @@ global.topics = {};
 
 // First NPC
 global.topics[$ "Hey there"] = [
-	TEXT("Hey there, new player! /sIconEnergyStrengthened woo!")
+	TEXT("Hey there, new player!")
 ];
 
 global.topics[$ "Welcome"] = [
@@ -32,7 +32,7 @@ global.topics[$ "Welcome 4"] = [
 ];
 
 global.topics[$ "Welcome 5"] = [
-	TEXT("Anyways! Come follow me to the next room!")
+	TEXT("Anyways! Let's see what you got, new kid! Practice battling on these modified Comcats - they won't have any cards to play and will just move.")
 ];
 
 global.topics[$ "Post-welcome"] = [
@@ -40,6 +40,10 @@ global.topics[$ "Post-welcome"] = [
 	CHOICE("Just hit tab to open your daemon menu, then right-click a daemon to access its moveset. Then add or remove the cards you want! Friendly warning though - your deck size must be at least three times your daemon's hand size.",
 		OPTION("Thanks!", "Post-welcome 2"),
 		OPTION("Who was that guy?", "Post-welcome 3"))
+];
+
+global.topics[$ "tutorial defeated"] = [
+	TEXT("Good job! Did you notice that some of your daemon dealt more ")
 ];
 
 global.topics[$ "Post-welcome 2"] = [
@@ -90,7 +94,7 @@ global.topics[$ "battle npc 1 defeated"] = [
 ];
 
 global.topics[$ "battle npc 1 dialogue"] = [
-	TEXT("You got lucky, kid...")
+	TEXT("You got lucky...")
 ];
 
 global.topics[$ "locked gate"] = [
