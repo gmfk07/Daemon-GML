@@ -1,5 +1,5 @@
-//Starts cutscene from cutscene_array, does nothing if data is an empty array
-function start_cutscene(data)
+//Starts cutscene from cutscene_array at a given index, does nothing if data is an empty array
+function start_cutscene_from_scene(data, _scene_index)
 {
 	if (array_length(data) > 0)
 	{
@@ -7,9 +7,15 @@ function start_cutscene(data)
 	    {
 	        scene_data = data;
 	        in_cutscene = true;
-	        scene_index = 0;
+	        scene_index = _scene_index;
 	    }
 	}
+}
+
+//Starts cutscene from cutscene_array, does nothing if data is an empty array
+function start_cutscene(data)
+{
+	start_cutscene_from_scene(data, 0);
 }
 
 //Goes to the next scene, or ends the cutscene if this was the last scene.
@@ -37,6 +43,13 @@ function end_cutscene()
     with (global.cutscene_controller)
     {
         in_cutscene = false;
+    }
+    with (oPlayerTrigger)
+    {
+    	if (triggered)
+    	{
+    		completed = true;
+    	}
     }
 }
 
@@ -95,6 +108,14 @@ function cutscene_battle(top_daemon, center_daemon, bottom_daemon, battle_type)
     global.data_controller.battle_type = battle_type;
     room_goto(rBattle);
     goto_next_scene();
+}
+
+function cutscene_wait_for_battle_end()
+{
+	if (room != rBattle)
+	{
+		goto_next_scene();
+	}
 }
 
 function cutscene_party()
@@ -157,6 +178,7 @@ function cutscene_create_npc(_object, _npc_id, _cutscene, _x, _y)
 	var created = instance_create_layer(_x, _y, "Instances", _object);
 	created.npc_id = _npc_id;
 	created.cutscene = _cutscene;
+	created.cutscene_created = true;
 	goto_next_scene();
 }
 

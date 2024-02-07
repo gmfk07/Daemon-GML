@@ -21,5 +21,7 @@ cutscene = [
 			[cutscene_party],
 			[cutscene_dialogue, "Welcome 2"],
 			[cutscene_battle, top_daemon, center_daemon, bottom_daemon],
+			[cutscene_dialogue, "Battle explanation"],
+			[cutscene_wait_for_battle_end],
 			[cutscene_npc_move, 42, 1390, y, 12]
 			];

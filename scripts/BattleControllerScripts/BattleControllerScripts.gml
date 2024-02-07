@@ -31,7 +31,7 @@ function clear_selected_daemon(clear_move)
 
 function start_new_turn()
 {
-	if (is_defeat())
+	if (is_defeat() || keyboard_check(ord("L")))
 	{
 		global.data_controller.overworld_flag = overworld_flags.defeat;
 		room_goto(global.data_controller.last_overworld_room);

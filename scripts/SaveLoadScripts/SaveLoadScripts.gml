@@ -19,7 +19,8 @@ function save_room()
 		battle_wild_npc_spawner_num: _battle_wild_npc_spawner_num,
 		battle_wild_npc_spawner_data: array_create(_battle_wild_npc_spawner_num),
 		player_trigger_num: _player_trigger_num,
-		player_trigger_data: array_create(_player_trigger_num)
+		player_trigger_data: array_create(_player_trigger_num),
+		cutscene_controller_data: 0
 	}
 	
 	//Fill battle_challenge_npc_data
@@ -66,7 +67,10 @@ function save_room()
 			cutscene: inst.cutscene,
 			sprite_index : inst.sprite_index,
 			is_battle_challenge_npc: inst.object_index == oBattleChallengeNPC,
-			npc_id: inst.npc_id
+			npc_id: inst.npc_id,
+			cutscene_created: inst.cutscene_created,
+			original_x: inst.original_x,
+			original_y: inst.original_y
 		}
 	}
 	
@@ -98,12 +102,10 @@ function save_room()
 			x : inst.x,
 			y : inst.y,
 			cutscene: inst.cutscene,
-			triggered: inst.triggered
+			triggered: inst.triggered,
+			completed: inst.completed
 		}
 	}
-	
-	//Fill cutscene controller data
-	var inst = global.cutscene_controller;
 	
 	if (room_get_name(room) == "rOverworld")
 	{
@@ -248,7 +250,10 @@ function load_room()
 			{
 				cutscene = data.cutscene;
 				sprite_index = data.sprite_index;
-				npc_id = data.npc_id
+				npc_id = data.npc_id;
+				cutscene_created = data.cutscene_created;
+				original_x = data.original_x;
+				original_y = data.original_y;
 			}
 		}
 	}
@@ -261,7 +266,16 @@ function load_room()
 		with (instance_create_layer(data.x, data.y, "Instances", oPlayerTrigger))
 		{
 			cutscene = data.cutscene;
-			triggered = data.triggered;
+			if (data.triggered && !data.completed && global.data_controller.overworld_flag == overworld_flags.defeat)
+			{
+				triggered = false;
+				completed = false;
+			}
+			else
+			{
+				triggered = data.triggered;
+				completed = data.completed;
+			}
 		}
 	}
 	
@@ -269,6 +283,23 @@ function load_room()
 	{
 		oPlayer.x = room_struct.player_x;
 		oPlayer.y = room_struct.player_y;
+	}
+	else
+	{
+		//If we lost, reset all dialogue NPCs and cutscene
+		end_cutscene();
+		with (oDialogueNPC)
+		{
+			if (cutscene_created)
+			{
+				instance_destroy();
+			}
+			else
+			{
+				x = original_x;
+				y = original_y;
+			}
+		}
 	}
 	
 	global.data_controller.overworld_flag = overworld_flags.none;
