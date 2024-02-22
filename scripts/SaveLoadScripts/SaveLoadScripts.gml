@@ -67,10 +67,7 @@ function save_room()
 			cutscene: inst.cutscene,
 			sprite_index : inst.sprite_index,
 			is_battle_challenge_npc: inst.object_index == oBattleChallengeNPC,
-			npc_id: inst.npc_id,
-			cutscene_created: inst.cutscene_created,
-			original_x: inst.original_x,
-			original_y: inst.original_y
+			npc_id: inst.npc_id
 		}
 	}
 	
@@ -250,10 +247,7 @@ function load_room()
 			{
 				cutscene = data.cutscene;
 				sprite_index = data.sprite_index;
-				npc_id = data.npc_id;
-				cutscene_created = data.cutscene_created;
-				original_x = data.original_x;
-				original_y = data.original_y;
+				npc_id = data.npc_id
 			}
 		}
 	}
@@ -266,16 +260,8 @@ function load_room()
 		with (instance_create_layer(data.x, data.y, "Instances", oPlayerTrigger))
 		{
 			cutscene = data.cutscene;
-			if (data.triggered && !data.completed && global.data_controller.overworld_flag == overworld_flags.defeat)
-			{
-				triggered = false;
-				completed = false;
-			}
-			else
-			{
-				triggered = data.triggered;
-				completed = data.completed;
-			}
+			triggered = data.triggered;
+			completed = data.completed;
 		}
 	}
 	
@@ -283,23 +269,6 @@ function load_room()
 	{
 		oPlayer.x = room_struct.player_x;
 		oPlayer.y = room_struct.player_y;
-	}
-	else
-	{
-		//If we lost, reset all dialogue NPCs and cutscene
-		end_cutscene();
-		with (oDialogueNPC)
-		{
-			if (cutscene_created)
-			{
-				instance_destroy();
-			}
-			else
-			{
-				x = original_x;
-				y = original_y;
-			}
-		}
 	}
 	
 	global.data_controller.overworld_flag = overworld_flags.none;

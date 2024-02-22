@@ -178,7 +178,6 @@ function cutscene_create_npc(_object, _npc_id, _cutscene, _x, _y)
 	var created = instance_create_layer(_x, _y, "Instances", _object);
 	created.npc_id = _npc_id;
 	created.cutscene = _cutscene;
-	created.cutscene_created = true;
 	goto_next_scene();
 }
 
@@ -191,6 +190,24 @@ function cutscene_branch_event_flag(event_flag, cutscene_raised, cutscene_unrais
 		start_cutscene(cutscene_raised);
 	} else {
 		start_cutscene(cutscene_unraised);
+	}
+}
+
+function cutscene_display_sprite(_sprite, _x, _y)
+{
+	with (global.cutscene_controller)
+	{
+		sprite_to_draw = _sprite;
+		sprite_x = _x;
+		sprite_y = _y;
+	}
+}
+
+function cutscene_clear_sprite()
+{
+	with (global.cutscene_controller)
+	{
+		sprite_to_draw = noone;
 	}
 }
 

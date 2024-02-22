@@ -382,7 +382,7 @@ var comcat_data = {
 	hp: 20,
 	initiative: 10,
 	classes: [classes.impulse],
-	starting_moves: [1, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 4, 4, 4],
+	starting_moves: [2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 4, 4, 4],
 	unlocked_moves: [[3, 5, 6], [14], []],
 	hand_size: 5,
 	physical_attack: 2,

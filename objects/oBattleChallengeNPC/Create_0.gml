@@ -1,6 +1,4 @@
 /// @description Default cutscene and team
-event_inherited();
-
 move_claw_data = global.data_controller.move_claw_data;
 move_burst_data = global.data_controller.move_burst_data;
 
